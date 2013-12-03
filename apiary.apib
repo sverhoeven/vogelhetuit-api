@@ -107,18 +107,12 @@ The Trip resource requires the following attributes:
 - tracker (url) ... Tracker identifier.
 - start (string) ... Start time of trip.
 - end (string) ... End time of trip.
-
-The coordinates are fetched from the eEcology database.
+- geo (GeoJSON) ... List of features that appear between start and end time.
 
 The trip can be hidden initially and after POI's and questions are added, then the trip can be made visible.
 A hidden trip can only be seen by the owner and other users with *researcher* role.
 
 + Request
-
-    + Headers
-    
-            X-ecology-authentication: Basic Base64 encoded username:password
-
 
     + Body
     
@@ -126,7 +120,25 @@ A hidden trip can only be seen by the owner and other users with *researcher* ro
                 "start": "2013-04-14T10:00:00Z",
                 "end": "2013-04-15T12:00:00Z",
                 "tracker_id": "/tracks/123",
-                "is_visible": false
+                "is_visible": false,
+                "geo": {
+                    "type": "FeatureCollection",
+                    "bbox": [54.342, 12.543, 54.642, 12.543],
+                    "features": [{
+                        "type": "Feature",
+                        // Each GPS fix of a track has a coordinate and timestamp
+                        "geometry": {"type": "Point", "coordinates": [54.342, 12.543, -5]},
+                        "properties": {"ts":  "2013-04-15T12:05:00Z"}
+                    }, {
+                        "type": "Feature",
+                        "geometry": {"type": "Point", "coordinates": [54.442, 12.543, -3]},
+                        "properties": {"ts":  "2013-04-15T12:10:00Z"}
+                    }, {
+                        "type": "Feature",
+                        "geometry": {"type": "Point", "coordinates": [54.642, 12.543, -3]},
+                        "properties": {"ts":  "2013-04-15T12:15:00Z"}
+                    }]
+                }
             }
 
     + Schema
