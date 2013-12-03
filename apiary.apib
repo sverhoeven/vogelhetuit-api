@@ -1,0 +1,605 @@
+FORMAT: 1A
+HOST: https://api.vogelhetuit.nl/v1
+
+# Vogel het uit
+The *Vogel het uit* service for sharing gps tracks (trips), assigning points of interest, attaching questions to poi, recieving answers and building trip story.
+
+# Formatting
+
+- Geo data must be in [GeoJSON](http://www.geojson.org) format.
+- Timestamps must be in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) (YYYY-MM-DDTHH:MM:SSZ) format.
+
+# Authentication
+Use Basic-authentication to get a OAUTH v2 token.
+Not a all requests require authentication, when authentication is required it will be specified.
+
+## eEcology authentication
+
+eEcology credentials are required to fetch tracks from the eEcology database.
+Only tracks for which the user is privilegged will be returned.
+
+The credentials need to be supppied as a http header *X-ecology-authentication* with a value same as Basic authentication.
+
+# Pagination
+
+Use same pagination scheme as Github API. See http://developer.github.com/v3/#pagination
+
+# Group Species
+A tracker is tied to an animal of a certain species.
+Species can be used to filter tracks, trips or stories.
+
+## Collection of species [/species]
+
+### Retrieve list of species [GET]
+
++ Response 200 (application/json)
+
+        ["Larus Fuscus"]
+
+# Group Tracks
+To make a trip a track has to be selected followed by selecting a time range.
+
+## Collection of tracks [/tracks]
+
+### Get a list of tracks [GET]
+
++ Request
+
+    + Headers
+    
+            X-ecology-authentication: Basic Base64 encoded username:password
+
++ Response 200 (application/json)
+
+        [{
+            "species": "Larus Fuscus",
+            "project": "Texel",
+            "id": "/tracks/123"
+        }]
+
+## Get a track [/tracks/{id}/{start}/{end}]
+
+A track must always be limited by a start and end timestamp.
+
++ Parameters
+    + id ... Tracker identifier.
+    + start ... Start timestamp.
+    + end ... End timestamp.
+
+### Get coordinates of a track [GET]
+
++ Request
+
+    + Headers
+    
+            X-ecology-authentication: Basic Base64 encoded username:password
+
++ Response 200 (application/json)    
+
+            {
+                "type": "FeatureCollection",
+                "bbox": [54.342, 12.543, 54.642, 12.543],
+                "features": [{
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [54.342, 12.543, -5]},
+                    "properties": {"ts":  "2013-04-15T12:05:00Z"}
+                }, {
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [54.442, 12.543, -3]},
+                    "properties": {"ts":  "2013-04-15T12:10:00Z"}
+                }, {
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [54.642, 12.543, -3]},
+                    "properties": {"ts":  "2013-04-15T12:15:00Z"}
+                }]
+            }
+    
+
+# Group Trips
+A trip resource is a section out of a track with timestamped coordinates.
+
+## Collection of trips [/trips]
+
+### Create a trip. [POST]
+
+The Trip resource requires the following attributes:
+    
+- tracker (url) ... Tracker identifier.
+- start (string) ... Start time of trip.
+- end (string) ... End time of trip.
+
+The coordinates are fetched from the eEcology database.
+
+The trip can be hidden initially and after POI's and questions are added, then the trip can be made visible.
+A hidden trip can only be seen by the owner and other users with *researcher* role.
+
++ Request
+
+    + Headers
+    
+            X-ecology-authentication: Basic Base64 encoded username:password
+
+
+    + Body
+    
+            {
+                "start": "2013-04-14T10:00:00Z",
+                "end": "2013-04-15T12:00:00Z",
+                "tracker_id": "/tracks/123",
+                "is_visible": false
+            }
+
+    + Schema
+    
+            {
+                "type": "object",
+                "start": {
+                    "type": "string",
+                    "pattern": "\d{4}-\d{2}\d{2}T\d{2}:\d{2}:\d{2}Z"
+                },
+                "end": {
+                    "type": "string",
+                    "pattern": "\d{4}-\d{2}\d{2}T\d{2}:\d{2}:\d{2}Z"
+                },
+                "tracker_id": "string",
+                "is_visible": "boolean"
+            }
+
++ Response 201
+
+    + Headers
+    
+            Location: /trips/1
+
+### List of trips. [GET]
+
++ Response 200 (application/json)
+
+        [{
+            "id": "/trips/1",
+            "start": "2013-04-14T10:00:00Z",
+            "end": "2013-04-15T12:00:00Z",
+            "tracker": "/tracker/123",
+            "bbox": [54.342, 12.543, 54.642, 12.543]
+        }]
+
+## List of trips filtered on species [/trips/species/{species}]
+
++ Parameters
+    + species ... A species name. See [Group Species] to fetch choices.
+
+### GET 
+
++ Response 200 (application/json)
+
+        [{
+            "id": "/trips/1",
+            "start": "2013-04-14T10:00:00Z",
+            "end": "2013-04-15T12:00:00Z",
+            "tracker": "/tracker/123",
+            "bbox": [54.342, 12.543, 54.642, 12.543]
+        }]
+
+## List of trips filtered on geo bounding box [/trips/bbox?minlat={minlat}&minlon={minlon}&maxlat={maxlat}&maxlon={maxlon}]
+
++ Parameters
+    + minlat ... Minimum latitude
+    + minlon ... Minimum longitude
+    + maxlat ... Maximum latitude
+    + maxlon ... Maximum longitude
+
+### GET 
+
++ Response 200 (application/json)
+
+        [{
+            "id": "/trips/1",
+            "start": "2013-04-14T10:00:00Z",
+            "end": "2013-04-15T12:00:00Z",
+            "tracker": "/tracker/123",
+            "bbox": [54.342, 12.543, 54.642, 12.543]
+        }]
+
+
+## List of trips filtered on distance from a location [/trips/dist/{lat}/{lon}/{radius}]
+
++ Parameters
+    + lat ... Latitude of location
+    + lon ... Longitude of location
+    + radius ... Radius in meters
+
+### GET 
+
++ Response 200 (application/json)
+
+        [{
+            "id": "/trips/1",
+            "start": "2013-04-14T10:00:00Z",
+            "end": "2013-04-15T12:00:00Z",
+            "tracker": "/tracker/123",
+            "bbox": [54.342, 12.543, 54.642, 12.543]
+        }]
+
+## Single trip [/trips/{id}]
+
++ Parameters
+    + id ... Trip identifier.
+
+### Retrieve a single trip. [GET]
+
++ Response 200 (application/json)
+
+        {
+            "start": "2013-04-14T10:00:00Z",
+            "end": "2013-04-15T12:00:00Z",
+            "tracker": "/tracker/123",
+            "geo": {
+                "type": "FeatureCollection",
+                "bbox": [54.342, 12.543, 54.642, 12.543],
+                "features": [{
+                    "type": "Feature",
+                    // Each GPS fix of a track has a coordinate and timestamp
+                    "geometry": {"type": "Point", "coordinates": [54.342, 12.543, -5]},
+                    "properties": {"ts":  "2013-04-15T12:05:00Z"}
+                }, {
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [54.442, 12.543, -3]},
+                    "properties": {"ts":  "2013-04-15T12:10:00Z"}
+                }, {
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [54.642, 12.543, -3]},
+                    "properties": {"ts":  "2013-04-15T12:15:00Z"}
+                }]
+            }
+            "pois": "/trips/1/pois"
+        }
+
+### Update a trip. [PUT]
+
++ Request (application/json)
+
+        {
+            "start": "2013-04-14T13:00:00Z",
+            "end": "2013-04-15T15:00:00Z",
+            "tracker": "/tracker/123",
+            "is_visible": true
+        }
+
++ Response 200
+        
+### Delete a trip. [DELETE]
+
++ Response 204
+
+# Group POIs
+A point of interest is a place on a trip where a questions need to tied to.
+
+## Collection of POIs [/trips/{trip_id}/pois]
+
++ Parameters
+    + trip_id ... Trip identifier.
+
+### Create a point of interest [POST]
+
+Attributes:
+
+- ts (string) ... The timestamp of the poi.
+
++ Request (application/json)
+
+        {
+            "ts": "2013-04-14T12:30:00Z",
+            "background": "Text giving background, motiviation for trip",
+        }
+        
++ Response 201
+
+    + Headers
+    
+            Location: /trips/1/pois/1
+
+# Group Questions
+See http://developer.surveygizmo.com/rest-api-documentation/objects/ for inspiration.
+
+## Collection of questions [/trips/{trip_id}/pois/{poi_id}/questions]
+
++ Parameters
+    + trip_id ... Trip identifier.
+    + poi_id ... Point of interest identifier.
+
+### Create a question [POST]
+
++ Request (application/json)
+
+        {
+            "type": "radio, image or video or ...",
+            "title": "Question text",
+            "description" : "Description text",
+            "shortname": "Shortname or alias",
+        }
+
++ Response 201
+
+    + Headers
+    
+            Location: /trips/1/pois/1/questions/1
+
+## Question options [/trips/{trip_id}/pois/{poi_id}/questions/{q_id}/options]
+A question option is a potential answer for a multiple choice question type.
+
++ Parameters
+    + trip_id ... Trip identifier.
+    + poi_id ... Point of interest identifier.
+    + q_id ... Question identifier.
+
+### Create a question option [POST]
+
++ Request (application/json)
+
+        {
+            "title": "None",
+            "value": "0"
+        }
+
++ Response 201
+
+    + Headers
+    
+            Location: /trips/1/pois/1/questions/1/options/1
+
+## Answers for question [/trips/{trip_id}/pois/{poi_id}/questions/{q_id}/answers]
+
+Meta data:
+
+- timestamped, need to know when picture/video was taken.
+- geotagged, the media must be geotagged (see https://en.wikipedia.org/wiki/Geotagging#Geotagging_in_tag-based_systems)
+
+### Create a answer [POST]
+
++ Request (application/json)
+
+        {
+            "ts": "2013-05-14T12:30:00Z",
+            "location": {
+                "type": "Point",
+                "coordinates": [54.642, 12.543]
+            }
+            "value": "0"
+        }
+
++ Response 201
+
+    + Headers
+    
+            Location: /trips/1/pois/1/questions/1/answers/1
+
+### Get answers for a question [GET]
+
+Will only show answers to user who submitted answer or trip.
+
++ Response 200 (application/json)
+
+        [{
+            "id": "/trips/1/pois/1/questions/1/answers/1",
+            "ts": "2013-05-14T12:30:00Z",
+            "location": {
+                "type": "Point",
+                "coordinates": [54.642, 12.543]
+            },
+            "value": "0"
+        }]
+
+## Question library [/questions]
+
+All questions can be reused using their shortname.
+
+### Unique list of questions [GET]
+
+Fetch unique list of questions. Can be used as selection for a POI question.
+
++ Response 200 (application/json)
+
+        [{
+            "type": "radio, image or video or ...",
+            "title": "Question text",
+            "description" : "Description text",
+            "shortname": "Shortname/alias",
+            "options": [{
+                "title": "None",
+                "value": "0"
+            }]
+        }]
+
+# Group Stories
+A story is a story a about a trip combined with the supplied answers and insight of researcher.
+
+## Collection of stories [/stories]
+
+### Create a story [POST]
+
++ Request (application/json)
+
+        {
+            "trip": "/trip/1",
+            "title": "Title of story",
+            "body": "Body of story",
+            "used_answers": [
+                "/trips/1/pois/1/questions/1/answers/1"
+            ],
+            "higlighted_answers": [
+                "/trips/1/pois/1/questions/1/answers/1"
+            ]
+        }
+
++ Response 201
+
+    + Headers
+    
+            Location: /stories/1
+
+# Group Users
+User administration and profile.
+
+Roles:
+
+- anonymous, can answer questions, but can not change anything else (this includes submitting comments and media).
+- registered, can answer questions, submit comments and media. Can also see in his/her profile the work he/she done.
+- moderator, can see answers of everyone and delete answers. Same for comments and media.
+- researcher, can fetch tracks and create a trip, poi, questions and a story.
+- administrator, can assign roles to users.
+
+# Group Comments
+Comments for POIs. These resources are moderated. Comments have a maximum length of 140 characters.
+
+Meta data:
+
+- timestamped, need to know when picture/video was taken.
+- geotagged, the media must be geotagged (see https://en.wikipedia.org/wiki/Geotagging#Geotagging_in_tag-based_systems)
+
+## Collection of comments per POI [/trips/{trip}/pois/{poi}/comments]
+
+### Create a comment [POST]
+
++ Request (application/json)
+
+            {
+                "ts": "2013-05-14T12:30:00Z",
+                "location": {
+                    "type": "Point",
+                    "coordinates": [54.642, 12.543]
+                },
+                "message": "The comment text"
+            }
+
++ Response 201
+
+    + Headers
+    
+            Location: /stories/1
+
+
+# Group Media uploads
+Media (video or images) for POIs. These resources are moderated.
+
+Meta data:
+
+- timestamped, need to know when picture/video was taken.
+- geotagged, the media must be geotagged (see https://en.wikipedia.org/wiki/Geotagging#Geotagging_in_tag-based_systems)
+- view angle, heading or direction and tilting, optionally (see http://www.roblog.com/flickrfly-docs/).
+
+## Collection of media uploads [/trips/{trip}/pois/{poi}/uploads]
+
++ Parameters
+    + trip ... Trip identifier
+    + poi ... Point of interest identifier
+
+### Add media [POST]
+
+Upload one media file using multi-part form. 
+
++ Request (multipart/form-data; boundary=AaB03x)
+
+            --AaB03x
+            Content-Disposition: form-data; name="submit-name"
+    
+            ts=2013-05-14T12:30:00Z
+            geo:lat=57.64911
+            geo:lon=10.40744
+            ge:head=225.00
+            ge:tilt=45.00
+            
+            
+            --AaB03x
+            Content-Disposition: form-data; name="files"
+            Content-Type: multipart/mixed; boundary=BbC04y
+
+            --BbC04y
+            Content-Disposition: file; filename="file2.jpg"
+            Content-Type: image/jpeg
+            Content-Transfer-Encoding: binary
+
+            ...contents of file2.gif...
+            --BbC04y--
+            --AaB03x--
+
++ Response 201
+
+    + Headers
+    
+            Location: /trips/1/pois/1/uploads/1
+
+### List of moderated media [GET]
+
++ Response 200 (application/json)
+
+            [{
+                "id": "/trips/1/pois/1/uploads/1",
+                "filename": "name of the file",
+                "content_type": "content type of file",
+                "size": "size of file in bytes",
+                "created_on": "creation date",
+                "created_by": "user who created file"
+            }]
+
+## List of unmoderated media [/trips/{trip}/pois/{poi}/uploads/unmoderated]
+
+### GET
+
++ Response 200 (application/json)
+
+            [{
+                "id": "/trips/1/pois/1/uploads/1",
+                "filename": "name of the file",
+                "content_type": "content type of file",
+                "size": "size of file in bytes",
+                "created_on": "creation date",
+                "created_by": "user who created file"
+            }]
+
+## A media resource approval [/trips/{trip}/pois/{poi}/uploads/{id}/approval]
+
+### Approve media [PUT]
+
++ Response 200
+
+## A media resource [/trips/{trip}/pois/{poi}/uploads/{id}]
+
+### Disapprove media [DELETE]
+
++ Response 204
+
+# Group Attachments
+The POIs background, question description and story body can be enriched with images.
+The identifier of the attachment can be used in img tag as src attribute.
+
+## Collection of attachments [/attachments]
+
+### Add an file [POST]
+
+Upload file or files using multi-part form. 
+
++ Request (multipart/form-data; boundary=AaB03x)
+
+            --AaB03x
+            Content-Disposition: form-data; name="submit-name"
+    
+            enriches=/trip/1/pois/1
+            --AaB03x
+            Content-Disposition: form-data; name="files"
+            Content-Type: multipart/mixed; boundary=BbC04y
+
+            --BbC04y
+            Content-Disposition: file; filename="file2.jpg"
+            Content-Type: image/jpeg
+            Content-Transfer-Encoding: binary
+
+            ...contents of file2.gif...
+            --BbC04y--
+            --AaB03x--
+
++ Response 201
+
+    + Headers
+    
+            Location: /attachment/1
+
