@@ -883,12 +883,13 @@ Media upload meta information.
 
 Curl example:
 
-    curl -i -X POST "http://api.vogelhetuit.nl/v1/trips/1/pois/1/uploads" --data-binary @img1.png
+    curl -i -H 'Content-Type: image/png' -X POST "http://api.vogelhetuit.nl/v1/trips/1/pois/1/uploads" --data-binary @img1.png
 
 + Request
 
     + Headers
 
+            Content-Type: image/png
             Content-Length: 1234
 
     + Body
@@ -927,7 +928,7 @@ The identifier of the attachment can be used in img tag as src attribute.
 
 Curl example:
 
-    curl -i -X POST "http://api.vogelhetuit.nl/v1/attachments" --data-binary @img1.png
+    curl -i -H 'Content-Type: image/png' -X POST "http://api.vogelhetuit.nl/v1/attachments" --data-binary @img1.png
 
 Upload file or files using multi-part form.
 
@@ -935,6 +936,7 @@ Upload file or files using multi-part form.
 
     + Headers
 
+            Content-Type: image/png
             Content-Length: 1234
 
     + Body
