@@ -8,5 +8,5 @@ Or at http://docs.vogelhetuit.apiary.io/
 Generate html
 -------------
 
-    aglio -t flatly-multi -i apiary.apib -o index.html
+    aglio -t default-multi -i apiary.apib -o index.html
 
