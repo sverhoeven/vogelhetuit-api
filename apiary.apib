@@ -33,6 +33,12 @@ Use same pagination scheme as Github API. See http://developer.github.com/v3/#pa
 The website or app should be multi lingual defaulting to Nederlands.
 The text fields which can be filled with this API should be made in the language for the target audience.
 
+# Read-only attributes
+
+The following attributes are read-only, when set during creating or update they will be silently ignored:
+* The '_links' attribute is a way for hyperlinking between resources. The format used is HAL, see http://stateless.co/hal_specification.html.
+* The '*_by' and '*_on' attributes are updated automaticly when a user performs a change to a resources.
+
 # Group Species
 A tracker is tied to an animal of a certain species.
 Species can be used to filter tracks, trips or stories.
