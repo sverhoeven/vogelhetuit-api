@@ -4,6 +4,10 @@ HOST: https://api.vogelhetuit.nl/v1
 # Vogel het uit
 The *Vogel het uit* service for sharing gps tracks (trips), assigning points of interest, attaching questions to poi, recieving answers and building trip story.
 
+# Architecture
+
+![Architecture](Architecture.svg "Schema")
+
 # Formatting
 
 - Geo data must be in [GeoJSON](http://www.geojson.org) format.
@@ -377,11 +381,7 @@ A point of interest is a place on a trip where a questions are connected to.
 + Model (application/hal+json)
 
         {
-            "location": {
-                "type": "Point",
-                "coordinates": [54.642, 12.543]
-            },
-            "radius": "100",
+            "ts": "2013-04-14T12:30:00Z",
             "background": "Text giving background, motiviation for poi",
             "created_by": "3",
             "created_on": "2013-04-14T10:00:00Z",
@@ -429,11 +429,7 @@ A point of interest is a place on a trip where a questions are connected to.
 + Response 200 (application/hal+json)
 
             [{
-                "location": {
-                    "type": "Point",
-                    "coordinates": [54.642, 12.543]
-                },
-                "radius": "100",
+                "ts": "2013-04-14T12:30:00Z",
                 "background": "Text giving background, motiviation for poi",
                 "_self": {
                     "self": {"href": "/trips/1/pois/1"}
