@@ -1,0 +1,19 @@
+[ {
+    "id" : "8915",
+    "latin_name" : "Larus Fuscus",
+    "common_name" : {
+        "nl" : "Kleine mantelmeeuw",
+        "en" : "Lesser Black-backed gull"
+    },
+    "_links" : {
+        "self" : {
+            "href" : "/species/8915"
+        },
+        "trips" : {
+            "href" : "/trips/species/8915"
+        },
+        "stories" : {
+            "href" : "/stories/species/8915"
+        },
+    }
+} ]
