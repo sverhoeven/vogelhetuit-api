@@ -17,30 +17,34 @@ The *Vogel het uit* service for sharing gps tracks (trips), assigning points of 
 Use Basic-authentication.
 Not a all requests require authentication, when authentication is required it will be specified.
 
+# Filtering
+
+To filter a collection, you can append (? or &)<property>=<value> to the url.
+The <property> should be the name of a field and <value> is the value you want to filter by.
+Multiple filters can be used.
+Filters which can't be specified using  <property>=<value> like spatial filters will be listed seperately.
+
 # Pagination
 
-For urls with collections use page query attribute.
+For urls with collections use `page` query attribute (defaults to 1). The default pagesize is 10 and can be changed with `pagesize` query attribute.
 
-Example:
+Example on `/species?page=3&pagesize=20`:
+
++ Response 200 (application/json)
 
         {
-            "first": {
-                "href": "http://example.org/api/user"
-            },
-            "prev": {
-                "href": "http://example.org/api/user?page=2"
-            },
-            "next": {
-                "href": "http://example.org/api/user?page=4"
-            },
-            "last": {
-                "href": "http://example.org/api/user?page=133"
-            }
+            "total": 1234,
+            "items": []
         }
+
+# Sorting
+
+To sort a collection, you can append  ?order=<field1>,<field2> asc,<field3> desc.
 
 # Multi lingual
 
 The text fields which can be filled with this API should be made in the language for the target audience.
+Any errors will be in English. The website/app is responsible to translate it for the user.
 
 # Read-only attributes
 
@@ -49,61 +53,78 @@ The following attributes are read-only, when set during creating or update they 
 * The '*_by' and '*_on' attributes are updated automaticly when a user performs a change to a resources.
 
 # Group Species
-A tracker is tied to an animal of a certain species.
-Species can be used to filter tracks, trips or stories.
+A tracker is tied to an bird of a certain species.
+Species can be used to filter birds, trips or stories.
 
 ## Species [/species/{id}]
 
 + Parameters
     + id (string) ... Species identifier.
 
-+ Model (application/hal+json)
++ Model (application/json)
 
         {
-            "id": "8915",
+            "id": 8915,
             "latin_name": "Larus Fuscus",
             "common_name": {
                 "nl": "Kleine mantelmeeuw",
                 "en": "Lesser Black-backed gull"
             },
             "body": "<html describing species and why it is being researched>",
-            "_links": {
-                "self": {"href": "/species/8915"},
-                "trips": {"href": "/trips/species/8915"},
-                "stories": {"href": "/stories/species/8915"},
-            }
         }
 
-### Retrieve a single species [GET]
+### Retrieve a species [GET]
 
 + Response 200
 
     [Species][]
 
+### Update a species. [PUT]
+
++ Request
+
+    [Species][]
+
++ Response 200
+
+### Delete a species. [DELETE]
+
++ Response 204
+
 ## Species Collection [/species]
 
-+ Model (application/hal+json)
++ Model (application/json)
 
-        [{
-            "id": "8915",
-            "latin_name": "Larus Fuscus",
-            "common_name": {
-                "nl": "Kleine mantelmeeuw",
-                "en": "Lesser Black-backed gull"
-            },
-            "body": "<html describing species and why it is being researched>",
-            "_links": {
-                "self": {"href": "/species/8915"},
-                "trips": {"href": "/trips/species/8915"},
-                "stories": {"href": "/stories/species/8915"},
-            }
-        }]
+        {
+            "total": 1234,
+            "items":[{
+                "id": 8915,
+                "latin_name": "Larus Fuscus",
+                "common_name": {
+                    "nl": "Kleine mantelmeeuw",
+                    "en": "Lesser Black-backed gull"
+                },
+                "body": "<html describing species and why it is being researched>",
+            }]
+        }
 
 ### Retrieve list of species [GET]
 
 + Response 200
 
     [Species Collection][]
+
+### Create a species. [POST]
+
++ Request
+
+    [Species][]
+
++ Response 201
+
+    + Headers
+
+            Location: /species/8915
 
 # Group Bird
 
@@ -114,17 +135,14 @@ An individual bird of a certain species. The bird has a tracker tied to it.
 + Parameters
     + id (string) ... Bird identifier
 
-+ Model (application/hal+json)
++ Model (application/json)
 
         {
+            "id": 1,
             "body": "<html describing a individual bird>",
-            "species": "8915",
-            "_links": {
-                "self": {"href": "/birds/1"},
-                "species": {"href": "/species/8915"},
-                "trips": {"href": "/trips/bird/1"},
-                "stories": {"href": "/stories/bird/1"}
-            }
+            "species": 8915,
+            "created_by": "3",
+            "created_on": "2013-04-14T10:00:00Z"
         }
 
 ### Retrieve a bird [GET]
@@ -147,19 +165,18 @@ An individual bird of a certain species. The bird has a tracker tied to it.
 
 ## Birds [/birds]
 
-+ Model (application/hal+json)
++ Model (application/json)
 
-        [{
-            "body": "<Text describing bird>",
-            "species": "8915",
-            "body": "<html describing a individual bird>",
-            "_links": {
-                "self": {"href": "/birds/1"},
-                "species": {"href": "/species/8915"},
-                "trips": {"href": "/trips/bird/1"},
-                "stories": {"href": "/stories/bird/1"}
-            }
-        }]
+        {
+            "total": 12,
+            "items": [{
+                "id": 1,
+                "species": "8915",
+                "body": "<html describing a individual bird>",
+                "created_by": "3",
+                "created_on": "2013-04-14T10:00:00Z"
+            }]
+        }
 
 ### List of birds [GET]
 
@@ -187,11 +204,11 @@ A trip resource is set of timestamped coordinates with the eEcology tracker iden
 + Parameters
     + id (string) ... Trip identifier.
 
-+ Model (application/hal+json)
++ Model (application/json)
 
         {
-            "bird": "1",
-            "tracker": "355",
+            "bird": 1,
+            "tracker": 355,
             "start": "2013-04-14T10:00:00Z",
             "end": "2013-04-15T12:00:00Z",
             "body": "<html describing a trip>",
@@ -214,14 +231,7 @@ A trip resource is set of timestamped coordinates with the eEcology tracker iden
             },
             "is_visible": false,
             "created_by": "3",
-            "created_on": "2013-04-14T10:00:00Z",
-            "_links": {
-                "self": {"href": "/trips/355"},
-                "created_by": {"href": "/users/3"},
-                "bird": {"href": "/bird/1"},
-                "pois": {"href": "/trips/355/pois"},
-                "tracker": {"href": "/tracker/355"}
-            }
+            "created_on": "2013-04-14T10:00:00Z"
         }
 
 ### Retrieve a trip. [GET]
@@ -253,19 +263,38 @@ Trip, but with Points of interests, Questions embedded into them. This is a shor
 
 ## Trips [/trips]
 
-+ Model (application/hal+json)
++ Model (application/json)
 
-        [{
-            "id": "1",
-            "bird": "1",
-            "tracker": "123",
-            "start": "2013-04-14T10:00:00Z",
-            "end": "2013-04-15T12:00:00Z",
-            "bbox": [54.342, 12.543, 54.642, 12.543],
-            "_links": {
-                "self": "/trips/1"
-            }
-        }]
+        {
+            "total": 12,
+            "items": [{
+                "bird": 1,
+                "tracker": 355,
+                "start": "2013-04-14T10:00:00Z",
+                "end": "2013-04-15T12:00:00Z",
+                "body": "<html describing a trip>",
+                "geo": {
+                    "type": "FeatureCollection",
+                    "bbox": [54.342, 12.543, 54.642, 12.543],
+                    "features": [{
+                        "type": "Feature",
+                        "geometry": {"type": "Point", "coordinates": [54.342, 12.543, -5]},
+                        "properties": {"ts":  "2013-04-15T12:05:00Z"}
+                    }, {
+                        "type": "Feature",
+                        "geometry": {"type": "Point", "coordinates": [54.442, 12.543, -3]},
+                        "properties": {"ts":  "2013-04-15T12:10:00Z"}
+                    }, {
+                        "type": "Feature",
+                        "geometry": {"type": "Point", "coordinates": [54.642, 12.543, -3]},
+                        "properties": {"ts":  "2013-04-15T12:15:00Z"}
+                    }]
+                },
+                "is_visible": false,
+                "created_by": "3",
+                "created_on": "2013-04-14T10:00:00Z"
+            }]
+        }
 
 ### List of trips. [GET]
 
@@ -307,7 +336,7 @@ The Trip resource requires the following attributes:
 
     [Trips][]
 
-## List of trips filtered on species [/trips/species/{species}]
+## List of trips filtered on species [/trips?species={species}]
 
 + Parameters
     + species (string) ... A species identifier.
@@ -318,7 +347,7 @@ The Trip resource requires the following attributes:
 
     [Trips][]
 
-## List of trips filtered on geo bounding box [/trips/bbox/{minlat}/{minlon}/{maxlat}/{maxlon}]
+## List of trips filtered on geo bounding box [/trips?bbox={minlat},{minlon},{maxlat},{maxlon}]
 
 + Parameters
     + minlat (number) ... Minimum latitude
@@ -332,7 +361,7 @@ The Trip resource requires the following attributes:
 
     [Trips][]
 
-## List of trips filtered on distance from a location [/trips/dist/{lat}/{lon}/{radius}]
+## List of trips filtered on distance from a location [/trips?dist={lat},{lon},{radius}]
 
 + Parameters
     + lat (number) ... Latitude of location
@@ -345,7 +374,7 @@ The Trip resource requires the following attributes:
 
     [Trips][]
 
-## List of trips filtered on a bird [/trips/bird/{bird}]
+## List of trips filtered on a bird [/trips?bird={bird}]
 
 + Parameters
     + bird (string) ... A bird identifier
@@ -372,16 +401,10 @@ A point of interest is a place on a trip where a questions are connected to.
                 "type": "Point",
                 "coordinates": [54.642, 12.543]
             },
-            "radius": "100",
+            "radius": 100,
             "body": "<html describing motiviation for the poi>",
             "created_by": "3",
-            "created_on": "2013-04-14T10:00:00Z",
-            "_links": {
-                "self": {"href": "/trips/1/pois/1"},
-                "created_by": {"href": "/users/3"},
-                "trip": {"href": "/trips/1"},
-                "questions": {"href": "/trips/{trip}/pois/{poi}/questions"}
-            }
+            "created_on": "2013-04-14T10:00:00Z"
         }
 
 ### Retrieve a POI [GET]
@@ -417,19 +440,21 @@ A point of interest is a place on a trip where a questions are connected to.
 
 ### List points of interest for a trip [GET]
 
-+ Response 200 (application/hal+json)
++ Response 200 (application/json)
 
-            [{
-                "location": {
-                    "type": "Point",
-                    "coordinates": [54.642, 12.543]
-                },
-                "radius": "100",
-                "body": "<html describing motiviation for the poi>",
-                "_self": {
-                    "self": {"href": "/trips/1/pois/1"}
-                }
-            }]
+            {
+                "total": 1,
+                "items": [{
+                    "location": {
+                        "type": "Point",
+                        "coordinates": [54.642, 12.543]
+                    },
+                    "radius": 100,
+                    "body": "<html describing motiviation for the poi>",
+                    "created_by": "3",
+                    "created_on": "2013-04-14T10:00:00Z"
+                }]
+            }
 
 # Group Questions
 See http://manual.limesurvey.org/LimeSurvey_Manual for question types
@@ -451,7 +476,7 @@ Types of questions:
     + poi (string) ... Point of interest identifier.
     + question (string) ... Question identifier
 
-+ Model (application/hal+json)
++ Model (application/json)
 
         {
             "type": "radio, image or video or ...",
@@ -464,14 +489,7 @@ Types of questions:
                 "value": "Value of option"
             }],
             "created_by": "3",
-            "created_on": "2013-04-14T10:00:00Z",
-            "_links": {
-                "self": {"href": "/trips/1/pois/1/questions/1"},
-                "trip": {"href": "/trips/1"},
-                "poi": {"href": "/trips/1/pois/1"},
-                "answers": {"href": "/trips/1/pois/1/questions/1/answers"},
-                "created_by": {"href": "/users/1"}
-            }
+            "created_on": "2013-04-14T10:00:00Z"
         }
 
 ### Retrieve a question [GET]
@@ -494,28 +512,24 @@ Types of questions:
     + trip (string) ... Trip identifier.
     + poi (string) ... Point of interest identifier.
 
-+ Model (application/hal+json)
++ Model (application/json)
 
-        [{
-            "type": "radio, image or video or ...",
-            "title": "Question text",
-            "description" : "Description text",
-            "shortname": "Shortname or alias",
-            "other": true,  # When true adds 'Other' option, a short text field,
-            "options": [{
-                "title": "Title of option",
-                "value": "Value of option"
-            }],
-            "created_by": "3",
-            "created_on": "2013-04-14T10:00:00Z",
-            "_links": {
-                "self": {"href": "/trips/1/pois/1/questions/1"},
-                "trip": {"href": "/trips/1"},
-                "poi": {"href": "/trips/1/pois/1"},
-                "answers": {"href": "/trips/1/pois/1/questions/1/answers"},
-                "created_by": {"href": "/users/1"}
-            }
-        }]
+        {
+            "total": 3,
+            "items": [{
+                "type": "radio, image or video or ...",
+                "title": "Question text",
+                "description" : "Description text",
+                "shortname": "Shortname or alias",
+                "other": true,  # When true adds 'Other' option, a short text field,
+                "options": [{
+                    "title": "Title of option",
+                    "value": "Value of option"
+                }],
+                "created_by": "3",
+                "created_on": "2013-04-14T10:00:00Z"
+            }]
+        }
 
 ### Create a question [POST]
 
@@ -559,7 +573,7 @@ Attributes:
     + question (string) ... Question identifier.
     + answer (string) ... Answer identifier.
 
-+ Model (application/hal+json)
++ Model (application/json)
 
         {
             "timestamp": "2013-05-14T12:30:00Z",
@@ -575,16 +589,7 @@ Attributes:
             "answered_by": "32",
             "answered_on": "2013-09-04T12:30:00Z",
             "moderated_on": "2013-09-14T12:30:00Z",
-            "moderated_by": "5",
-            "_links": {
-                "self": {"href": "/trips/1/pois/1/questions/1/answers/1"},
-                "question": {"href": "/trips/1/pois/1/questions/1"},
-                "poi": {"href": "/trips/1/pois/1"},
-                "trip": {"href": "/trips/1"},
-                "answered_by": {"href": "/users/32"},
-                "moderate": {"href": "/trips/1/pois/1/questions/1/answer/1/moderate"},
-                "moderated_by": {"href": "/users/1"}
-            }
+            "moderated_by": "5"
         }
 
 ### Retrieve an answer [GET]
@@ -621,32 +626,31 @@ This will delete the answer and if question type is image or video will also del
     + poi (string) ... Point of interest identifier.
     + question (string) ... Question identifier
 
-+ Model (application/hal+json)
++ Model (application/json)
 
-        [{
-            "timestamp": "2013-05-14T12:30:00Z",
-            "location": {
-                "type": "Point",
-                "coordinates": [54.642, 12.543]
-            },
-            "answered_by": "32",
-            "answered_on": "2013-09-04T12:30:00Z",
-            "moderated_on": "2013-09-14T12:30:00Z",
-            "moderated_by": "5",
-            "_links": {
-                "self": {"href": "/trips/1/pois/1/questions/1/answers/1"},
-                "question": {"href": "/trips/1/pois/1/questions/1"},
-                "poi": {"href": "/trips/1/pois/1"},
-                "trip": {"href": "/trips/1"},
-                "answered_by": {"href": "/users/32"},
-                "moderate": {"href": "/trips/1/pois/1/questions/1/answer/1/moderate"},
-                "moderated_by": {"href": "/users/1"}
-            }
-        }]
+        {
+            "total": 5000,
+            "items": [{
+                "timestamp": "2013-05-14T12:30:00Z",
+                "location": {
+                    "type": "Point",
+                    "coordinates": [54.642, 12.543]
+                },
+                "orientation": {
+                    "head": 225.00,
+                    "tilt": 45.0
+                },
+                "value": "0",
+                "answered_by": "32",
+                "answered_on": "2013-09-04T12:30:00Z",
+                "moderated_on": "2013-09-14T12:30:00Z",
+                "moderated_by": "5"
+            }]
+        }
 
 ### Create an answer [POST]
 
-Question types which require uploading files (eg. image or video) should use *Media Question uploads* endpoints to upload the media, before calling this method.
+Question types which require uploading files (eg. image or video) should use *Media Question uploads* endpoints to upload the media, before calling this method and use the url of the media as value.
 
 + Request
 
@@ -700,7 +704,7 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
 + Parameters
     + id (string) ... Story identifier
 
-+ Model (application/hal+json)
++ Model (application/json)
 
         {
             "id": "1",
@@ -713,12 +717,7 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
                 "highlighted": "Boolean whether answer should be highlighted"
             }],
             "created_by": "3",
-            "created_on": "2013-04-14T10:00:00Z",
-            "_links": {
-                "self": {"href": "/stories/1"},
-                "trip": {"href": "/trips/1"},
-                "created_by": {"href": "/users/3"}
-            }
+            "created_on": "2013-04-14T10:00:00Z"
         }
 
 ### Get a story [GET]
@@ -737,26 +736,24 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
 
 ## Stories [/stories]
 
-+ Model (application/hal+json)
++ Model (application/json)
 
-        [{
-            "id": "1",
-            "trip": "1",
-            "title": "Title of story",
-            "body": "<html of story>",
-            "is_visible": "Boolean whether story should be visible",
-            "answers": [{
-                "id": "Id of an answer""/trips/1/pois/1/questions/1/answers/1",
-                "highlighted": "Boolean whether answer should be highlighted"
-            }],
-            "created_by": "3",
-            "created_on": "2013-04-14T10:00:00Z",
-            "_links": {
-                "self": {"href": "/stories/1"},
-                "trip": {"href": "/trips/1"},
-                "created_by": {"href": "/users/3"}
-            }
-        }]
+        {
+            "total": 15,
+            "items": [{
+                "id": "1",
+                "trip": "1",
+                "title": "Title of story",
+                "body": "<html of story>",
+                "is_visible": "Boolean whether story should be visible",
+                "answers": [{
+                    "id": "Id of an answer""/trips/1/pois/1/questions/1/answers/1",
+                    "highlighted": "Boolean whether answer should be highlighted"
+                }],
+                "created_by": "3",
+                "created_on": "2013-04-14T10:00:00Z"
+            }]
+        }
 
 
 ### Create a story [POST]
@@ -777,7 +774,7 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
 
     [Stories][]
 
-## List of stories filtered by species [/stories/species/{species}]
+## List of stories filtered by species [/stories?species={species}]
 
 ### GET
 
@@ -785,7 +782,7 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
 
     [Stories][]
 
-## List of stories filtered by bird [/stories/bird/{species}]
+## List of stories filtered by bird [/stories?bird={bird}]
 
 ### GET
 
@@ -805,21 +802,85 @@ Roles:
 - researcher, can fetch tracks and create a trip, poi, questions and a story.
 - administrator, can assign roles to users.
 
-## Collection of users [/users]
+## Roles [/roles]
 
-### Create a user [POST]
++ Model (application/json)
 
-A created user will automaticly get the *registered* role.
+        {
+            "total": 5,
+            "items": [
+                "anonymous",
+                "registered",
+                "moderator",
+                "researcher",
+                "administrator"
+            }]
+        }
 
-+ Request (application/json)
+### List of roles [GET]
+
++ Response 200
+
+    [Roles][]
+
+## User [/users/{user}]
+
+The `password` and `password_verify` are only required during creation and update. They will not be retrieved.
+
++ Parameters
+    + user (string) ... User identifier.
+
++ Model (application/json)
 
         {
             "username": "User chosen username",
             "password": "Password",
             "password_verify": "Password verification",
             "email": "e-mail adres of user",
-            "phone": "(Mobile) phone number, used by researcher to ask feedback"
+            "phone": "(Mobile) phone number, used by researcher to ask feedback",
+            "roles": ["registered"],
+            "created_by": "3",
+            "created_on": "2013-04-14T10:00:00Z"
         }
+
+
+### Retrieve a user [GET]
+
+Only retrievable by user with the *administrator* role.
+
++ Response 200
+
+    [User][]
+
+### Update a user [PUT]
+
++ Request
+
+    [User][]
+
++ Response 201
+
+### Deleta a user [DELETE]
+
++ Response 204
+
+## Self [/users/self]
+
+### User information of authenticated user [GET]
+
++ Response 200
+
+    [User][]
+
+## Collection of users [/users]
+
+### Create a user [POST]
+
+A created user will automaticly get the *registered* role.
+
++ Request
+
+    [User][]
 
 + Response 201
 
@@ -827,15 +888,27 @@ A created user will automaticly get the *registered* role.
 
             Location: /users/1
 
-## A single user [/users/{user}]
+### List of users [GET]
 
-+ Parameters
-    + user (string) ... User identifier.
+Only retrievable by user with the *administrator* role.
 
-## Roles [/users/{user}/roles]
++ Response 200 (application/json)
 
-The user can see it's roles and user with *administrator* role can see other users roles.
-Role can be added to a user or removed from a user by logged in user who has *administrator* role.
+        {
+            "total": 100,
+            "items": [{
+                "username": "User chosen username",
+                "email": "e-mail adres of user",
+                "phone": "(Mobile) phone number, used by researcher to ask feedback",
+                "roles": ["researcher"],
+                "created_by": "3",
+                "created_on": "2013-04-14T10:00:00Z"
+            }]
+        }
+
+## Roles for users [/users/{user}/roles]
+
+Role can be added to a user or removed from a user by a user with the *administrator* role.
 
 + Parameters
     + user (string) ... User identifier.
@@ -844,9 +917,7 @@ Role can be added to a user or removed from a user by logged in user who has *ad
 
 + Response 200 (application/json)
 
-            [
-                "registered"
-            ]
+    [Roles][]
 
 ## Relation of user and role [/users/{user}/roles/{role}]
 
@@ -863,6 +934,7 @@ Role can be added to a user or removed from a user by logged in user who has *ad
 + Response 204
 
 # Group Media question uploads
+
 Before a video or image question can be answered the media must first be uploaded.
 
 > Video and images answers can not be handled with a **Answer** resource,
@@ -926,14 +998,13 @@ Curl example:
 
 + Response 200 (application/json)
 
-            [{
-                "content_type": "image/jpeg",
-                "size": 1234,
-                "created_on": "2013-04-15T12:05:00Z",
-                "created_by": "1",
-                "_links": {
-                    "self": {"href": "/trips/1/pois/1/uploads/1"},
-                    "poi": {"href": "/trips/1/pois"},
-                    "created_by": {"href": "/users/1"}
-                }
-            }]
+            {
+                "total": 12,
+                "items": [{
+                    "content_type": "image/jpeg",
+                    "content": "/trips/1/pois/1/uploads/1",
+                    "size": 1234,
+                    "created_on": "2013-04-15T12:05:00Z",
+                    "created_by": "1"
+                }]
+            }
