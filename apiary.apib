@@ -252,14 +252,64 @@ A trip resource is set of timestamped coordinates with the eEcology tracker iden
 
 + Response 204
 
-## Full trip [/trip]
+## Full trip [/trips/{id}/full]
 
 ### GET
 Trip, but with Points of interests, Questions embedded into them. This is a shortcut instead of downloading a trip, loop over POIs, loop over questions.
 
-+ Response 200
++ Response 200 (application/json)
 
-    [Trip][]
+        {
+            "bird": 1,
+            "tracker": 355,
+            "start": "2013-04-14T10:00:00Z",
+            "end": "2013-04-15T12:00:00Z",
+            "body": "<html describing a trip>",
+            "geo": {
+                "type": "FeatureCollection",
+                "bbox": [54.342, 12.543, 54.642, 12.543],
+                "features": [{
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [54.342, 12.543, -5]},
+                    "properties": {"ts":  "2013-04-15T12:05:00Z"}
+                }, {
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [54.442, 12.543, -3]},
+                    "properties": {"ts":  "2013-04-15T12:10:00Z"}
+                }, {
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [54.642, 12.543, -3]},
+                    "properties": {"ts":  "2013-04-15T12:15:00Z"}
+                }]
+            },
+            "pois": [{
+                "location": {
+                    "type": "Point",
+                    "coordinates": [54.642, 12.543]
+                },
+                "radius": 100,
+                "body": "<html describing motiviation for the poi>",
+                "questions": [{
+                    "type": "radio, image or video or ...",
+                    "title": "Question text",
+                    "description" : "Description text",
+                    "shortname": "Shortname or alias",
+                    "other": true,  # When true adds 'Other' option, a short text field,
+                    "options": [{
+                        "title": "Title of option",
+                        "value": "Value of option"
+                    }],
+                    "created_by": "3",
+                    "created_on": "2013-04-14T10:00:00Z"
+                }],
+                "created_by": "3",
+                "created_on": "2013-04-14T10:00:00Z"
+            }],
+            "is_visible": false,
+            "created_by": "3",
+            "created_on": "2013-04-14T10:00:00Z"
+        }
+
 
 ## Trips [/trips]
 
