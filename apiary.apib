@@ -712,22 +712,6 @@ This will delete the answer and if question type is image or video will also del
             }]
         }
 
-### Create an answer [POST]
-
-Question types which require uploading files (eg. image or video) should use *multipart/form-data* content type with the json and media binary as a file parts, the value is ignored.
-
-> TODO Should api return url to fetch the media.
-
-+ Request
-
-    [Answer][]
-
-+ Response 201
-
-    + Headers
-
-            Location: /trips/1/pois/1/questions/1/answers/1
-
 ### Retrieve answers for a question [GET]
 
 Will only show answers to user who submitted answer or user with *researcher* role.
@@ -735,6 +719,51 @@ Will only show answers to user who submitted answer or user with *researcher* ro
 + Response 200
 
     [Answers][]
+
+### Create an answer [POST]
+
+Question types which require uploading files (eg. image or video) should use *multipart/form-data* content type with the json and media binary as a file parts, see second request.
+
+> TODO How should api return url to fetch the media.
+
++ Request
+
+    [Answer][]
+
++ Request (multipart/form-data;boundary=AaB03x)
+
+        --AaB03x
+        Content-Disposition: form-data; name="json"
+        Content-Type: application/json
+
+        {
+            "id": 1,
+            "location": {
+                "type": "Point",
+                "coordinates": [54.642, 12.543]
+            },
+            "orientation": {
+                "head": 225.00,
+                "tilt": 45.0
+            },
+            "answered_by": 32,
+            "answered_on": "2013-09-04T12:30:00Z",
+            "moderated_on": "2013-09-14T12:30:00Z",
+            "moderated_by": 5
+        }
+        --AaB03x
+        Content-Disposition: form-data; name="files"; filename="image1.png"
+        Content-Type: image/png
+
+        ... content of image1.png
+
+        --AaB03x
+
++ Response 201
+
+    + Headers
+
+            Location: /trips/1/pois/1/questions/1/answers/1
 
 ## Unmoderated answers for question [/trips/1/pois/1/questions/1/answers/unmoderated]
 
