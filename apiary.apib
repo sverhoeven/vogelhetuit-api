@@ -962,16 +962,12 @@ Only retrievable by user with the *administrator* role.
 
 ## Relation of user and role [/users/{user}/roles/{role}]
 
-Role can be added to a user or removed from a user by a user with the *administrator* role.
+Role can be set to a user by a user with the *administrator* role.
 
 + Parameters
     + user (string) ... User identifier.
     + role (string) ... Role identifier.
 
-### Add role to user [PUT]
-
-+ Response 204
-
-### Remove role from user [DELETE]
+### Set role of user [PUT]
 
 + Response 204
