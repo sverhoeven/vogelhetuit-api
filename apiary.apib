@@ -71,7 +71,7 @@ Species can be used to filter birds, trips or stories.
                 "en": "Lesser Black-backed gull"
             },
             "body": "<html describing species and why it is being researched>",
-            "created_by": "3",
+            "created_by": 3,
             "created_on": "2013-04-14T10:00:00Z"
         }
 
@@ -107,7 +107,7 @@ Species can be used to filter birds, trips or stories.
                     "en": "Lesser Black-backed gull"
                 },
                 "body": "<html describing species and why it is being researched>",
-                "created_by": "3",
+                "created_by": 3,
                 "created_on": "2013-04-14T10:00:00Z"
             }]
         }
@@ -145,7 +145,7 @@ An individual bird of a certain species. The bird has a tracker tied to it.
             "id": 1,
             "body": "<html describing a individual bird>",
             "species": 8915,
-            "created_by": "3",
+            "created_by": 3,
             "created_on": "2013-04-14T10:00:00Z"
         }
 
@@ -177,7 +177,7 @@ An individual bird of a certain species. The bird has a tracker tied to it.
                 "id": 1,
                 "species": "8915",
                 "body": "<html describing a individual bird>",
-                "created_by": "3",
+                "created_by": 3,
                 "created_on": "2013-04-14T10:00:00Z"
             }]
         }
@@ -211,6 +211,7 @@ A trip resource is set of timestamped coordinates with the eEcology tracker iden
 + Model (application/json)
 
         {
+            "id": 1,
             "bird": 1,
             "tracker": 355,
             "start": "2013-04-14T10:00:00Z",
@@ -234,7 +235,7 @@ A trip resource is set of timestamped coordinates with the eEcology tracker iden
                 }]
             },
             "is_visible": false,
-            "created_by": "3",
+            "created_by": 3,
             "created_on": "2013-04-14T10:00:00Z"
         }
 
@@ -264,6 +265,7 @@ Trip, but with Points of interests, Questions embedded into them. This is a shor
 + Response 200 (application/json)
 
         {
+            "id": 1,
             "bird": 1,
             "tracker": 355,
             "start": "2013-04-14T10:00:00Z",
@@ -287,6 +289,7 @@ Trip, but with Points of interests, Questions embedded into them. This is a shor
                 }]
             },
             "pois": [{
+                "id": 1,
                 "location": {
                     "type": "Point",
                     "coordinates": [54.642, 12.543]
@@ -294,6 +297,7 @@ Trip, but with Points of interests, Questions embedded into them. This is a shor
                 "radius": 100,
                 "body": "<html describing motiviation for the poi>",
                 "questions": [{
+                    "id": 1,
                     "type": "radio, image or video or ...",
                     "title": "Question text",
                     "description" : "Description text",
@@ -303,14 +307,14 @@ Trip, but with Points of interests, Questions embedded into them. This is a shor
                         "title": "Title of option",
                         "value": "Value of option"
                     }],
-                    "created_by": "3",
+                    "created_by": 3,
                     "created_on": "2013-04-14T10:00:00Z"
                 }],
-                "created_by": "3",
+                "created_by": 3,
                 "created_on": "2013-04-14T10:00:00Z"
             }],
             "is_visible": false,
-            "created_by": "3",
+            "created_by": 3,
             "created_on": "2013-04-14T10:00:00Z"
         }
 
@@ -322,6 +326,7 @@ Trip, but with Points of interests, Questions embedded into them. This is a shor
         {
             "total": 12,
             "items": [{
+                "id": 1,
                 "bird": 1,
                 "tracker": 355,
                 "start": "2013-04-14T10:00:00Z",
@@ -345,7 +350,7 @@ Trip, but with Points of interests, Questions embedded into them. This is a shor
                     }]
                 },
                 "is_visible": false,
-                "created_by": "3",
+                "created_by": 3,
                 "created_on": "2013-04-14T10:00:00Z"
             }]
         }
@@ -451,13 +456,14 @@ A point of interest is a place on a trip where a questions are connected to.
 + Model (application/json)
 
         {
+            "id": 1,
             "location": {
                 "type": "Point",
                 "coordinates": [54.642, 12.543]
             },
             "radius": 100,
             "body": "<html describing motiviation for the poi>",
-            "created_by": "3",
+            "created_by": 3,
             "created_on": "2013-04-14T10:00:00Z"
         }
 
@@ -499,13 +505,14 @@ A point of interest is a place on a trip where a questions are connected to.
             {
                 "total": 1,
                 "items": [{
+                    "id": 1,
                     "location": {
                         "type": "Point",
                         "coordinates": [54.642, 12.543]
                     },
                     "radius": 100,
                     "body": "<html describing motiviation for the poi>",
-                    "created_by": "3",
+                    "created_by": 3,
                     "created_on": "2013-04-14T10:00:00Z"
                 }]
             }
@@ -533,6 +540,7 @@ Types of questions:
 + Model (application/json)
 
         {
+            "id": 1,
             "type": "radio, image or video or ...",
             "title": "Question text",
             "description" : "Description text",
@@ -542,7 +550,7 @@ Types of questions:
                 "title": "Title of option",
                 "value": "Value of option"
             }],
-            "created_by": "3",
+            "created_by": 3,
             "created_on": "2013-04-14T10:00:00Z"
         }
 
@@ -571,6 +579,7 @@ Types of questions:
         {
             "total": 3,
             "items": [{
+                "id": 1,
                 "type": "radio, image or video or ...",
                 "title": "Question text",
                 "description" : "Description text",
@@ -580,7 +589,7 @@ Types of questions:
                     "title": "Title of option",
                     "value": "Value of option"
                 }],
-                "created_by": "3",
+                "created_by": 3,
                 "created_on": "2013-04-14T10:00:00Z"
             }]
         }
@@ -630,6 +639,7 @@ Attributes:
 + Model (application/json)
 
         {
+            "id": 1,
             "location": {
                 "type": "Point",
                 "coordinates": [54.642, 12.543]
@@ -639,10 +649,10 @@ Attributes:
                 "tilt": 45.0
             },
             "value": "0",
-            "answered_by": "32",
+            "answered_by": 32,
             "answered_on": "2013-09-04T12:30:00Z",
             "moderated_on": "2013-09-14T12:30:00Z",
-            "moderated_by": "5"
+            "moderated_by": 5
         }
 
 ### Retrieve an answer [GET]
@@ -684,6 +694,7 @@ This will delete the answer and if question type is image or video will also del
         {
             "total": 5000,
             "items": [{
+                "id": 1,
                 "timestamp": "2013-05-14T12:30:00Z",
                 "location": {
                     "type": "Point",
@@ -694,10 +705,10 @@ This will delete the answer and if question type is image or video will also del
                     "tilt": 45.0
                 },
                 "value": "0",
-                "answered_by": "32",
+                "answered_by": 32,
                 "answered_on": "2013-09-04T12:30:00Z",
                 "moderated_on": "2013-09-14T12:30:00Z",
-                "moderated_by": "5"
+                "moderated_by": 5
             }]
         }
 
@@ -762,16 +773,12 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
 + Model (application/json)
 
         {
-            "id": "1",
-            "trip": "1",
+            "id": 1,
+            "trip": 1,
             "title": "Title of story",
             "body": "<html of story>",
             "is_visible": "Boolean whether story should be visible",
-            "answers": [{
-                "id": "Id of an answer""/trips/1/pois/1/questions/1/answers/1",
-                "highlighted": "Boolean whether answer should be highlighted"
-            }],
-            "created_by": "3",
+            "created_by": 3,
             "created_on": "2013-04-14T10:00:00Z"
         }
 
@@ -801,11 +808,7 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
                 "title": "Title of story",
                 "body": "<html of story>",
                 "is_visible": "Boolean whether story should be visible",
-                "answers": [{
-                    "id": "Id of an answer""/trips/1/pois/1/questions/1/answers/1",
-                    "highlighted": "Boolean whether answer should be highlighted"
-                }],
-                "created_by": "3",
+                "created_by": 3,
                 "created_on": "2013-04-14T10:00:00Z"
             }]
         }
@@ -887,13 +890,13 @@ The `password` and `password_verify` are only required during creation and updat
 + Model (application/json)
 
         {
+            "id": 3,
             "username": "User chosen username",
             "password": "Password",
             "password_verify": "Password verification",
             "email": "e-mail adres of user",
             "phone": "(Mobile) phone number, used by researcher to ask feedback",
-            "roles": ["registered"],
-            "created_by": "3",
+            "roles": "registered",
             "created_on": "2013-04-14T10:00:00Z"
         }
 
@@ -951,11 +954,11 @@ Only retrievable by user with the *administrator* role.
         {
             "total": 100,
             "items": [{
+                "id": 3,
                 "username": "User chosen username",
                 "email": "e-mail adres of user",
                 "phone": "(Mobile) phone number, used by researcher to ask feedback",
                 "role": "researcher",
-                "created_by": "3",
                 "created_on": "2013-04-14T10:00:00Z"
             }]
         }

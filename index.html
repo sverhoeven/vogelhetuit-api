@@ -114,7 +114,7 @@ Any errors will be in English. The website/app is responsible to translate it fo
 </div><a href="#page:species" class="btn btn-default pull-right">Next&nbsp;<i class="fa fa-arrow-circle-right"></i></a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'species', style: {marginTop: page() == 'species' ? '38px' : ''}"><div class="panel panel-default"><div class="panel-heading"><h3 id="species">Species&nbsp;<a href="#page:species"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>A tracker is tied to an bird of a certain species.
 Species can be used to filter birds, trips or stories.</p>
 <h4 id="species-species">Species&nbsp;<a href="#page:species,header:species-species"><i class="fa fa-link"></i></a></h4><section id="species-species-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve a species</span><a href="#page:species,header:species-species-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/species/{id}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Species identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#963083" class="pull-right">Toggle</a></li><li id="963083" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#843131" class="pull-right">Toggle</a></li><li id="843131" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">8915</span></span>,
     "<span class="attribute">latin_name</span>": <span class="value"><span class="string">"Larus Fuscus"</span></span>,
     "<span class="attribute">common_name</span>": <span class="value">{
@@ -122,11 +122,11 @@ Species can be used to filter birds, trips or stories.</p>
         "<span class="attribute">en</span>": <span class="value"><span class="string">"Lesser Black-backed gull"</span>
     </span>}</span>,
     "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html describing species and why it is being researched&gt;"</span></span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
 </code></pre></li></ul></section><section id="species-species-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Update a species.</span><a href="#page:species,header:species-species-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/species/{id}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Species identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#476233" class="pull-right">Toggle</a></li><li id="476233" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#851541" class="pull-right">Toggle</a></li><li id="851541" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">8915</span></span>,
     "<span class="attribute">latin_name</span>": <span class="value"><span class="string">"Larus Fuscus"</span></span>,
     "<span class="attribute">common_name</span>": <span class="value">{
@@ -134,11 +134,11 @@ Species can be used to filter birds, trips or stories.</p>
         "<span class="attribute">en</span>": <span class="value"><span class="string">"Lesser Black-backed gull"</span>
     </span>}</span>,
     "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html describing species and why it is being researched&gt;"</span></span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
 </code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong></li></ul></section><section id="species-species-delete" class="panel panel-danger"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Delete a species.</span><a href="#page:species,header:species-species-delete" class="btn btn-xs btn-danger">DELETE</a>&nbsp;<code>/species/{id}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Species identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="species-species-collection">Species Collection&nbsp;<a href="#page:species,header:species-species-collection"><i class="fa fa-link"></i></a></h4><section id="species-species-collection-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve list of species</span><a href="#page:species,header:species-species-collection-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/species</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#676202" class="pull-right">Toggle</a></li><li id="676202" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="species-species-collection">Species Collection&nbsp;<a href="#page:species,header:species-species-collection"><i class="fa fa-link"></i></a></h4><section id="species-species-collection-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve list of species</span><a href="#page:species,header:species-species-collection-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/species</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#486551" class="pull-right">Toggle</a></li><li id="486551" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">1234</span></span>,
     "<span class="attribute">items</span>":<span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="number">8915</span></span>,
@@ -148,11 +148,11 @@ Species can be used to filter birds, trips or stories.</p>
             "<span class="attribute">en</span>": <span class="value"><span class="string">"Lesser Black-backed gull"</span>
         </span>}</span>,
         "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html describing species and why it is being researched&gt;"</span></span>,
-        "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+        "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
         "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
     </span>}]
 </span>}
-</code></pre></li></ul></section><section id="species-species-collection-post" class="panel panel-success"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Create a species.</span><a href="#page:species,header:species-species-collection-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/species</code></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#711899" class="pull-right">Toggle</a></li><li id="711899" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li></ul></section><section id="species-species-collection-post" class="panel panel-success"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Create a species.</span><a href="#page:species,header:species-species-collection-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/species</code></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#9882" class="pull-right">Toggle</a></li><li id="9882" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">8915</span></span>,
     "<span class="attribute">latin_name</span>": <span class="value"><span class="string">"Larus Fuscus"</span></span>,
     "<span class="attribute">common_name</span>": <span class="value">{
@@ -160,47 +160,48 @@ Species can be used to filter birds, trips or stories.</p>
         "<span class="attribute">en</span>": <span class="value"><span class="string">"Lesser Black-backed gull"</span>
     </span>}</span>,
     "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html describing species and why it is being researched&gt;"</span></span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#866866" class="pull-right">Toggle</a></li><li id="866866" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/species/8915</span><br></code></pre></li></ul></section></div></div><a href="#page:bird" class="btn btn-default pull-right">Next&nbsp;<i class="fa fa-arrow-circle-right"></i></a><a href="#" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'bird', style: {marginTop: page() == 'bird' ? '38px' : ''}"><div class="panel panel-default"><div class="panel-heading"><h3 id="bird">Bird&nbsp;<a href="#page:bird"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>An individual bird of a certain species. The bird has a tracker tied to it.</p>
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#628561" class="pull-right">Toggle</a></li><li id="628561" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/species/8915</span><br></code></pre></li></ul></section></div></div><a href="#page:bird" class="btn btn-default pull-right">Next&nbsp;<i class="fa fa-arrow-circle-right"></i></a><a href="#" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'bird', style: {marginTop: page() == 'bird' ? '38px' : ''}"><div class="panel panel-default"><div class="panel-heading"><h3 id="bird">Bird&nbsp;<a href="#page:bird"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>An individual bird of a certain species. The bird has a tracker tied to it.</p>
 <h4 id="bird-bird">Bird&nbsp;<a href="#page:bird,header:bird-bird"><i class="fa fa-link"></i></a></h4><section id="bird-bird-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve a bird</span><a href="#page:bird,header:bird-bird-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/birds/{id}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Bird identifier</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#943616" class="pull-right">Toggle</a></li><li id="943616" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#257229" class="pull-right">Toggle</a></li><li id="257229" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html describing a individual bird&gt;"</span></span>,
     "<span class="attribute">species</span>": <span class="value"><span class="number">8915</span></span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
 </code></pre></li></ul></section><section id="bird-bird-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Update a bird.</span><a href="#page:bird,header:bird-bird-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/birds/{id}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Bird identifier</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#889080" class="pull-right">Toggle</a></li><li id="889080" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#58977" class="pull-right">Toggle</a></li><li id="58977" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html describing a individual bird&gt;"</span></span>,
     "<span class="attribute">species</span>": <span class="value"><span class="number">8915</span></span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
 </code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong></li></ul></section><section id="bird-bird-delete" class="panel panel-danger"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Delete a bird.</span><a href="#page:bird,header:bird-bird-delete" class="btn btn-xs btn-danger">DELETE</a>&nbsp;<code>/birds/{id}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Bird identifier</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="bird-birds">Birds&nbsp;<a href="#page:bird,header:bird-birds"><i class="fa fa-link"></i></a></h4><section id="bird-birds-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of birds</span><a href="#page:bird,header:bird-birds-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/birds</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#440915" class="pull-right">Toggle</a></li><li id="440915" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="bird-birds">Birds&nbsp;<a href="#page:bird,header:bird-birds"><i class="fa fa-link"></i></a></h4><section id="bird-birds-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of birds</span><a href="#page:bird,header:bird-birds-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/birds</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#883061" class="pull-right">Toggle</a></li><li id="883061" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">12</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">species</span>": <span class="value"><span class="string">"8915"</span></span>,
         "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html describing a individual bird&gt;"</span></span>,
-        "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+        "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
         "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
     </span>}]
 </span>}
-</code></pre></li></ul></section><section id="bird-birds-post" class="panel panel-success"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Create a bird.</span><a href="#page:bird,header:bird-birds-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/birds</code></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#297900" class="pull-right">Toggle</a></li><li id="297900" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li></ul></section><section id="bird-birds-post" class="panel panel-success"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Create a bird.</span><a href="#page:bird,header:bird-birds-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/birds</code></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#66418" class="pull-right">Toggle</a></li><li id="66418" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html describing a individual bird&gt;"</span></span>,
     "<span class="attribute">species</span>": <span class="value"><span class="number">8915</span></span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#2494" class="pull-right">Toggle</a></li><li id="2494" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/birds/1</span><br></code></pre></li></ul></section></div></div><a href="#page:trips" class="btn btn-default pull-right">Next&nbsp;<i class="fa fa-arrow-circle-right"></i></a><a href="#page:species" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'trips', style: {marginTop: page() == 'trips' ? '38px' : ''}"><div class="panel panel-default"><div class="panel-heading"><h3 id="trips">Trips&nbsp;<a href="#page:trips"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>A trip resource is set of timestamped coordinates with the eEcology tracker identifier.</p>
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#130021" class="pull-right">Toggle</a></li><li id="130021" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/birds/1</span><br></code></pre></li></ul></section></div></div><a href="#page:trips" class="btn btn-default pull-right">Next&nbsp;<i class="fa fa-arrow-circle-right"></i></a><a href="#page:species" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'trips', style: {marginTop: page() == 'trips' ? '38px' : ''}"><div class="panel panel-default"><div class="panel-heading"><h3 id="trips">Trips&nbsp;<a href="#page:trips"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>A trip resource is set of timestamped coordinates with the eEcology tracker identifier.</p>
 <h4 id="trips-trip">Trip&nbsp;<a href="#page:trips,header:trips-trip"><i class="fa fa-link"></i></a></h4><section id="trips-trip-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve a trip.</span><a href="#page:trips,header:trips-trip-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips/{id}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Trip identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#252576" class="pull-right">Toggle</a></li><li id="252576" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#970416" class="pull-right">Toggle</a></li><li id="970416" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">bird</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">tracker</span>": <span class="value"><span class="number">355</span></span>,
     "<span class="attribute">start</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span></span>,
@@ -224,11 +225,12 @@ Species can be used to filter birds, trips or stories.</p>
         </span>}]
     </span>}</span>,
     "<span class="attribute">is_visible</span>": <span class="value"><span class="literal">false</span></span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
 </code></pre></li></ul></section><section id="trips-trip-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Update a trip.</span><a href="#page:trips,header:trips-trip-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/trips/{id}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Trip identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#76345" class="pull-right">Toggle</a></li><li id="76345" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#19436" class="pull-right">Toggle</a></li><li id="19436" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">bird</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">tracker</span>": <span class="value"><span class="number">355</span></span>,
     "<span class="attribute">start</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span></span>,
@@ -252,12 +254,13 @@ Species can be used to filter birds, trips or stories.</p>
         </span>}]
     </span>}</span>,
     "<span class="attribute">is_visible</span>": <span class="value"><span class="literal">false</span></span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
 </code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong></li></ul></section><section id="trips-trip-delete" class="panel panel-danger"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Delete a trip.</span><a href="#page:trips,header:trips-trip-delete" class="btn btn-xs btn-danger">DELETE</a>&nbsp;<code>/trips/{id}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Trip identifier.</p>
 </dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="trips-full-trip">Full trip&nbsp;<a href="#page:trips,header:trips-full-trip"><i class="fa fa-link"></i></a></h4><section id="trips-full-trip-get" class="panel panel-info"><div class="panel-heading"><a href="#page:trips,header:trips-full-trip-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips/{id}/full</code></div><div class="panel-body"><p>Trip, but with Points of interests, Questions embedded into them. This is a shortcut instead of downloading a trip, loop over POIs, loop over questions.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#379097" class="pull-right">Toggle</a></li><li id="379097" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code><span class="comment">{</span>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#245726" class="pull-right">Toggle</a></li><li id="245726" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code><span class="comment">{</span>
+    <span class="comment">"id":</span> <span class="comment">1</span><span class="string">,</span>
     <span class="comment">"bird":</span> <span class="comment">1</span><span class="string">,</span>
     <span class="comment">"tracker":</span> <span class="comment">355</span><span class="string">,</span>
     <span class="comment">"start":</span> <span class="comment">"2013</span><span class="literal">-</span><span class="comment">04</span><span class="literal">-</span><span class="comment">14T10:00:00Z"</span><span class="string">,</span>
@@ -281,6 +284,7 @@ Species can be used to filter birds, trips or stories.</p>
         <span class="comment">}</span><span class="title">]</span>
     <span class="comment">}</span><span class="string">,</span>
     <span class="comment">"pois":</span> <span class="title">[</span><span class="comment">{</span>
+        <span class="comment">"id":</span> <span class="comment">1</span><span class="string">,</span>
         <span class="comment">"location":</span> <span class="comment">{</span>
             <span class="comment">"type":</span> <span class="comment">"Point"</span><span class="string">,</span>
             <span class="comment">"coordinates":</span> <span class="title">[</span><span class="comment">54</span><span class="string">.</span><span class="comment">642</span><span class="string">,</span> <span class="comment">12</span><span class="string">.</span><span class="comment">543</span><span class="title">]</span>
@@ -288,6 +292,7 @@ Species can be used to filter birds, trips or stories.</p>
         <span class="comment">"radius":</span> <span class="comment">100</span><span class="string">,</span>
         <span class="comment">"body":</span> <span class="comment">"</span>&lt;<span class="comment">html</span> <span class="comment">describing</span> <span class="comment">motiviation</span> <span class="comment">for</span> <span class="comment">the</span> <span class="comment">poi</span>&gt;<span class="comment">"</span><span class="string">,</span>
         <span class="comment">"questions":</span> <span class="title">[</span><span class="comment">{</span>
+            <span class="comment">"id":</span> <span class="comment">1</span><span class="string">,</span>
             <span class="comment">"type":</span> <span class="comment">"radio</span><span class="string">,</span> <span class="comment">image</span> <span class="comment">or</span> <span class="comment">video</span> <span class="comment">or</span> <span class="string">.</span><span class="string">.</span><span class="string">.</span><span class="comment">"</span><span class="string">,</span>
             <span class="comment">"title":</span> <span class="comment">"Question</span> <span class="comment">text"</span><span class="string">,</span>
             <span class="comment">"description"</span> <span class="comment">:</span> <span class="comment">"Description</span> <span class="comment">text"</span><span class="string">,</span>
@@ -297,19 +302,20 @@ Species can be used to filter birds, trips or stories.</p>
                 <span class="comment">"title":</span> <span class="comment">"Title</span> <span class="comment">of</span> <span class="comment">option"</span><span class="string">,</span>
                 <span class="comment">"value":</span> <span class="comment">"Value</span> <span class="comment">of</span> <span class="comment">option"</span>
             <span class="comment">}</span><span class="title">]</span><span class="string">,</span>
-            <span class="comment">"created_by":</span> <span class="comment">"3"</span><span class="string">,</span>
+            <span class="comment">"created_by":</span> <span class="comment">3</span><span class="string">,</span>
             <span class="comment">"created_on":</span> <span class="comment">"2013</span><span class="literal">-</span><span class="comment">04</span><span class="literal">-</span><span class="comment">14T10:00:00Z"</span>
         <span class="comment">}</span><span class="title">]</span><span class="string">,</span>
-        <span class="comment">"created_by":</span> <span class="comment">"3"</span><span class="string">,</span>
+        <span class="comment">"created_by":</span> <span class="comment">3</span><span class="string">,</span>
         <span class="comment">"created_on":</span> <span class="comment">"2013</span><span class="literal">-</span><span class="comment">04</span><span class="literal">-</span><span class="comment">14T10:00:00Z"</span>
     <span class="comment">}</span><span class="title">]</span><span class="string">,</span>
     <span class="comment">"is_visible":</span> <span class="comment">false</span><span class="string">,</span>
-    <span class="comment">"created_by":</span> <span class="comment">"3"</span><span class="string">,</span>
+    <span class="comment">"created_by":</span> <span class="comment">3</span><span class="string">,</span>
     <span class="comment">"created_on":</span> <span class="comment">"2013</span><span class="literal">-</span><span class="comment">04</span><span class="literal">-</span><span class="comment">14T10:00:00Z"</span>
 <span class="comment">}</span>
-</code></pre></li></ul></section><h4 id="trips-trips">Trips&nbsp;<a href="#page:trips,header:trips-trips"><i class="fa fa-link"></i></a></h4><section id="trips-trips-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of trips.</span><a href="#page:trips,header:trips-trips-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#851205" class="pull-right">Toggle</a></li><li id="851205" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li></ul></section><h4 id="trips-trips">Trips&nbsp;<a href="#page:trips,header:trips-trips"><i class="fa fa-link"></i></a></h4><section id="trips-trips-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of trips.</span><a href="#page:trips,header:trips-trips-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#161217" class="pull-right">Toggle</a></li><li id="161217" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">12</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">bird</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">tracker</span>": <span class="value"><span class="number">355</span></span>,
         "<span class="attribute">start</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span></span>,
@@ -333,7 +339,7 @@ Species can be used to filter birds, trips or stories.</p>
             </span>}]
         </span>}</span>,
         "<span class="attribute">is_visible</span>": <span class="value"><span class="literal">false</span></span>,
-        "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+        "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
         "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
     </span>}]
 </span>}
@@ -349,7 +355,8 @@ Species can be used to filter birds, trips or stories.</p>
 <p>TODO does trip need textual info, or should only POI have info.</p>
 </blockquote>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Tracker identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#265509" class="pull-right">Toggle</a></li><li id="265509" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#215179" class="pull-right">Toggle</a></li><li id="215179" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">bird</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">tracker</span>": <span class="value"><span class="number">355</span></span>,
     "<span class="attribute">start</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span></span>,
@@ -373,13 +380,14 @@ Species can be used to filter birds, trips or stories.</p>
         </span>}]
     </span>}</span>,
     "<span class="attribute">is_visible</span>": <span class="value"><span class="literal">false</span></span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#34464" class="pull-right">Toggle</a></li><li id="34464" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/trips/1</span><br></code></pre></li></ul></section><section id="trips-trips-by-tracker-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of trips filtered on tracker</span><a href="#page:trips,header:trips-trips-by-tracker-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips/tracker/{id}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Tracker identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#100651" class="pull-right">Toggle</a></li><li id="100651" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#670386" class="pull-right">Toggle</a></li><li id="670386" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/trips/1</span><br></code></pre></li></ul></section><section id="trips-trips-by-tracker-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of trips filtered on tracker</span><a href="#page:trips,header:trips-trips-by-tracker-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips/tracker/{id}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Tracker identifier.</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#337450" class="pull-right">Toggle</a></li><li id="337450" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">12</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">bird</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">tracker</span>": <span class="value"><span class="number">355</span></span>,
         "<span class="attribute">start</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span></span>,
@@ -403,14 +411,15 @@ Species can be used to filter birds, trips or stories.</p>
             </span>}]
         </span>}</span>,
         "<span class="attribute">is_visible</span>": <span class="value"><span class="literal">false</span></span>,
-        "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+        "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
         "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
     </span>}]
 </span>}
 </code></pre></li></ul></section><h4 id="trips-list-of-trips-filtered-on-species">List of trips filtered on species&nbsp;<a href="#page:trips,header:trips-list-of-trips-filtered-on-species"><i class="fa fa-link"></i></a></h4><section id="trips-list-of-trips-filtered-on-species-get" class="panel panel-info"><div class="panel-heading"><a href="#page:trips,header:trips-list-of-trips-filtered-on-species-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips?species={species}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>species</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>A species identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#922621" class="pull-right">Toggle</a></li><li id="922621" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#499096" class="pull-right">Toggle</a></li><li id="499096" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">12</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">bird</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">tracker</span>": <span class="value"><span class="number">355</span></span>,
         "<span class="attribute">start</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span></span>,
@@ -434,7 +443,7 @@ Species can be used to filter birds, trips or stories.</p>
             </span>}]
         </span>}</span>,
         "<span class="attribute">is_visible</span>": <span class="value"><span class="literal">false</span></span>,
-        "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+        "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
         "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
     </span>}]
 </span>}
@@ -442,9 +451,10 @@ Species can be used to filter birds, trips or stories.</p>
 </dd><dt>minlon</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Minimum longitude</p>
 </dd><dt>maxlat</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Maximum latitude</p>
 </dd><dt>maxlon</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Maximum longitude</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#153193" class="pull-right">Toggle</a></li><li id="153193" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#126766" class="pull-right">Toggle</a></li><li id="126766" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">12</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">bird</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">tracker</span>": <span class="value"><span class="number">355</span></span>,
         "<span class="attribute">start</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span></span>,
@@ -468,16 +478,17 @@ Species can be used to filter birds, trips or stories.</p>
             </span>}]
         </span>}</span>,
         "<span class="attribute">is_visible</span>": <span class="value"><span class="literal">false</span></span>,
-        "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+        "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
         "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
     </span>}]
 </span>}
 </code></pre></li></ul></section><h4 id="trips-list-of-trips-filtered-on-distance-from-a-location">List of trips filtered on distance from a location&nbsp;<a href="#page:trips,header:trips-list-of-trips-filtered-on-distance-from-a-location"><i class="fa fa-link"></i></a></h4><section id="trips-list-of-trips-filtered-on-distance-from-a-location-get" class="panel panel-info"><div class="panel-heading"><a href="#page:trips,header:trips-list-of-trips-filtered-on-distance-from-a-location-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips?dist={lat},{lon},{radius}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>lat</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Latitude of location</p>
 </dd><dt>lon</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Longitude of location</p>
 </dd><dt>radius</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Radius in meters</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#160828" class="pull-right">Toggle</a></li><li id="160828" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#353057" class="pull-right">Toggle</a></li><li id="353057" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">12</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">bird</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">tracker</span>": <span class="value"><span class="number">355</span></span>,
         "<span class="attribute">start</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span></span>,
@@ -501,14 +512,15 @@ Species can be used to filter birds, trips or stories.</p>
             </span>}]
         </span>}</span>,
         "<span class="attribute">is_visible</span>": <span class="value"><span class="literal">false</span></span>,
-        "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+        "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
         "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
     </span>}]
 </span>}
 </code></pre></li></ul></section><h4 id="trips-list-of-trips-filtered-on-a-bird">List of trips filtered on a bird&nbsp;<a href="#page:trips,header:trips-list-of-trips-filtered-on-a-bird"><i class="fa fa-link"></i></a></h4><section id="trips-list-of-trips-filtered-on-a-bird-get" class="panel panel-info"><div class="panel-heading"><a href="#page:trips,header:trips-list-of-trips-filtered-on-a-bird-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips?bird={bird}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>bird</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>A bird identifier</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#9684" class="pull-right">Toggle</a></li><li id="9684" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#305489" class="pull-right">Toggle</a></li><li id="305489" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">12</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">bird</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">tracker</span>": <span class="value"><span class="number">355</span></span>,
         "<span class="attribute">start</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span></span>,
@@ -532,57 +544,61 @@ Species can be used to filter birds, trips or stories.</p>
             </span>}]
         </span>}</span>,
         "<span class="attribute">is_visible</span>": <span class="value"><span class="literal">false</span></span>,
-        "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+        "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
         "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
     </span>}]
 </span>}
 </code></pre></li></ul></section></div></div><a href="#page:pois" class="btn btn-default pull-right">Next&nbsp;<i class="fa fa-arrow-circle-right"></i></a><a href="#page:bird" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'pois', style: {marginTop: page() == 'pois' ? '38px' : ''}"><div class="panel panel-default"><div class="panel-heading"><h3 id="pois">POIs&nbsp;<a href="#page:pois"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>A point of interest is a place on a trip where a questions are connected to.</p>
 <h4 id="pois-point-of-interest">Point of interest&nbsp;<a href="#page:pois,header:pois-point-of-interest"><i class="fa fa-link"></i></a></h4><section id="pois-point-of-interest-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve a POI</span><a href="#page:pois,header:pois-point-of-interest-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips/{trip}/pois/{poi}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Trip identifier.</p>
 </dd><dt>poi</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Point of interest identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#261518" class="pull-right">Toggle</a></li><li id="261518" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#274643" class="pull-right">Toggle</a></li><li id="274643" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">location</span>": <span class="value">{
         "<span class="attribute">type</span>": <span class="value"><span class="string">"Point"</span></span>,
         "<span class="attribute">coordinates</span>": <span class="value">[<span class="number">54.642</span>, <span class="number">12.543</span>]
     </span>}</span>,
     "<span class="attribute">radius</span>": <span class="value"><span class="number">100</span></span>,
     "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html describing motiviation for the poi&gt;"</span></span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
 </code></pre></li></ul></section><section id="pois-point-of-interest-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Update a POI</span><a href="#page:pois,header:pois-point-of-interest-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/trips/{trip}/pois/{poi}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Trip identifier.</p>
 </dd><dt>poi</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Point of interest identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#235917" class="pull-right">Toggle</a></li><li id="235917" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#549270" class="pull-right">Toggle</a></li><li id="549270" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">location</span>": <span class="value">{
         "<span class="attribute">type</span>": <span class="value"><span class="string">"Point"</span></span>,
         "<span class="attribute">coordinates</span>": <span class="value">[<span class="number">54.642</span>, <span class="number">12.543</span>]
     </span>}</span>,
     "<span class="attribute">radius</span>": <span class="value"><span class="number">100</span></span>,
     "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html describing motiviation for the poi&gt;"</span></span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
 </code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong></li></ul></section><h4 id="pois-collection-of-points-of-interest">Collection of points of interest&nbsp;<a href="#page:pois,header:pois-collection-of-points-of-interest"><i class="fa fa-link"></i></a></h4><section id="pois-collection-of-points-of-interest-post" class="panel panel-success"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Create a point of interest</span><a href="#page:pois,header:pois-collection-of-points-of-interest-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/trips/{trip}/pois</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Trip identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#519480" class="pull-right">Toggle</a></li><li id="519480" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#699442" class="pull-right">Toggle</a></li><li id="699442" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">location</span>": <span class="value">{
         "<span class="attribute">type</span>": <span class="value"><span class="string">"Point"</span></span>,
         "<span class="attribute">coordinates</span>": <span class="value">[<span class="number">54.642</span>, <span class="number">12.543</span>]
     </span>}</span>,
     "<span class="attribute">radius</span>": <span class="value"><span class="number">100</span></span>,
     "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html describing motiviation for the poi&gt;"</span></span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#328137" class="pull-right">Toggle</a></li><li id="328137" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/trips/1/pois/1</span><br></code></pre></li></ul></section><section id="pois-collection-of-points-of-interest-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List points of interest for a trip</span><a href="#page:pois,header:pois-collection-of-points-of-interest-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips/{trip}/pois</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Trip identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#235056" class="pull-right">Toggle</a></li><li id="235056" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#326231" class="pull-right">Toggle</a></li><li id="326231" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/trips/1/pois/1</span><br></code></pre></li></ul></section><section id="pois-collection-of-points-of-interest-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List points of interest for a trip</span><a href="#page:pois,header:pois-collection-of-points-of-interest-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips/{trip}/pois</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Trip identifier.</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#989893" class="pull-right">Toggle</a></li><li id="989893" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
         "<span class="attribute">total</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">items</span>": <span class="value">[{
+            "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
             "<span class="attribute">location</span>": <span class="value">{
                 "<span class="attribute">type</span>": <span class="value"><span class="string">"Point"</span></span>,
                 "<span class="attribute">coordinates</span>": <span class="value">[<span class="number">54.642</span>, <span class="number">12.543</span>]
             </span>}</span>,
             "<span class="attribute">radius</span>": <span class="value"><span class="number">100</span></span>,
             "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html describing motiviation for the poi&gt;"</span></span>,
-            "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+            "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
             "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
         </span>}]
     </span>}
@@ -600,7 +616,8 @@ and <a href="http://developer.surveygizmo.com/rest-api-documentation/objects/">h
 <section id="questions-question-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve a question</span><a href="#page:questions,header:questions-question-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips/{trip}/pois/{poi}/questions/{question}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Trip identifier.</p>
 </dd><dt>poi</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Point of interest identifier.</p>
 </dd><dt>question</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Question identifier</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#466799" class="pull-right">Toggle</a></li><li id="466799" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#132233" class="pull-right">Toggle</a></li><li id="132233" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "id": 1,
     "type": "radio, image <span class="keyword">or</span> video <span class="keyword">or</span> ...",
     "title": "Question text",
     "description" : "Description text",
@@ -610,13 +627,14 @@ and <a href="http://developer.surveygizmo.com/rest-api-documentation/objects/">h
         "title": "Title <span class="keyword">of</span> option",
         "value": "Value <span class="keyword">of</span> option"
     }],
-    "created_by": "3",
+    "created_by": 3,
     "created_on": "2013-04-14T10:00:00Z"
 }
 </code></pre></li></ul></section><section id="questions-question-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Update a question</span><a href="#page:questions,header:questions-question-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/trips/{trip}/pois/{poi}/questions/{question}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Trip identifier.</p>
 </dd><dt>poi</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Point of interest identifier.</p>
 </dd><dt>question</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Question identifier</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#758389" class="pull-right">Toggle</a></li><li id="758389" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#5893" class="pull-right">Toggle</a></li><li id="5893" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "id": 1,
     "type": "radio, image <span class="keyword">or</span> video <span class="keyword">or</span> ...",
     "title": "Question text",
     "description" : "Description text",
@@ -626,12 +644,13 @@ and <a href="http://developer.surveygizmo.com/rest-api-documentation/objects/">h
         "title": "Title <span class="keyword">of</span> option",
         "value": "Value <span class="keyword">of</span> option"
     }],
-    "created_by": "3",
+    "created_by": 3,
     "created_on": "2013-04-14T10:00:00Z"
 }
 </code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong></li></ul></section><h4 id="questions-questions">Questions&nbsp;<a href="#page:questions,header:questions-questions"><i class="fa fa-link"></i></a></h4><section id="questions-questions-post" class="panel panel-success"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Create a question</span><a href="#page:questions,header:questions-questions-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/trips/{trip}/pois/{poi}/questions</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Trip identifier.</p>
 </dd><dt>poi</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Point of interest identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#287815" class="pull-right">Toggle</a></li><li id="287815" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#33900" class="pull-right">Toggle</a></li><li id="33900" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "id": 1,
     "type": "radio, image <span class="keyword">or</span> video <span class="keyword">or</span> ...",
     "title": "Question text",
     "description" : "Description text",
@@ -641,14 +660,15 @@ and <a href="http://developer.surveygizmo.com/rest-api-documentation/objects/">h
         "title": "Title <span class="keyword">of</span> option",
         "value": "Value <span class="keyword">of</span> option"
     }],
-    "created_by": "3",
+    "created_by": 3,
     "created_on": "2013-04-14T10:00:00Z"
 }
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#548209" class="pull-right">Toggle</a></li><li id="548209" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/trips/1/pois/1/questions/1</span><br></code></pre></li></ul></section><section id="questions-questions-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of questions</span><a href="#page:questions,header:questions-questions-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips/{trip}/pois/{poi}/questions</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Trip identifier.</p>
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#650341" class="pull-right">Toggle</a></li><li id="650341" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/trips/1/pois/1/questions/1</span><br></code></pre></li></ul></section><section id="questions-questions-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of questions</span><a href="#page:questions,header:questions-questions-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips/{trip}/pois/{poi}/questions</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Trip identifier.</p>
 </dd><dt>poi</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Point of interest identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#745408" class="pull-right">Toggle</a></li><li id="745408" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#912353" class="pull-right">Toggle</a></li><li id="912353" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "total": 3,
     "items": [{
+        "id": 1,
         "type": "radio, image <span class="keyword">or</span> video <span class="keyword">or</span> ...",
         "title": "Question text",
         "description" : "Description text",
@@ -658,14 +678,15 @@ and <a href="http://developer.surveygizmo.com/rest-api-documentation/objects/">h
             "title": "Title <span class="keyword">of</span> option",
             "value": "Value <span class="keyword">of</span> option"
         }],
-        "created_by": "3",
+        "created_by": 3,
         "created_on": "2013-04-14T10:00:00Z"
     }]
 }
 </code></pre></li></ul></section><h4 id="questions-question-library">Question library&nbsp;<a href="#page:questions,header:questions-question-library"><i class="fa fa-link"></i></a></h4><section id="questions-question-library-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of questions</span><a href="#page:questions,header:questions-question-library-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/questions</code></div><div class="panel-body"><p>Fetch list of questions independ of trip or poi.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#849559" class="pull-right">Toggle</a></li><li id="849559" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#239769" class="pull-right">Toggle</a></li><li id="239769" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "total": 3,
     "items": [{
+        "id": 1,
         "type": "radio, image <span class="keyword">or</span> video <span class="keyword">or</span> ...",
         "title": "Question text",
         "description" : "Description text",
@@ -675,7 +696,7 @@ and <a href="http://developer.surveygizmo.com/rest-api-documentation/objects/">h
             "title": "Title <span class="keyword">of</span> option",
             "value": "Value <span class="keyword">of</span> option"
         }],
-        "created_by": "3",
+        "created_by": 3,
         "created_on": "2013-04-14T10:00:00Z"
     }]
 }
@@ -691,7 +712,8 @@ and <a href="http://developer.surveygizmo.com/rest-api-documentation/objects/">h
 </dd><dt>poi</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Point of interest identifier.</p>
 </dd><dt>question</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Question identifier.</p>
 </dd><dt>answer</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Answer identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#487906" class="pull-right">Toggle</a></li><li id="487906" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#204497" class="pull-right">Toggle</a></li><li id="204497" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">location</span>": <span class="value">{
         "<span class="attribute">type</span>": <span class="value"><span class="string">"Point"</span></span>,
         "<span class="attribute">coordinates</span>": <span class="value">[<span class="number">54.642</span>, <span class="number">12.543</span>]
@@ -701,10 +723,10 @@ and <a href="http://developer.surveygizmo.com/rest-api-documentation/objects/">h
         "<span class="attribute">tilt</span>": <span class="value"><span class="number">45.0</span>
     </span>}</span>,
     "<span class="attribute">value</span>": <span class="value"><span class="string">"0"</span></span>,
-    "<span class="attribute">answered_by</span>": <span class="value"><span class="string">"32"</span></span>,
+    "<span class="attribute">answered_by</span>": <span class="value"><span class="number">32</span></span>,
     "<span class="attribute">answered_on</span>": <span class="value"><span class="string">"2013-09-04T12:30:00Z"</span></span>,
     "<span class="attribute">moderated_on</span>": <span class="value"><span class="string">"2013-09-14T12:30:00Z"</span></span>,
-    "<span class="attribute">moderated_by</span>": <span class="value"><span class="string">"5"</span>
+    "<span class="attribute">moderated_by</span>": <span class="value"><span class="number">5</span>
 </span>}
 </code></pre></li></ul></section><h4 id="questions-moderate-answer">Moderate answer&nbsp;<a href="#page:questions,header:questions-moderate-answer"><i class="fa fa-link"></i></a></h4><section id="questions-moderate-answer-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Approve answer</span><a href="#page:questions,header:questions-moderate-answer-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/trips/{trip}/pois/{poi}/questions/{question}/answer/{answer}/moderate</code></div><div class="panel-body"><p>Moderate media by approving it.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Trip identifier.</p>
@@ -724,7 +746,8 @@ This will delete the answer and if question type is image or video will also del
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Trip identifier.</p>
 </dd><dt>poi</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Point of interest identifier.</p>
 </dd><dt>question</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Question identifier</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#790258" class="pull-right">Toggle</a></li><li id="790258" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#686128" class="pull-right">Toggle</a></li><li id="686128" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">location</span>": <span class="value">{
         "<span class="attribute">type</span>": <span class="value"><span class="string">"Point"</span></span>,
         "<span class="attribute">coordinates</span>": <span class="value">[<span class="number">54.642</span>, <span class="number">12.543</span>]
@@ -734,18 +757,19 @@ This will delete the answer and if question type is image or video will also del
         "<span class="attribute">tilt</span>": <span class="value"><span class="number">45.0</span>
     </span>}</span>,
     "<span class="attribute">value</span>": <span class="value"><span class="string">"0"</span></span>,
-    "<span class="attribute">answered_by</span>": <span class="value"><span class="string">"32"</span></span>,
+    "<span class="attribute">answered_by</span>": <span class="value"><span class="number">32</span></span>,
     "<span class="attribute">answered_on</span>": <span class="value"><span class="string">"2013-09-04T12:30:00Z"</span></span>,
     "<span class="attribute">moderated_on</span>": <span class="value"><span class="string">"2013-09-14T12:30:00Z"</span></span>,
-    "<span class="attribute">moderated_by</span>": <span class="value"><span class="string">"5"</span>
+    "<span class="attribute">moderated_by</span>": <span class="value"><span class="number">5</span>
 </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#602511" class="pull-right">Toggle</a></li><li id="602511" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/trips/1/pois/1/questions/1/answers/1</span><br></code></pre></li></ul></section><section id="questions-answers-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve answers for a question</span><a href="#page:questions,header:questions-answers-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips/{trip}/pois/{poi}/questions/{question}/answers</code></div><div class="panel-body"><p>Will only show answers to user who submitted answer or user with <em>researcher</em> role.</p>
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#894274" class="pull-right">Toggle</a></li><li id="894274" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/trips/1/pois/1/questions/1/answers/1</span><br></code></pre></li></ul></section><section id="questions-answers-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve answers for a question</span><a href="#page:questions,header:questions-answers-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips/{trip}/pois/{poi}/questions/{question}/answers</code></div><div class="panel-body"><p>Will only show answers to user who submitted answer or user with <em>researcher</em> role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Trip identifier.</p>
 </dd><dt>poi</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Point of interest identifier.</p>
 </dd><dt>question</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Question identifier</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#940770" class="pull-right">Toggle</a></li><li id="940770" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#425269" class="pull-right">Toggle</a></li><li id="425269" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">5000</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">timestamp</span>": <span class="value"><span class="string">"2013-05-14T12:30:00Z"</span></span>,
         "<span class="attribute">location</span>": <span class="value">{
             "<span class="attribute">type</span>": <span class="value"><span class="string">"Point"</span></span>,
@@ -756,10 +780,10 @@ This will delete the answer and if question type is image or video will also del
             "<span class="attribute">tilt</span>": <span class="value"><span class="number">45.0</span>
         </span>}</span>,
         "<span class="attribute">value</span>": <span class="value"><span class="string">"0"</span></span>,
-        "<span class="attribute">answered_by</span>": <span class="value"><span class="string">"32"</span></span>,
+        "<span class="attribute">answered_by</span>": <span class="value"><span class="number">32</span></span>,
         "<span class="attribute">answered_on</span>": <span class="value"><span class="string">"2013-09-04T12:30:00Z"</span></span>,
         "<span class="attribute">moderated_on</span>": <span class="value"><span class="string">"2013-09-14T12:30:00Z"</span></span>,
-        "<span class="attribute">moderated_by</span>": <span class="value"><span class="string">"5"</span>
+        "<span class="attribute">moderated_by</span>": <span class="value"><span class="number">5</span>
     </span>}]
 </span>}
 </code></pre></li></ul></section><h4 id="questions-unmoderated-answers-for-question">Unmoderated answers for question&nbsp;<a href="#page:questions,header:questions-unmoderated-answers-for-question"><i class="fa fa-link"></i></a></h4><section id="questions-unmoderated-answers-for-question-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve unmoderated answers</span><a href="#page:questions,header:questions-unmoderated-answers-for-question-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips/1/pois/1/questions/1/answers/unmoderated</code></div><div class="panel-body"><p>Will only show answers to user who submitted answer or user with <em>moderator</em> role.</p>
@@ -767,9 +791,10 @@ This will delete the answer and if question type is image or video will also del
 </dd><dt>poi</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Point of interest identifier.</p>
 </dd><dt>question</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Question identifier.</p>
 </dd><dt>answer</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Answer identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#257085" class="pull-right">Toggle</a></li><li id="257085" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#192789" class="pull-right">Toggle</a></li><li id="192789" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">5000</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">timestamp</span>": <span class="value"><span class="string">"2013-05-14T12:30:00Z"</span></span>,
         "<span class="attribute">location</span>": <span class="value">{
             "<span class="attribute">type</span>": <span class="value"><span class="string">"Point"</span></span>,
@@ -780,16 +805,17 @@ This will delete the answer and if question type is image or video will also del
             "<span class="attribute">tilt</span>": <span class="value"><span class="number">45.0</span>
         </span>}</span>,
         "<span class="attribute">value</span>": <span class="value"><span class="string">"0"</span></span>,
-        "<span class="attribute">answered_by</span>": <span class="value"><span class="string">"32"</span></span>,
+        "<span class="attribute">answered_by</span>": <span class="value"><span class="number">32</span></span>,
         "<span class="attribute">answered_on</span>": <span class="value"><span class="string">"2013-09-04T12:30:00Z"</span></span>,
         "<span class="attribute">moderated_on</span>": <span class="value"><span class="string">"2013-09-14T12:30:00Z"</span></span>,
-        "<span class="attribute">moderated_by</span>": <span class="value"><span class="string">"5"</span>
+        "<span class="attribute">moderated_by</span>": <span class="value"><span class="number">5</span>
     </span>}]
 </span>}
 </code></pre></li></ul></section><h4 id="questions-all-unmoderated-answers">All unmoderated answers&nbsp;<a href="#page:questions,header:questions-all-unmoderated-answers"><i class="fa fa-link"></i></a></h4><section id="questions-all-unmoderated-answers-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve unmoderated answers</span><a href="#page:questions,header:questions-all-unmoderated-answers-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/answers/unmoderated</code></div><div class="panel-body"><p>Will only show answers to user who submitted answer or user with <em>moderator</em> role.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#451584" class="pull-right">Toggle</a></li><li id="451584" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#82070" class="pull-right">Toggle</a></li><li id="82070" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">5000</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">timestamp</span>": <span class="value"><span class="string">"2013-05-14T12:30:00Z"</span></span>,
         "<span class="attribute">location</span>": <span class="value">{
             "<span class="attribute">type</span>": <span class="value"><span class="string">"Point"</span></span>,
@@ -800,55 +826,43 @@ This will delete the answer and if question type is image or video will also del
             "<span class="attribute">tilt</span>": <span class="value"><span class="number">45.0</span>
         </span>}</span>,
         "<span class="attribute">value</span>": <span class="value"><span class="string">"0"</span></span>,
-        "<span class="attribute">answered_by</span>": <span class="value"><span class="string">"32"</span></span>,
+        "<span class="attribute">answered_by</span>": <span class="value"><span class="number">32</span></span>,
         "<span class="attribute">answered_on</span>": <span class="value"><span class="string">"2013-09-04T12:30:00Z"</span></span>,
         "<span class="attribute">moderated_on</span>": <span class="value"><span class="string">"2013-09-14T12:30:00Z"</span></span>,
-        "<span class="attribute">moderated_by</span>": <span class="value"><span class="string">"5"</span>
+        "<span class="attribute">moderated_by</span>": <span class="value"><span class="number">5</span>
     </span>}]
 </span>}
 </code></pre></li></ul></section></div></div><a href="#page:stories" class="btn btn-default pull-right">Next&nbsp;<i class="fa fa-arrow-circle-right"></i></a><a href="#page:pois" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'stories', style: {marginTop: page() == 'stories' ? '38px' : ''}"><div class="panel panel-default"><div class="panel-heading"><h3 id="stories">Stories&nbsp;<a href="#page:stories"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>A story is about a trip and it’s POIs combined with the supplied answers and insight of researcher.</p>
 <h4 id="stories-story">Story&nbsp;<a href="#page:stories,header:stories-story"><i class="fa fa-link"></i></a></h4><section id="stories-story-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Get a story</span><a href="#page:stories,header:stories-story-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/stories/{id}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Story identifier</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#195344" class="pull-right">Toggle</a></li><li id="195344" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="attribute">id</span>": <span class="value"><span class="string">"1"</span></span>,
-    "<span class="attribute">trip</span>": <span class="value"><span class="string">"1"</span></span>,
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#498744" class="pull-right">Toggle</a></li><li id="498744" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+    "<span class="attribute">trip</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">title</span>": <span class="value"><span class="string">"Title of story"</span></span>,
     "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html of story&gt;"</span></span>,
     "<span class="attribute">is_visible</span>": <span class="value"><span class="string">"Boolean whether story should be visible"</span></span>,
-    "<span class="attribute">answers</span>": <span class="value">[{
-        "<span class="attribute">id</span>": <span class="value"><span class="string">"Id of an answer"</span><span class="string">"/trips/1/pois/1/questions/1/answers/1"</span></span>,
-        "<span class="attribute">highlighted</span>": <span class="value"><span class="string">"Boolean whether answer should be highlighted"</span>
-    </span>}]</span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
 </code></pre></li></ul></section><section id="stories-story-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Update a story</span><a href="#page:stories,header:stories-story-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/stories/{id}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Story identifier</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#559165" class="pull-right">Toggle</a></li><li id="559165" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="attribute">id</span>": <span class="value"><span class="string">"1"</span></span>,
-    "<span class="attribute">trip</span>": <span class="value"><span class="string">"1"</span></span>,
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#781974" class="pull-right">Toggle</a></li><li id="781974" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+    "<span class="attribute">trip</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">title</span>": <span class="value"><span class="string">"Title of story"</span></span>,
     "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html of story&gt;"</span></span>,
     "<span class="attribute">is_visible</span>": <span class="value"><span class="string">"Boolean whether story should be visible"</span></span>,
-    "<span class="attribute">answers</span>": <span class="value">[{
-        "<span class="attribute">id</span>": <span class="value"><span class="string">"Id of an answer"</span><span class="string">"/trips/1/pois/1/questions/1/answers/1"</span></span>,
-        "<span class="attribute">highlighted</span>": <span class="value"><span class="string">"Boolean whether answer should be highlighted"</span>
-    </span>}]</span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="stories-stories">Stories&nbsp;<a href="#page:stories,header:stories-stories"><i class="fa fa-link"></i></a></h4><section id="stories-stories-post" class="panel panel-success"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Create a story</span><a href="#page:stories,header:stories-stories-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/stories</code></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#672394" class="pull-right">Toggle</a></li><li id="672394" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
-    "<span class="attribute">id</span>": <span class="value"><span class="string">"1"</span></span>,
-    "<span class="attribute">trip</span>": <span class="value"><span class="string">"1"</span></span>,
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="stories-stories">Stories&nbsp;<a href="#page:stories,header:stories-stories"><i class="fa fa-link"></i></a></h4><section id="stories-stories-post" class="panel panel-success"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Create a story</span><a href="#page:stories,header:stories-stories-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/stories</code></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#792972" class="pull-right">Toggle</a></li><li id="792972" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+    "<span class="attribute">trip</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">title</span>": <span class="value"><span class="string">"Title of story"</span></span>,
     "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html of story&gt;"</span></span>,
     "<span class="attribute">is_visible</span>": <span class="value"><span class="string">"Boolean whether story should be visible"</span></span>,
-    "<span class="attribute">answers</span>": <span class="value">[{
-        "<span class="attribute">id</span>": <span class="value"><span class="string">"Id of an answer"</span><span class="string">"/trips/1/pois/1/questions/1/answers/1"</span></span>,
-        "<span class="attribute">highlighted</span>": <span class="value"><span class="string">"Boolean whether answer should be highlighted"</span>
-    </span>}]</span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#470037" class="pull-right">Toggle</a></li><li id="470037" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/stories/1</span><br></code></pre></li></ul></section><section id="stories-stories-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of stories</span><a href="#page:stories,header:stories-stories-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/stories</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#688030" class="pull-right">Toggle</a></li><li id="688030" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#155555" class="pull-right">Toggle</a></li><li id="155555" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/stories/1</span><br></code></pre></li></ul></section><section id="stories-stories-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of stories</span><a href="#page:stories,header:stories-stories-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/stories</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#645290" class="pull-right">Toggle</a></li><li id="645290" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">15</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="string">"1"</span></span>,
@@ -856,15 +870,11 @@ This will delete the answer and if question type is image or video will also del
         "<span class="attribute">title</span>": <span class="value"><span class="string">"Title of story"</span></span>,
         "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html of story&gt;"</span></span>,
         "<span class="attribute">is_visible</span>": <span class="value"><span class="string">"Boolean whether story should be visible"</span></span>,
-        "<span class="attribute">answers</span>": <span class="value">[{
-            "<span class="attribute">id</span>": <span class="value"><span class="string">"Id of an answer"</span><span class="string">"/trips/1/pois/1/questions/1/answers/1"</span></span>,
-            "<span class="attribute">highlighted</span>": <span class="value"><span class="string">"Boolean whether answer should be highlighted"</span>
-        </span>}]</span>,
-        "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+        "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
         "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
     </span>}]
 </span>}
-</code></pre></li></ul></section><h4 id="stories-list-of-stories-filtered-by-species">List of stories filtered by species&nbsp;<a href="#page:stories,header:stories-list-of-stories-filtered-by-species"><i class="fa fa-link"></i></a></h4><section id="stories-list-of-stories-filtered-by-species-get" class="panel panel-info"><div class="panel-heading"><a href="#page:stories,header:stories-list-of-stories-filtered-by-species-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/stories?species={species}</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#519764" class="pull-right">Toggle</a></li><li id="519764" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li></ul></section><h4 id="stories-list-of-stories-filtered-by-species">List of stories filtered by species&nbsp;<a href="#page:stories,header:stories-list-of-stories-filtered-by-species"><i class="fa fa-link"></i></a></h4><section id="stories-list-of-stories-filtered-by-species-get" class="panel panel-info"><div class="panel-heading"><a href="#page:stories,header:stories-list-of-stories-filtered-by-species-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/stories?species={species}</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#585870" class="pull-right">Toggle</a></li><li id="585870" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">15</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="string">"1"</span></span>,
@@ -872,15 +882,11 @@ This will delete the answer and if question type is image or video will also del
         "<span class="attribute">title</span>": <span class="value"><span class="string">"Title of story"</span></span>,
         "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html of story&gt;"</span></span>,
         "<span class="attribute">is_visible</span>": <span class="value"><span class="string">"Boolean whether story should be visible"</span></span>,
-        "<span class="attribute">answers</span>": <span class="value">[{
-            "<span class="attribute">id</span>": <span class="value"><span class="string">"Id of an answer"</span><span class="string">"/trips/1/pois/1/questions/1/answers/1"</span></span>,
-            "<span class="attribute">highlighted</span>": <span class="value"><span class="string">"Boolean whether answer should be highlighted"</span>
-        </span>}]</span>,
-        "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+        "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
         "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
     </span>}]
 </span>}
-</code></pre></li></ul></section><h4 id="stories-list-of-stories-filtered-by-bird">List of stories filtered by bird&nbsp;<a href="#page:stories,header:stories-list-of-stories-filtered-by-bird"><i class="fa fa-link"></i></a></h4><section id="stories-list-of-stories-filtered-by-bird-get" class="panel panel-info"><div class="panel-heading"><a href="#page:stories,header:stories-list-of-stories-filtered-by-bird-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/stories?bird={bird}</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#780826" class="pull-right">Toggle</a></li><li id="780826" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li></ul></section><h4 id="stories-list-of-stories-filtered-by-bird">List of stories filtered by bird&nbsp;<a href="#page:stories,header:stories-list-of-stories-filtered-by-bird"><i class="fa fa-link"></i></a></h4><section id="stories-list-of-stories-filtered-by-bird-get" class="panel panel-info"><div class="panel-heading"><a href="#page:stories,header:stories-list-of-stories-filtered-by-bird-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/stories?bird={bird}</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#703553" class="pull-right">Toggle</a></li><li id="703553" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">15</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="string">"1"</span></span>,
@@ -888,11 +894,7 @@ This will delete the answer and if question type is image or video will also del
         "<span class="attribute">title</span>": <span class="value"><span class="string">"Title of story"</span></span>,
         "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;html of story&gt;"</span></span>,
         "<span class="attribute">is_visible</span>": <span class="value"><span class="string">"Boolean whether story should be visible"</span></span>,
-        "<span class="attribute">answers</span>": <span class="value">[{
-            "<span class="attribute">id</span>": <span class="value"><span class="string">"Id of an answer"</span><span class="string">"/trips/1/pois/1/questions/1/answers/1"</span></span>,
-            "<span class="attribute">highlighted</span>": <span class="value"><span class="string">"Boolean whether answer should be highlighted"</span>
-        </span>}]</span>,
-        "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+        "<span class="attribute">created_by</span>": <span class="value"><span class="number">3</span></span>,
         "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
     </span>}]
 </span>}
@@ -905,7 +907,7 @@ This will delete the answer and if question type is image or video will also del
 <li>researcher, can fetch tracks and create a trip, poi, questions and a story.</li>
 <li>administrator, can assign roles to users.</li>
 </ul>
-<h4 id="users-roles">Roles&nbsp;<a href="#page:users,header:users-roles"><i class="fa fa-link"></i></a></h4><section id="users-roles-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of roles</span><a href="#page:users,header:users-roles-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/roles</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#462942" class="pull-right">Toggle</a></li><li id="462942" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+<h4 id="users-roles">Roles&nbsp;<a href="#page:users,header:users-roles"><i class="fa fa-link"></i></a></h4><section id="users-roles-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of roles</span><a href="#page:users,header:users-roles-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/roles</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#558279" class="pull-right">Toggle</a></li><li id="558279" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">5</span></span>,
     "<span class="attribute">items</span>": <span class="value">[
         <span class="string">"anonymous"</span>,
@@ -918,64 +920,64 @@ This will delete the answer and if question type is image or video will also del
 </code></pre></li></ul></section><h4 id="users-user">User&nbsp;<a href="#page:users,header:users-user"><i class="fa fa-link"></i></a></h4><p>The <code>password</code> and <code>password_verify</code> are only required during creation and update. They will not be retrieved.</p>
 <section id="users-user-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve a user</span><a href="#page:users,header:users-user-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/users/{user}</code></div><div class="panel-body"><p>Only retrievable by user with the <em>administrator</em> role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>user</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>User identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#716660" class="pull-right">Toggle</a></li><li id="716660" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#327441" class="pull-right">Toggle</a></li><li id="327441" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="attribute">id</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">username</span>": <span class="value"><span class="string">"User chosen username"</span></span>,
     "<span class="attribute">password</span>": <span class="value"><span class="string">"Password"</span></span>,
     "<span class="attribute">password_verify</span>": <span class="value"><span class="string">"Password verification"</span></span>,
     "<span class="attribute">email</span>": <span class="value"><span class="string">"e-mail adres of user"</span></span>,
     "<span class="attribute">phone</span>": <span class="value"><span class="string">"(Mobile) phone number, used by researcher to ask feedback"</span></span>,
-    "<span class="attribute">roles</span>": <span class="value">[<span class="string">"registered"</span>]</span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">roles</span>": <span class="value"><span class="string">"registered"</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
 </code></pre></li></ul></section><section id="users-user-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Update a user</span><a href="#page:users,header:users-user-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/users/{user}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>user</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>User identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#312497" class="pull-right">Toggle</a></li><li id="312497" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#71453" class="pull-right">Toggle</a></li><li id="71453" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="attribute">id</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">username</span>": <span class="value"><span class="string">"User chosen username"</span></span>,
     "<span class="attribute">password</span>": <span class="value"><span class="string">"Password"</span></span>,
     "<span class="attribute">password_verify</span>": <span class="value"><span class="string">"Password verification"</span></span>,
     "<span class="attribute">email</span>": <span class="value"><span class="string">"e-mail adres of user"</span></span>,
     "<span class="attribute">phone</span>": <span class="value"><span class="string">"(Mobile) phone number, used by researcher to ask feedback"</span></span>,
-    "<span class="attribute">roles</span>": <span class="value">[<span class="string">"registered"</span>]</span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">roles</span>": <span class="value"><span class="string">"registered"</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
 </code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong></li></ul></section><section id="users-user-delete" class="panel panel-danger"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Deleta a user</span><a href="#page:users,header:users-user-delete" class="btn btn-xs btn-danger">DELETE</a>&nbsp;<code>/users/{user}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>user</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>User identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="users-self">Self&nbsp;<a href="#page:users,header:users-self"><i class="fa fa-link"></i></a></h4><section id="users-self-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">User information of authenticated user</span><a href="#page:users,header:users-self-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/users/self</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#471122" class="pull-right">Toggle</a></li><li id="471122" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="users-self">Self&nbsp;<a href="#page:users,header:users-self"><i class="fa fa-link"></i></a></h4><section id="users-self-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">User information of authenticated user</span><a href="#page:users,header:users-self-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/users/self</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#950646" class="pull-right">Toggle</a></li><li id="950646" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="attribute">id</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">username</span>": <span class="value"><span class="string">"User chosen username"</span></span>,
     "<span class="attribute">password</span>": <span class="value"><span class="string">"Password"</span></span>,
     "<span class="attribute">password_verify</span>": <span class="value"><span class="string">"Password verification"</span></span>,
     "<span class="attribute">email</span>": <span class="value"><span class="string">"e-mail adres of user"</span></span>,
     "<span class="attribute">phone</span>": <span class="value"><span class="string">"(Mobile) phone number, used by researcher to ask feedback"</span></span>,
-    "<span class="attribute">roles</span>": <span class="value">[<span class="string">"registered"</span>]</span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">roles</span>": <span class="value"><span class="string">"registered"</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
 </code></pre></li></ul></section><h4 id="users-collection-of-users">Collection of users&nbsp;<a href="#page:users,header:users-collection-of-users"><i class="fa fa-link"></i></a></h4><section id="users-collection-of-users-post" class="panel panel-success"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Create a user</span><a href="#page:users,header:users-collection-of-users-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/users</code></div><div class="panel-body"><p>A created user will automaticly get the <em>registered</em> role.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#613697" class="pull-right">Toggle</a></li><li id="613697" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#13594" class="pull-right">Toggle</a></li><li id="13594" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="attribute">id</span>": <span class="value"><span class="number">3</span></span>,
     "<span class="attribute">username</span>": <span class="value"><span class="string">"User chosen username"</span></span>,
     "<span class="attribute">password</span>": <span class="value"><span class="string">"Password"</span></span>,
     "<span class="attribute">password_verify</span>": <span class="value"><span class="string">"Password verification"</span></span>,
     "<span class="attribute">email</span>": <span class="value"><span class="string">"e-mail adres of user"</span></span>,
     "<span class="attribute">phone</span>": <span class="value"><span class="string">"(Mobile) phone number, used by researcher to ask feedback"</span></span>,
-    "<span class="attribute">roles</span>": <span class="value">[<span class="string">"registered"</span>]</span>,
-    "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
+    "<span class="attribute">roles</span>": <span class="value"><span class="string">"registered"</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
 </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#90249" class="pull-right">Toggle</a></li><li id="90249" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/users/1</span><br></code></pre></li></ul></section><section id="users-collection-of-users-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of users</span><a href="#page:users,header:users-collection-of-users-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/users</code></div><div class="panel-body"><p>Only retrievable by user with the <em>administrator</em> role.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#647453" class="pull-right">Toggle</a></li><li id="647453" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#581853" class="pull-right">Toggle</a></li><li id="581853" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/users/1</span><br></code></pre></li></ul></section><section id="users-collection-of-users-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of users</span><a href="#page:users,header:users-collection-of-users-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/users</code></div><div class="panel-body"><p>Only retrievable by user with the <em>administrator</em> role.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#987579" class="pull-right">Toggle</a></li><li id="987579" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">100</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">3</span></span>,
         "<span class="attribute">username</span>": <span class="value"><span class="string">"User chosen username"</span></span>,
         "<span class="attribute">email</span>": <span class="value"><span class="string">"e-mail adres of user"</span></span>,
         "<span class="attribute">phone</span>": <span class="value"><span class="string">"(Mobile) phone number, used by researcher to ask feedback"</span></span>,
         "<span class="attribute">role</span>": <span class="value"><span class="string">"researcher"</span></span>,
-        "<span class="attribute">created_by</span>": <span class="value"><span class="string">"3"</span></span>,
         "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00Z"</span>
     </span>}]
 </span>}
 </code></pre></li></ul></section><h4 id="users-relation-of-user-and-role">Relation of user and role&nbsp;<a href="#page:users,header:users-relation-of-user-and-role"><i class="fa fa-link"></i></a></h4><p>Role can be set to a user by a user with the <em>administrator</em> role.</p>
 <section id="users-relation-of-user-and-role-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Set role of user</span><a href="#page:users,header:users-relation-of-user-and-role-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/users/{user}/roles/{role}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>user</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>User identifier.</p>
-</dd><dt>role</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Role identifier.</p>
+</dd><dt>role</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Role n.</p>
 </dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div><a href="#page:stories" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div></div></div></div><p style="text-align: center;" class="text-muted">Generated by <a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a> on 14 Jan 2014</p><div id="localFile" style="display: none; position: absolute; top: 0; left: 0; width: 100%; color: white; background: red; font-size: 150%; text-align: center; padding: 1em;">This page may not display correctly when opened as a local file. Instead, view it from a web server.
 
 </div></body><script src="//code.jquery.com/jquery-1.10.1.min.js"></script><script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script><script type="text/javascript">
