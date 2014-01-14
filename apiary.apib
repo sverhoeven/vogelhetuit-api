@@ -130,79 +130,6 @@ Species can be used to filter birds, trips or stories.
 
             Location: /species/8915
 
-# Group Bird
-
-An individual bird of a certain species. The bird has a tracker tied to it.
-
-## Bird [/birds/{id}]
-
-+ Parameters
-    + id (string) ... Bird identifier
-
-+ Model (application/json)
-
-        {
-            "id": 1,
-            "body": "<html describing a individual bird>",
-            "species": 8915,
-            "created_by": 3,
-            "created_on": "2013-04-14T10:00:00Z"
-        }
-
-### Retrieve a bird [GET]
-
-+ Response 200
-
-    [Bird][]
-
-### Update a bird. [PUT]
-
-+ Request
-
-    [Bird][]
-
-+ Response 200
-
-### Delete a bird. [DELETE]
-
-+ Response 204
-
-## Birds [/birds]
-
-+ Model (application/json)
-
-        {
-            "total": 12,
-            "items": [{
-                "id": 1,
-                "species": "8915",
-                "body": "<html describing a individual bird>",
-                "created_by": 3,
-                "created_on": "2013-04-14T10:00:00Z"
-            }]
-        }
-
-### List of birds [GET]
-
-+ Response 200
-
-    [Birds][]
-
-### Create a bird. [POST]
-
-+ Request
-
-    [Bird][]
-
-+ Response 201
-
-    + Headers
-
-            Location: /birds/1
-
-# Group Trips
-A trip resource is set of timestamped coordinates with the eEcology tracker identifier.
-
 ## Trip [/trips/{id}]
 
 + Parameters
@@ -212,7 +139,7 @@ A trip resource is set of timestamped coordinates with the eEcology tracker iden
 
         {
             "id": 1,
-            "bird": 1,
+            "species": 1,
             "tracker": 355,
             "start": "2013-04-14T10:00:00Z",
             "end": "2013-04-15T12:00:00Z",
@@ -266,7 +193,7 @@ Trip, but with Points of interests, Questions embedded into them. This is a shor
 
         {
             "id": 1,
-            "bird": 1,
+            "species": 1,
             "tracker": 355,
             "start": "2013-04-14T10:00:00Z",
             "end": "2013-04-15T12:00:00Z",
@@ -327,7 +254,7 @@ Trip, but with Points of interests, Questions embedded into them. This is a shor
             "total": 12,
             "items": [{
                 "id": 1,
-                "bird": 1,
+                "species": 1,
                 "tracker": 355,
                 "start": "2013-04-14T10:00:00Z",
                 "end": "2013-04-15T12:00:00Z",
