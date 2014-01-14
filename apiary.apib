@@ -33,7 +33,7 @@ Example on `/species?page=3&pagesize=20`:
 + Response 200 (application/json)
 
         {
-            "total": 1234,
+            "total": 0,
             "items": []
         }
 
@@ -71,6 +71,8 @@ Species can be used to filter birds, trips or stories.
                 "en": "Lesser Black-backed gull"
             },
             "body": "<html describing species and why it is being researched>",
+            "created_by": "3",
+            "created_on": "2013-04-14T10:00:00Z"
         }
 
 ### Retrieve a species [GET]
@@ -105,6 +107,8 @@ Species can be used to filter birds, trips or stories.
                     "en": "Lesser Black-backed gull"
                 },
                 "body": "<html describing species and why it is being researched>",
+                "created_by": "3",
+                "created_on": "2013-04-14T10:00:00Z"
             }]
         }
 
@@ -444,7 +448,7 @@ A point of interest is a place on a trip where a questions are connected to.
     + trip (string) ... Trip identifier.
     + poi (string) ... Point of interest identifier.
 
-+ Model (application/hal+json)
++ Model (application/json)
 
         {
             "location": {
@@ -612,10 +616,10 @@ Fetch list of questions independ of trip or poi.
 
 Attributes:
 
-- timestamp, need to know when answer was given.
+- answered_on, need to know when answer was given.
 - location, need to know where answer was given.
 - orientation, optional, heading or direction and tilting, used when question type is image or video otherwise ignored.
-- value, the answer itself.
+- value, the answer itself. For a media type answer it will be the url to the media.
 
 + Parameters
     + trip (string) ... Trip identifier.
@@ -626,7 +630,6 @@ Attributes:
 + Model (application/json)
 
         {
-            "timestamp": "2013-05-14T12:30:00Z",
             "location": {
                 "type": "Point",
                 "coordinates": [54.642, 12.543]
@@ -700,7 +703,9 @@ This will delete the answer and if question type is image or video will also del
 
 ### Create an answer [POST]
 
-Question types which require uploading files (eg. image or video) should use *Media Question uploads* endpoints to upload the media, before calling this method and use the url of the media as value.
+Question types which require uploading files (eg. image or video) should use *multipart/form-data* content type with the json and media binary as a file parts, the value is ignored.
+
+> TODO Should api return url to fetch the media.
 
 + Request
 
@@ -840,7 +845,6 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
 
     [Stories][]
 
-
 # Group Users
 User administration and profile.
 
@@ -950,26 +954,15 @@ Only retrievable by user with the *administrator* role.
                 "username": "User chosen username",
                 "email": "e-mail adres of user",
                 "phone": "(Mobile) phone number, used by researcher to ask feedback",
-                "roles": ["researcher"],
+                "role": "researcher",
                 "created_by": "3",
                 "created_on": "2013-04-14T10:00:00Z"
             }]
         }
 
-## Roles for users [/users/{user}/roles]
+## Relation of user and role [/users/{user}/roles/{role}]
 
 Role can be added to a user or removed from a user by a user with the *administrator* role.
-
-+ Parameters
-    + user (string) ... User identifier.
-
-### List of roles [GET]
-
-+ Response 200 (application/json)
-
-    [Roles][]
-
-## Relation of user and role [/users/{user}/roles/{role}]
 
 + Parameters
     + user (string) ... User identifier.
@@ -982,79 +975,3 @@ Role can be added to a user or removed from a user by a user with the *administr
 ### Remove role from user [DELETE]
 
 + Response 204
-
-# Group Media question uploads
-
-Before a video or image question can be answered the media must first be uploaded.
-
-> Video and images answers can not be handled with a **Answer** resource,
-> because binary data must be uploaded using a POST with binary date instead of a POST with a JSON body.
-
-## Media upload [/trips/{trip}/pois/{poi}/uploads/{id}]
-Media upload meta information.
-
-+ Parameters
-    + trip (string) ... Trip identifier.
-    + poi (string) ... Point of interest identifier.
-    + id (string) ... Media upload identifier.
-
-### Retrieve media content [GET]
-
-+ Response 200
-
-    + Header
-
-            Content-Type: image/png
-            Content-Length: 1234
-
-    + Body
-
-            <bytes of media>
-
-### Delete media [DELETE]
-
-+ Response 204
-
-## Media uploads [/trips/{trip}/pois/{poi}/uploads]
-
-+ Parameters
-    + trip (string) ... Trip identifier
-    + poi (string) ... Point of interest identifier
-
-### Add media [POST]
-
-Curl example:
-
-    curl -i -H 'Content-Type: image/png' -X POST "http://api.vogelhetuit.nl/v1/trips/1/pois/1/uploads" --data-binary @img1.png
-
-+ Request
-
-    + Headers
-
-            Content-Type: image/png
-            Content-Length: 1234
-
-    + Body
-
-            <bytes of media>
-
-+ Response 201
-
-    + Headers
-
-            Location: /trips/1/pois/1/uploads/1
-
-### List of media [GET]
-
-+ Response 200 (application/json)
-
-            {
-                "total": 12,
-                "items": [{
-                    "content_type": "image/jpeg",
-                    "content": "/trips/1/pois/1/uploads/1",
-                    "size": 1234,
-                    "created_on": "2013-04-15T12:05:00Z",
-                    "created_by": "1"
-                }]
-            }
