@@ -19,10 +19,10 @@ Not a all requests require authentication, when authentication is required it wi
 
 # Filtering
 
-To filter a collection, you can append (? or &)<property>=<value> to the url.
-The <property> should be the name of a field and <value> is the value you want to filter by.
+To filter a collection, you can append (? or &)&lt;property&gt;=&lt;value&gt; to the url.
+The &lt;property&gt; should be the name of a field and &lt;value&gt; is the value you want to filter by.
 Multiple filters can be used.
-Filters which can't be specified using  <property>=<value> like spatial filters will be listed seperately.
+Filters which can't be specified using  &lt;property&gt;=&lt;value&gt; like spatial filters will be listed seperately.
 
 # Pagination
 
@@ -39,7 +39,7 @@ Example on `/species?page=3&pagesize=20`:
 
 # Sorting
 
-To sort a collection, you can append  ?order=<field1>,<field2> asc,<field3> desc.
+To sort a collection, you can append  ?order=&lt;field1&gt;,&lt;field2&gt; asc,&lt;field3&gt; desc.
 
 # Multi lingual
 
@@ -290,23 +290,17 @@ Trip, but with Points of interests, Questions embedded into them. This is a shor
 
     [Trips][]
 
-## Trips by tracker [/trips/tracker/{id}]
-
-+ Parameters
-    + id (string) ... Tracker identifier.
-
 ### Create a trip. [POST]
 
 The Trip resource requires the following attributes:
 
+- tracker (string) ... Tracker identifier.
 - start (string) ... Start time of trip.
 - end (string) ... End time of trip.
 - geo (GeoJSON) ... List of features that appear between start and end time.
 - is_visible (boolean) ... Visiblility of trip. A hidden trip can only be seen by users with *researcher* role.
 
 > TODO add visualization options, eg. color for speed, color for hour of day
-
-> TODO does trip need textual info, or should only POI have info.
 
 + Request
 
@@ -318,7 +312,12 @@ The Trip resource requires the following attributes:
 
             Location: /trips/1
 
-### List of trips filtered on tracker [GET]
+## List of trips filtered on tracker [/trips?tracker={tracker}]
+
++ Parameters
+    + tracker (string) ... A tracker identifier.
+
+### GET
 
 + Response 200
 
@@ -328,44 +327,6 @@ The Trip resource requires the following attributes:
 
 + Parameters
     + species (string) ... A species identifier.
-
-### GET
-
-+ Response 200
-
-    [Trips][]
-
-## List of trips filtered on geo bounding box [/trips?bbox={minlat},{minlon},{maxlat},{maxlon}]
-
-+ Parameters
-    + minlat (number) ... Minimum latitude
-    + minlon (number) ... Minimum longitude
-    + maxlat (number) ... Maximum latitude
-    + maxlon (number) ... Maximum longitude
-
-### GET
-
-+ Response 200
-
-    [Trips][]
-
-## List of trips filtered on distance from a location [/trips?dist={lat},{lon},{radius}]
-
-+ Parameters
-    + lat (number) ... Latitude of location
-    + lon (number) ... Longitude of location
-    + radius (number) ... Radius in meters
-
-### GET
-
-+ Response 200
-
-    [Trips][]
-
-## List of trips filtered on a bird [/trips?bird={bird}]
-
-+ Parameters
-    + bird (string) ... A bird identifier
 
 ### GET
 
@@ -410,7 +371,98 @@ A point of interest is a place on a trip where a questions are connected to.
 
 + Response 200
 
-## Collection of points of interest [/trips/{trip}/pois]
+## POIs [/pois]
+
+Collection of point of interests.
+
++ Model (application/json)
+
+        {
+                "total": 1,
+                "items": [{
+                    "id": 1,
+                    "trip": 1,
+                    "location": {
+                        "type": "Point",
+                        "coordinates": [54.642, 12.543]
+                    },
+                    "radius": 100,
+                    "distance": null,
+                    "body": "<html describing motiviation for the poi>",
+                    "created_by": 3,
+                    "created_on": "2013-04-14T10:00:00Z"
+                }]
+        }
+
+### List POIs [GET]
+
++ Response 200
+
+    [POIs][]
+
+## List of POIs filtered on geo bounding box [/pois?bbox={minlat},{minlon},{maxlat},{maxlon}]
+
++ Parameters
+    + minlat (number) ... Minimum latitude
+    + minlon (number) ... Minimum longitude
+    + maxlat (number) ... Maximum latitude
+    + maxlon (number) ... Maximum longitude
+
+### GET
+
++ Response 200
+
+    [POIs][]
+
+## List of POIs ordered on distance from a location [/pois?dist={lat},{lon}]
+
+Sets the distance field.
+
++ Parameters
+    + lat (number) ... Latitude of location
+    + lon (number) ... Longitude of location
+
+### GET
+
++ Response 200
+
+    [POIs][]
+
+## List of POIs filtered on distance from a location [/pois?dist={lat},{lon}&radius={radius}]
+
+Sets the distance field.
+
++ Parameters
+    + lat (number) ... Latitude of location
+    + lon (number) ... Longitude of location
+    + radius (number) ... Radius in meters
+
+### GET
+
++ Response 200
+
+    [POIs][]
+
+## List of POIs filtered on a tracker [/pois?tracker={tracker}]
+
++ Parameters
+    + tracker (string) ... A tracker identifier
+
+### GET
+
++ Response 200
+
+    [POIs][]
+    
+## List of POIs ordered by newest POI first [/pois?sort=created_on]
+
+### GET
+
++ Response 200
+
+    [POIs][]
+
+## Collection of points of interest of a trip [/trips/{trip}/pois]
 
 + Parameters
     + trip (string) ... Trip identifier.
@@ -429,22 +481,9 @@ A point of interest is a place on a trip where a questions are connected to.
 
 ### List points of interest for a trip [GET]
 
-+ Response 200 (application/json)
++ Response 200 
 
-            {
-                "total": 1,
-                "items": [{
-                    "id": 1,
-                    "location": {
-                        "type": "Point",
-                        "coordinates": [54.642, 12.543]
-                    },
-                    "radius": 100,
-                    "body": "<html describing motiviation for the poi>",
-                    "created_by": 3,
-                    "created_on": "2013-04-14T10:00:00Z"
-                }]
-            }
+    [POIs][]
 
 # Group Questions
 See http://manual.limesurvey.org/LimeSurvey_Manual for question types
