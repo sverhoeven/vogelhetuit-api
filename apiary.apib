@@ -975,10 +975,9 @@ The `password` and `password_verify` are only required during creation and updat
             "password_verify": "Password verification",
             "email": "e-mail adres of user",
             "phone": "(Mobile) phone number, used by researcher to ask feedback",
-            "roles": "registered",
+            "role": "registered",
             "created_on": "2013-04-14T10:00:00Z"
         }
-
 
 ### Retrieve a user [GET]
 
@@ -1063,3 +1062,46 @@ Retrieving a list of users requires the admin role.
 Set a role of user requires the admin role.
 
 + Response 204
+
+## Authentication token [/login]
+
+### Login [POST]
+
++ Request (application/json)
+
+        {
+            "username": "User chosen username",
+            "password": "Password",
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Set-Cookie: auth_token={token}; Expires={expire_date}; Domain=.vogelhetuit.nl; Path=/; Secure; HttpOnly
+
+    + Body
+
+            {
+                "id": 3,
+                "username": "User chosen username",
+                "email": "e-mail adres of user",
+                "phone": "(Mobile) phone number, used by researcher to ask feedback",
+                "role": "registered",
+                "created_on": "2013-04-14T10:00:00Z"
+            }
+
+### Logout [DELETE]
+
++ Request
+
+    + Headers
+
+            Cookie: auth_token={token}; Expires={expire_date}; Domain=.vogelhetuit.nl; Path=/; Secure; HttpOnly
+
++ Response 204
+
+    + Headers
+
+            Set-Cookie: auth_token={token}; Expires={expire_date_in_past}; Domain=.vogelhetuit.nl; Path=/; Secure; HttpOnly
+
