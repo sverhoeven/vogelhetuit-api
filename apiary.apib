@@ -14,8 +14,9 @@ The *Vogel het uit* service for sharing gps tracks (trips), assigning points of 
 - Timestamps must be in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) (YYYY-MM-DDTHH:MM:SSZ) format.
 
 # Authentication
-Use Basic-authentication.
-Not a all requests require authentication, when authentication is required it will be specified.
+
+Use `/login` to authenticate and use returned cookie to authentication for other routes.
+Routes which require *anonymous* role can be requested without authentication.
 
 # Filtering
 
@@ -53,8 +54,7 @@ The following attributes are read-only, when set during creating or update they 
 * The '*_by' and '*_on' attributes are updated automaticly when a user performs a change to a resources.
 
 # Group Species
-A tracker is tied to an bird of a certain species.
-Species can be used to filter birds, trips or stories.
+Species can be used to filter pois, trips or stories.
 
 ## Species [/species/{id}]
 
@@ -77,11 +77,15 @@ Species can be used to filter birds, trips or stories.
 
 ### Retrieve a species [GET]
 
+Retrieving a single species requires the anonymous role.
+
 + Response 200
 
     [Species][]
 
 ### Update a species. [PUT]
+
+Updating a single species requires the researcher role.
 
 + Request
 
@@ -90,6 +94,8 @@ Species can be used to filter birds, trips or stories.
 + Response 200
 
 ### Delete a species. [DELETE]
+
+Deleting a single species requires the researcher role.
 
 + Response 204
 
@@ -114,11 +120,15 @@ Species can be used to filter birds, trips or stories.
 
 ### Retrieve list of species [GET]
 
+Retrieving a list of species requires the anonymous role.
+
 + Response 200
 
     [Species Collection][]
 
-### Create a species. [POST]
+### Create a single species. [POST]
+
+Creating a single species requires the researcher role.
 
 + Request
 
@@ -171,11 +181,15 @@ A trip resource is set of timestamped coordinates with the eEcology tracker iden
 
 ### Retrieve a trip. [GET]
 
+Retrieving a visible trip requires the anonymous role.
+Retrieving a invisible trip requires the researcher role.
+
 + Response 200
 
     [Trip][]
 
 ### Update a trip. [PUT]
+Updating a trip requires the researcher role.
 
 + Request
 
@@ -184,6 +198,7 @@ A trip resource is set of timestamped coordinates with the eEcology tracker iden
 + Response 200
 
 ### Delete a trip. [DELETE]
+Deleting a trip requires the researcher role.
 
 + Response 204
 
@@ -191,6 +206,9 @@ A trip resource is set of timestamped coordinates with the eEcology tracker iden
 
 ### GET
 Trip, but with Points of interests, Questions embedded into them. This is a shortcut instead of downloading a trip, loop over POIs, loop over questions.
+
+Retrieving a full visible trip requires the anonymous role.
+Retrieving a full invisible trip requires the researcher role.
 
 + Response 200 (application/json)
 
@@ -284,12 +302,6 @@ Trip, but with Points of interests, Questions embedded into them. This is a shor
             }]
         }
 
-### List of trips. [GET]
-
-+ Response 200
-
-    [Trips][]
-
 ### Create a trip. [POST]
 
 The Trip resource requires the following attributes:
@@ -302,6 +314,8 @@ The Trip resource requires the following attributes:
 
 > TODO add visualization options, eg. color for speed, color for hour of day
 
+Creating a trip requires the researcher role.
+
 + Request
 
     [Trip][]
@@ -311,6 +325,15 @@ The Trip resource requires the following attributes:
     + Headers
 
             Location: /trips/1
+
+### List of trips. [GET]
+
+Retrieving a list visible trips requires the anonymous role.
+Retrieving a list visible and invisible trips requires the researcher role.
+
++ Response 200
+
+    [Trips][]
 
 ## List of trips filtered on tracker [/trips?tracker={tracker}]
 
@@ -359,17 +382,28 @@ A point of interest is a place on a trip where a questions are connected to.
 
 ### Retrieve a POI [GET]
 
+Retrieving a visible poi requires the anonymous role.
+Retrieving a invisible poi (if trip is invisible, poi is also invisible) requires the researcher role.
+
 + Response 200
 
     [Point of interest][]
 
 ### Update a POI [PUT]
 
+Updating a poi requires the researcher role.
+
 + Request
 
     [Point of interest][]
 
 + Response 200
+
+### Delete a POI [DELETE]
+
+Deleting a poi requires the researcher role.
+
++ Response 204
 
 ## POIs [/pois]
 
@@ -395,6 +429,9 @@ Collection of point of interests.
         }
 
 ### List POIs [GET]
+
+Retrieving a list of visible pois requires the anonymous role.
+Retrieving a list of visible and invisible (if trip is invisible then poi is also invisible) pois requires the researcher role.
 
 + Response 200
 
@@ -524,17 +561,28 @@ Types of questions:
 
 ### Retrieve a question [GET]
 
+Retrieving a visible question requires the anonymous role.
+Retrieving a invisible question (if trip is invisible, question is also invisible) requires the researcher role.
+
 + Response 200
 
     [Question][]
 
 ### Update a question [PUT]
 
+Updating a question requires the researcher role.
+
 + Request
 
     [Question][]
 
 + Response 200
+
+### Delete a question [DELETE]
+
+Deleting a question requires the researcher role.
+
++ Response 204
 
 ## Questions [/trips/{trip}/pois/{poi}/questions]
 
@@ -564,6 +612,8 @@ Types of questions:
 
 ### Create a question [POST]
 
+Creation of question requires researcher role.
+
 + Request
 
     [Question][]
@@ -575,6 +625,9 @@ Types of questions:
             Location: /trips/1/pois/1/questions/1
 
 ### List of questions [GET]
+
+Retrieving a list of visible question requires the anonymous role.
+Retrieving a list if visible and invisible question requires the researcher role.
 
 + Response 200
 
@@ -621,7 +674,8 @@ Attributes:
 
 ### Retrieve an answer [GET]
 
-Will only show answers to user who submitted answer or user with *researcher* role.
+Registered role will retrieve your own answer.
+Researcher role will retrieve any answer.
 
 + Response 200
 
@@ -638,11 +692,15 @@ Will only show answers to user who submitted answer or user with *researcher* ro
 ### Approve answer [PUT]
 Moderate media by approving it.
 
+Approving an answer requires the moderator role.
+
 + Response 204
 
 ### Disapprove answer [DELETE]
 Moderate media by disapproving it.
 This will delete the answer and if question type is image or video will also delete the uploaded media.
+
+Disapproving an answer requires the moderator role.
 
 + Response 204
 
@@ -674,7 +732,8 @@ This will delete the answer and if question type is image or video will also del
 
 ### Retrieve answers for a question [GET]
 
-Will only show answers to user who submitted answer or user with *researcher* role.
+Registered role will retrieve your own answers.
+Researcher role will retrieve all answers.
 
 + Response 200
 
@@ -688,6 +747,10 @@ Answers without media use *application/x-www-form-urlencoded* content type with 
 Answers with media use *multipart/form-data* content type with the `json` and `media` form fields, see second request.
 
 The `json` form field is a json encoded string of the Answer resource.
+
+Create an answer requires the anonymous role.
+
+> TODO should anonymous user be allowed to upload media or are only registered users allowed to do that?
 
 If answer send media then in the response the answer value will be the url where the media can be downloaded.
 
@@ -731,7 +794,8 @@ If answer send media then in the response the answer value will be the url where
 
 ### Retrieve unmoderated answers [GET]
 
-Will only show answers to user who submitted answer or user with *moderator* role.
+Retrieving your own unmoderated answers for a question requires the registered role.
+Retrieving all unmoderated answers for a question requires the moderator role.
 
 + Response 200
 
@@ -741,7 +805,8 @@ Will only show answers to user who submitted answer or user with *moderator* rol
 
 ### Retrieve unmoderated answers [GET]
 
-Will only show answers to user who submitted answer or user with *moderator* role.
+Retrieving your own unmoderated answers for a question requires the registered role.
+Retrieving all unmoderated answers for a question requires the moderator role.
 
 + Response 200
 
@@ -769,15 +834,26 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
 
 ### Get a story [GET]
 
+Retrieving a visible story requires the anonymous role.
+Retrieving a invisible story requires the researcher role.
+
 + Response 200
 
     [Story][]
 
 ### Update a story [PUT]
 
+Updating a story requires the researcher role.
+
 + Request
 
     [Story][]
+
++ Response 200
+
+### Delete a story [DELETE]
+
+Deleting a story requires the researcher role.
 
 + Response 204
 
@@ -801,6 +877,8 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
 
 ### Create a story [POST]
 
+Creating a story requires the researcher role.
+
 + Request
 
     [Story][]
@@ -812,6 +890,9 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
             Location: /stories/1
 
 ### List of stories [GET]
+
+Retrieving visible stories requires the anonymous role.
+Retrieving visible and invisible stories requires the researcher role.
 
 + Response 200
 
@@ -861,6 +942,8 @@ Roles:
 
 ### List of roles [GET]
 
+Retrieving a list of roles requires the admin role.
+
 + Response 200
 
     [Roles][]
@@ -881,20 +964,23 @@ The `password` and `password_verify` are only required during creation and updat
             "password_verify": "Password verification",
             "email": "e-mail adres of user",
             "phone": "(Mobile) phone number, used by researcher to ask feedback",
-            "roles": "registered",
+            "role": "registered",
             "created_on": "2013-04-14T10:00:00Z"
         }
 
-
 ### Retrieve a user [GET]
 
-Only retrievable by user with the *administrator* role.
+A user can retrieve his/her own user information.
+Retrieving a user requires the researcher role. As the researcher needs contact information for follow up questions.
 
 + Response 200
 
     [User][]
 
 ### Update a user [PUT]
+
+A user can update his/her own user information.
+Updating a user requires the admin role.
 
 + Request
 
@@ -904,11 +990,16 @@ Only retrievable by user with the *administrator* role.
 
 ### Deleta a user [DELETE]
 
+A user can delete his/her own user information.
+Deleting a user requires the admin role.
+
 + Response 204
 
 ## Self [/users/self]
 
 ### User information of authenticated user [GET]
+
+A user can retrieve his/her own user information.
 
 + Response 200
 
@@ -918,6 +1009,7 @@ Only retrievable by user with the *administrator* role.
 
 ### Create a user [POST]
 
+Creatin a user requires the anonymous or admin role.
 A created user will automaticly get the *registered* role.
 
 + Request
@@ -932,7 +1024,7 @@ A created user will automaticly get the *registered* role.
 
 ### List of users [GET]
 
-Only retrievable by user with the *administrator* role.
+Retrieving a list of users requires the admin role.
 
 + Response 200 (application/json)
 
@@ -950,12 +1042,55 @@ Only retrievable by user with the *administrator* role.
 
 ## Relation of user and role [/users/{user}/roles/{role}]
 
-Role can be set to a user by a user with the *administrator* role.
-
 + Parameters
     + user (string) ... User identifier.
     + role (string) ... Role identifier.
 
 ### Set role of user [PUT]
 
+Set a role of user requires the admin role.
+
 + Response 204
+
+## Authentication token [/login]
+
+### Login [POST]
+
++ Request (application/json)
+
+        {
+            "username": "User chosen username",
+            "password": "Password",
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Set-Cookie: auth_token={token}; Expires={expire_date}; Domain=.vogelhetuit.nl; Path=/; Secure; HttpOnly
+
+    + Body
+
+            {
+                "id": 3,
+                "username": "User chosen username",
+                "email": "e-mail adres of user",
+                "phone": "(Mobile) phone number, used by researcher to ask feedback",
+                "role": "registered",
+                "created_on": "2013-04-14T10:00:00Z"
+            }
+
+### Logout [DELETE]
+
++ Request
+
+    + Headers
+
+            Cookie: auth_token={token}; Expires={expire_date}; Domain=.vogelhetuit.nl; Path=/; Secure; HttpOnly
+
++ Response 204
+
+    + Headers
+
+            Set-Cookie: auth_token={token}; Expires={expire_date_in_past}; Domain=.vogelhetuit.nl; Path=/; Secure; HttpOnly
+
