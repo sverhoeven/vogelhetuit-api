@@ -453,7 +453,7 @@ Sets the distance field.
 + Response 200
 
     [POIs][]
-    
+
 ## List of POIs ordered by newest POI first [/pois?sort=created_on]
 
 ### GET
@@ -481,7 +481,7 @@ Sets the distance field.
 
 ### List points of interest for a trip [GET]
 
-+ Response 200 
++ Response 200
 
     [POIs][]
 
@@ -608,14 +608,10 @@ Attributes:
 
         {
             "id": 1,
-            "location": {
-                "type": "Point",
-                "coordinates": [54.642, 12.543]
-            },
-            "orientation": {
-                "head": 225.00,
-                "tilt": 45.0
-            },
+            "lon": 54.642,
+            "lat": 12.543,
+            "head": 225.00,
+            "tilt": 45.0,
             "value": "0",
             "answered_by": 32,
             "answered_on": "2013-09-04T12:30:00Z",
@@ -664,14 +660,10 @@ This will delete the answer and if question type is image or video will also del
             "items": [{
                 "id": 1,
                 "timestamp": "2013-05-14T12:30:00Z",
-                "location": {
-                    "type": "Point",
-                    "coordinates": [54.642, 12.543]
-                },
-                "orientation": {
-                    "head": 225.00,
-                    "tilt": 45.0
-                },
+                "lon": 54.642,
+                "lat": 12.543,
+                "head": 225.00,
+                "tilt": 45.0,
                 "value": "0",
                 "answered_by": 32,
                 "answered_on": "2013-09-04T12:30:00Z",
@@ -690,13 +682,18 @@ Will only show answers to user who submitted answer or user with *researcher* ro
 
 ### Create an answer [POST]
 
-Question types which require uploading files (eg. image or video) should use *multipart/form-data* content type with the json and media binary as a file parts, see second request.
+Answers can contain a media file like a image or video, this prevents using a normal POST body with json os use file upload form submission.
 
-> TODO How should api return url to fetch the media.
+Answers without media use *application/x-www-form-urlencoded* content type with the `json` form field, see first request.
+Answers with media use *multipart/form-data* content type with the `json` and `media` form fields, see second request.
 
-+ Request
+The `json` form field is a json encoded string of the Answer resource.
 
-    [Answer][]
+If answer send media then in the response the answer value will be the url where the media can be downloaded.
+
++ Request (application/x-www-form-urlencoded; charset=utf-8)
+
+    json=%7B%0A++++%22value%22%3A+%22some+answer%22%2C%0A++++%22lon%22%3A+54.642%2C%0A++++%22lat%22%3A+12.543%2C%0A++++%22answered_on%22%3A+%222013-09-04T12%3A30%3A00Z%22%0A%7D%0A
 
 + Request (multipart/form-data;boundary=AaB03x)
 
@@ -705,22 +702,15 @@ Question types which require uploading files (eg. image or video) should use *mu
         Content-Type: application/json
 
         {
-            "id": 1,
-            "location": {
-                "type": "Point",
-                "coordinates": [54.642, 12.543]
-            },
-            "orientation": {
-                "head": 225.00,
-                "tilt": 45.0
-            },
-            "answered_by": 32,
-            "answered_on": "2013-09-04T12:30:00Z",
-            "moderated_on": "2013-09-14T12:30:00Z",
-            "moderated_by": 5
+            "value": "some answer",
+            "lon": 54.642,
+            "lat": 12.543,
+            "head": 225.00,
+            "tilt": 45.0,
+            "answered_on": "2013-09-04T12:30:00Z"
         }
         --AaB03x
-        Content-Disposition: form-data; name="files"; filename="image1.png"
+        Content-Disposition: form-data; name="media"; filename="image1.png"
         Content-Type: image/png
 
         ... content of image1.png
@@ -729,9 +719,7 @@ Question types which require uploading files (eg. image or video) should use *mu
 
 + Response 201
 
-    + Headers
-
-            Location: /trips/1/pois/1/questions/1/answers/1
+    [Answer][]
 
 ## Unmoderated answers for question [/trips/1/pois/1/questions/1/answers/unmoderated]
 
