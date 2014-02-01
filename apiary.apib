@@ -65,11 +65,7 @@ Species can be used to filter pois, trips or stories.
 
         {
             "id": 8915,
-            "latin_name": "Larus Fuscus",
-            "common_name": {
-                "nl": "Kleine mantelmeeuw",
-                "en": "Lesser Black-backed gull"
-            },
+            "name": "Kleine mantelmeeuw",
             "body": "<html describing species and why it is being researched>",
             "created_by": 3,
             "created_on": "2013-04-14T10:00:00Z"
@@ -107,12 +103,7 @@ Deleting a single species requires the researcher role.
             "total": 1234,
             "items":[{
                 "id": 8915,
-                "latin_name": "Larus Fuscus",
-                "common_name": {
-                    "nl": "Kleine mantelmeeuw",
-                    "en": "Lesser Black-backed gull"
-                },
-                "body": "<html describing species and why it is being researched>",
+                "name": "Kleine mantelmeeuw",
                 "created_by": 3,
                 "created_on": "2013-04-14T10:00:00Z"
             }]
@@ -136,9 +127,7 @@ Creating a single species requires the researcher role.
 
 + Response 201
 
-    + Headers
-
-            Location: /species/8915
+    [Species][]
 
 # Group Trips
 A trip resource is set of timestamped coordinates with the eEcology tracker identifier.
@@ -152,14 +141,19 @@ A trip resource is set of timestamped coordinates with the eEcology tracker iden
 
         {
             "id": 1,
-            "species": 1,
+            "species": {
+                "created_by": 1,
+                "id": 1,
+                "name": "Gull",
+                "body": "<p>Gull eats everything<\/p>",
+                "created_on": "2014-02-01T14:23:01+0000"
+            },
             "tracker": 355,
             "start": "2013-04-14T10:00:00Z",
             "end": "2013-04-15T12:00:00Z",
             "body": "<html describing a trip>",
             "geo": {
                 "type": "FeatureCollection",
-                "bbox": [54.342, 12.543, 54.642, 12.543],
                 "features": [{
                     "type": "Feature",
                     "geometry": {"type": "Point", "coordinates": [54.342, 12.543, -5]},
@@ -174,7 +168,7 @@ A trip resource is set of timestamped coordinates with the eEcology tracker iden
                     "properties": {"ts":  "2013-04-15T12:15:00Z"}
                 }]
             },
-            "is_visible": false,
+            "visible": true,
             "created_by": 3,
             "created_on": "2013-04-14T10:00:00Z"
         }
@@ -214,14 +208,19 @@ Retrieving a full invisible trip requires the researcher role.
 
         {
             "id": 1,
-            "species": 1,
+            "species": {
+                "created_by": 1,
+                "id": 1,
+                "name": "Gull",
+                "body": "<p>Gull eats everything<\/p>",
+                "created_on": "2014-02-01T14:23:01+0000"
+            },
             "tracker": 355,
             "start": "2013-04-14T10:00:00Z",
             "end": "2013-04-15T12:00:00Z",
             "body": "<html describing a trip>",
             "geo": {
                 "type": "FeatureCollection",
-                "bbox": [54.342, 12.543, 54.642, 12.543],
                 "features": [{
                     "type": "Feature",
                     "geometry": {"type": "Point", "coordinates": [54.342, 12.543, -5]},
@@ -252,6 +251,7 @@ Retrieving a full invisible trip requires the researcher role.
                     "shortname": "Shortname or alias",
                     "other": true,  # When true adds 'Other' option, a short text field,
                     "options": [{
+                        "id": 1,
                         "title": "Title of option",
                         "value": "Value of option"
                     }],
@@ -261,7 +261,7 @@ Retrieving a full invisible trip requires the researcher role.
                 "created_by": 3,
                 "created_on": "2013-04-14T10:00:00Z"
             }],
-            "is_visible": false,
+            "visible": true,
             "created_by": 3,
             "created_on": "2013-04-14T10:00:00Z"
         }
@@ -278,25 +278,7 @@ Retrieving a full invisible trip requires the researcher role.
                 "tracker": 355,
                 "start": "2013-04-14T10:00:00Z",
                 "end": "2013-04-15T12:00:00Z",
-                "body": "<html describing a trip>",
-                "geo": {
-                    "type": "FeatureCollection",
-                    "bbox": [54.342, 12.543, 54.642, 12.543],
-                    "features": [{
-                        "type": "Feature",
-                        "geometry": {"type": "Point", "coordinates": [54.342, 12.543, -5]},
-                        "properties": {"ts":  "2013-04-15T12:05:00Z"}
-                    }, {
-                        "type": "Feature",
-                        "geometry": {"type": "Point", "coordinates": [54.442, 12.543, -3]},
-                        "properties": {"ts":  "2013-04-15T12:10:00Z"}
-                    }, {
-                        "type": "Feature",
-                        "geometry": {"type": "Point", "coordinates": [54.642, 12.543, -3]},
-                        "properties": {"ts":  "2013-04-15T12:15:00Z"}
-                    }]
-                },
-                "is_visible": false,
+                "visible": true,
                 "created_by": 3,
                 "created_on": "2013-04-14T10:00:00Z"
             }]
@@ -310,7 +292,7 @@ The Trip resource requires the following attributes:
 - start (string) ... Start time of trip.
 - end (string) ... End time of trip.
 - geo (GeoJSON) ... List of features that appear between start and end time.
-- is_visible (boolean) ... Visiblility of trip. A hidden trip can only be seen by users with *researcher* role.
+- visible (boolean) ... Visiblility of trip. A hidden trip can only be seen by users with *researcher* role.
 
 > TODO add visualization options, eg. color for speed, color for hour of day
 
@@ -322,9 +304,7 @@ Creating a trip requires the researcher role.
 
 + Response 201
 
-    + Headers
-
-            Location: /trips/1
+    [Trip][]
 
 ### List of trips. [GET]
 
@@ -376,6 +356,21 @@ A point of interest is a place on a trip where a questions are connected to.
             },
             "radius": 100,
             "body": "<html describing motiviation for the poi>",
+            "questions": [{
+                "id": 1,
+                "type": "radio, image or video or ...",
+                "title": "Question text",
+                "description" : "Description text",
+                "shortname": "Shortname or alias",
+                "other": true,  # When true adds 'Other' option, a short text field,
+                "options": [{
+                    "id": 1,
+                    "title": "Title of option",
+                    "value": "Value of option"
+                }],
+                "created_by": 3,
+                "created_on": "2013-04-14T10:00:00Z"
+            }],
             "created_by": 3,
             "created_on": "2013-04-14T10:00:00Z"
         }
@@ -421,8 +416,7 @@ Collection of point of interests.
                         "coordinates": [54.642, 12.543]
                     },
                     "radius": 100,
-                    "distance": null,
-                    "body": "<html describing motiviation for the poi>",
+                    "distance": null,  # only set when ordered by dist
                     "created_by": 3,
                     "created_on": "2013-04-14T10:00:00Z"
                 }]
@@ -512,9 +506,7 @@ Sets the distance field.
 
 + Response 201
 
-    + Headers
-
-            Location: /trips/1/pois/1
+    [Point of interest][]
 
 ### List points of interest for a trip [GET]
 
@@ -620,9 +612,7 @@ Creation of question requires researcher role.
 
 + Response 201
 
-    + Headers
-
-            Location: /trips/1/pois/1/questions/1
+    [Question][]
 
 ### List of questions [GET]
 
@@ -642,7 +632,7 @@ Fetch list of questions independ of trip or poi.
 
     [Questions][]
 
-## Answer [/trips/{trip}/pois/{poi}/questions/{question}/answers/{answer}]
+## Answer [/answers/{answer}]
 
 Attributes:
 
@@ -652,9 +642,6 @@ Attributes:
 - value, the answer itself. For a media type answer it will be the url to the media.
 
 + Parameters
-    + trip (string) ... Trip identifier.
-    + poi (string) ... Point of interest identifier.
-    + question (string) ... Question identifier.
     + answer (string) ... Answer identifier.
 
 + Model (application/json)
@@ -666,27 +653,38 @@ Attributes:
             "head": 225.00,
             "tilt": 45.0,
             "value": "0",
-            "answered_by": 32,
+            "question": {  # read-only
+                "id": 1,
+                "type": "radio, image or video or ...",
+                "title": "Question text",
+                "description" : "Description text",
+                "shortname": "Shortname or alias",
+                "other": true,  # When true adds 'Other' option, a short text field,
+                "options": [{
+                    "title": "Title of option",
+                    "value": "Value of option"
+                }],
+                "created_by": 3,
+                "created_on": "2013-04-14T10:00:00Z"
+            },
+            "answered_by": 32,  # only set when user was logged in
             "answered_on": "2013-09-04T12:30:00Z",
-            "moderated_on": "2013-09-14T12:30:00Z",
-            "moderated_by": 5
+            "moderated_on": "2013-09-14T12:30:00Z",  # filled when answer approved
+            "moderated_by": 5  # filled when answer approved
         }
 
 ### Retrieve an answer [GET]
 
 Registered role will retrieve your own answer.
-Researcher role will retrieve any answer.
+Moderator role will retrieve any answer.
 
 + Response 200
 
     [Answer][]
 
-## Moderate answer [/trips/{trip}/pois/{poi}/questions/{question}/answer/{answer}/moderate]
+## Moderate answer [/answers/{answer}/moderate]
 
 + Parameters
-    + trip (string) ... Trip identifier.
-    + poi (string) ... Point of interest identifier.
-    + question (string) ... Question identifier.
     + answer (string) ... Answer identifier.
 
 ### Approve answer [PUT]
@@ -704,11 +702,9 @@ Disapproving an answer requires the moderator role.
 
 + Response 204
 
-## Answers [/trips/{trip}/pois/{poi}/questions/{question}/answers]
+## Answers [/questions/{question}/answers]
 
 + Parameters
-    + trip (string) ... Trip identifier.
-    + poi (string) ... Point of interest identifier.
     + question (string) ... Question identifier
 
 + Model (application/json)
@@ -717,6 +713,7 @@ Disapproving an answer requires the moderator role.
             "total": 5000,
             "items": [{
                 "id": 1,
+                "question": 1,
                 "timestamp": "2013-05-14T12:30:00Z",
                 "lon": 54.642,
                 "lat": 12.543,
@@ -730,7 +727,7 @@ Disapproving an answer requires the moderator role.
             }]
         }
 
-### Retrieve answers for a question [GET]
+### Retrieve moderated answers for a question [GET]
 
 Registered role will retrieve your own answers.
 Researcher role will retrieve all answers.
@@ -784,12 +781,9 @@ If answer send media then in the response the answer value will be the url where
 
     [Answer][]
 
-## Unmoderated answers for question [/trips/1/pois/1/questions/1/answers/unmoderated]
+## Unmoderated answers for question [/questions/{answer}/answers/unmoderated]
 
 + Parameters
-    + trip (string) ... Trip identifier.
-    + poi (string) ... Point of interest identifier.
-    + question (string) ... Question identifier.
     + answer (string) ... Answer identifier.
 
 ### Retrieve unmoderated answers [GET]
@@ -824,10 +818,97 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
 
         {
             "id": 1,
-            "trip": 1,
+            "trip": {
+                "created_by": 2,
+                "geo": {
+                    "type": "FeatureCollection",
+                    "features": [
+                        {
+                            "type": "Feature",
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    1.1,
+                                    2.2,
+                                    3
+                                ]
+                            },
+                            "properties": {
+                                "ts": "2013-07-08T13:56:07+0000"
+                            }
+                        }
+                    ]
+                },
+                "id": 1,
+                "tracker": 1234,
+                "start": "2009-01-01T00:00:00+0000",
+                "end": "2009-01-01T00:00:00+0000",
+                "body": "<p>bl bla blayjhfghfdghdf<\/p>",
+                "visible": true,
+                "species": {
+                    "created_by": 1,
+                    "id": 1,
+                    "name": "Gull",
+                    "body": "<p>Gull eats everything<\/p>",
+                    "created_on": "2014-02-01T14:23:01+0000"
+                },
+                "created_on": "2014-02-01T15:46:43+0000",
+                "pois": [
+                    {
+                        "created_by": 2,
+                        "location": {
+                            "type": "Point",
+                            "coordinates": [
+                                4.56,
+                                1.23
+                            ]
+                        },
+                        "id": 1,
+                        "radius": 100,
+                        "body": "<p>bla bla<\/p>",
+                        "created_on": "2014-02-01T16:56:46+0000",
+                        "questions": [
+                            {
+                                "created_by": 2,
+                                "id": 1,
+                                "type": "photo",
+                                "title": "Take picture",
+                                "description": "<p>fdgdfgdfgdfgdf<\/p>",
+                                "shortname": "photo",
+                                "other": false,
+                                "created_on": "2014-02-01T17:36:56+0000",
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "created_by": 2,
+                                "id": 2,
+                                "type": "choice",
+                                "title": "Make a choice",
+                                "shortname": "choic1",
+                                "other": false,
+                                "created_on": "2014-02-01T17:42:29+0000",
+                                "options": [
+                                    {
+                                        "id": 1,
+                                        "title": "1234",
+                                        "value": "1234"
+                                    },
+                                    {
+                                        "id": 2,
+                                        "title": "5678",
+                                        "value": "5678"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
             "title": "Title of story",
             "body": "<html of story>",
-            "is_visible": "Boolean whether story should be visible",
+            "visible": "Boolean whether story should be visible",
             "created_by": 3,
             "created_on": "2013-04-14T10:00:00Z"
         }
@@ -867,8 +948,7 @@ Deleting a story requires the researcher role.
                 "id": "1",
                 "trip": "1",
                 "title": "Title of story",
-                "body": "<html of story>",
-                "is_visible": "Boolean whether story should be visible",
+                "visible": "Boolean whether story should be visible",
                 "created_by": 3,
                 "created_on": "2013-04-14T10:00:00Z"
             }]
@@ -885,9 +965,7 @@ Creating a story requires the researcher role.
 
 + Response 201
 
-    + Headers
-
-            Location: /stories/1
+    [Story][]
 
 ### List of stories [GET]
 
@@ -929,16 +1007,12 @@ Roles:
 
 + Model (application/json)
 
-        {
-            "total": 5,
-            "items": [
-                "anonymous",
-                "registered",
-                "moderator",
-                "researcher",
-                "administrator"
-            }]
-        }
+        [
+            "ROLE_USER",
+            "ROLE_MODERATOR",
+            "ROLE_RESEARCHER",
+            "ROLE_ADMIN"
+        ]
 
 ### List of roles [GET]
 
@@ -960,11 +1034,11 @@ The `password` and `password_verify` are only required during creation and updat
         {
             "id": 3,
             "username": "User chosen username",
-            "password": "Password",
-            "password_verify": "Password verification",
             "email": "e-mail adres of user",
+            "firstname": "first name",
+            "lastname": "last name",
             "phone": "(Mobile) phone number, used by researcher to ask feedback",
-            "role": "registered",
+            "role": "ROLE_USER",
             "created_on": "2013-04-14T10:00:00Z"
         }
 
@@ -1001,16 +1075,18 @@ Deleting a user requires the admin role.
 
 A user can retrieve his/her own user information.
 
-+ Response 200
++ Response 303
 
-    [User][]
+    + Headers
+
+            Location: /users/1
 
 ## Collection of users [/users]
 
 ### Create a user [POST]
 
-Creatin a user requires the anonymous or admin role.
-A created user will automaticly get the *registered* role.
+Creat a user requires the anonymous role.
+A created user will automaticly get the *ROLE_USER* role.
 
 + Request
 
@@ -1018,13 +1094,11 @@ A created user will automaticly get the *registered* role.
 
 + Response 201
 
-    + Headers
-
-            Location: /users/1
+    [User][]
 
 ### List of users [GET]
 
-Retrieving a list of users requires the admin role.
+Retrieving a list of users requires the moderator role.
 
 + Response 200 (application/json)
 
@@ -1033,6 +1107,8 @@ Retrieving a list of users requires the admin role.
             "items": [{
                 "id": 3,
                 "username": "User chosen username",
+                "firstname": "first name",
+                "lastname": "last name",
                 "email": "e-mail adres of user",
                 "phone": "(Mobile) phone number, used by researcher to ask feedback",
                 "role": "researcher",
@@ -1060,25 +1136,15 @@ Set a role of user requires the admin role.
 
         {
             "username": "User chosen username",
-            "password": "Password",
+            "password": "Password"
         }
 
-+ Response 200 (application/json)
++ Response 201
 
     + Headers
 
             Set-Cookie: auth_token={token}; Expires={expire_date}; Domain=.vogelhetuit.nl; Path=/; Secure; HttpOnly
-
-    + Body
-
-            {
-                "id": 3,
-                "username": "User chosen username",
-                "email": "e-mail adres of user",
-                "phone": "(Mobile) phone number, used by researcher to ask feedback",
-                "role": "registered",
-                "created_on": "2013-04-14T10:00:00Z"
-            }
+            Location: /users/1
 
 ### Logout [DELETE]
 
