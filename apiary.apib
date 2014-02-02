@@ -15,8 +15,9 @@ The *Vogel het uit* service for sharing gps tracks (trips), assigning points of 
 
 # Authentication
 
-Use `/login` to authenticate and use returned cookie to authentication for other routes.
 Routes which require *anonymous* role can be requested without authentication.
+
+Use Basic authentication on `POST /login` to authenticate and use returned cookie to authentication for other routes.
 
 # Filtering
 
@@ -1075,7 +1076,7 @@ Deleting a user requires the admin role.
 
 A user can retrieve his/her own user information.
 
-+ Response 303
++ Response 302
 
     + Headers
 
@@ -1128,35 +1129,19 @@ Set a role of user requires the admin role.
 
 + Response 204
 
-## Authentication token [/login]
+## Login [/login]
 
-### Login [POST]
-
-+ Request (application/json)
-
-        {
-            "username": "User chosen username",
-            "password": "Password"
-        }
-
-+ Response 201
-
-    + Headers
-
-            Set-Cookie: auth_token={token}; Expires={expire_date}; Domain=.vogelhetuit.nl; Path=/; Secure; HttpOnly
-            Location: /users/1
-
-### Logout [DELETE]
+### [POST]
 
 + Request
 
     + Headers
 
-            Cookie: auth_token={token}; Expires={expire_date}; Domain=.vogelhetuit.nl; Path=/; Secure; HttpOnly
+            Authentication: Basic <base64 encoded username:password>
 
-+ Response 204
++ Response 302
 
     + Headers
 
-            Set-Cookie: auth_token={token}; Expires={expire_date_in_past}; Domain=.vogelhetuit.nl; Path=/; Secure; HttpOnly
-
+            Set-Cookie: vhu_auth={token}; Path=/; Secure; HttpOnly
+            Location: /users/1
