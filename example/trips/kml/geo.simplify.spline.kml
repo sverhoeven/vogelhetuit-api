@@ -17,6 +17,9 @@
       </IconStyle>
 </Style>
 
+<Folder>
+  <name>Trip</name>
+  <open>1</open>
 <Placemark>
  <name>Trip 669</name>
  <LineString>
@@ -2377,7 +2380,11 @@
 
  <styleUrl>#transBluePoly</styleUrl>
 </Placemark>
+</Folder>
 
+<Folder>
+  <name>POIs</name>
+  <open>1</open>
  <Placemark>
     <name>Poi 2</name>
     <description>
@@ -2448,5 +2455,6 @@
     </Point>
     <styleUrl>#poi</styleUrl>
   </Placemark>
+</Folder>
 
 </Document></kml>
