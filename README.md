@@ -15,15 +15,17 @@ Testing
 
 To test api documentation against server backend.
 
-First install `dredd` (https://github.com/apiaryio/dredd) with:
+1. Install `dredd` (https://github.com/apiaryio/dredd) with:
 
     sudo npm install -g dredd
 
-To allow for server to be run with a path edit `/usr/lib/node_modules/dredd/lib/execute-transaction.js`.
+2. To allow for server to be run with a path edit `/usr/lib/node_modules/dredd/lib/execute-transaction.js`.
 
 	-    path: request['uri'],
 	+    path: parsedUrl['pathname'] + request['uri'],
 
-Run tests with:
+3. Start up or setup server to test against.
+
+4. Run tests with:
 
 	dredd apiary.apib http://localhost:8000/app_dev.php/api -u admin:adminpw -m GET
