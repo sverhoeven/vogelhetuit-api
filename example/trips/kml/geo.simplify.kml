@@ -13,7 +13,7 @@
 
 <Style id="poi">
       <IconStyle>
-      <color>a1d701df</color>
+      <Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
       </IconStyle>
 </Style>
 
