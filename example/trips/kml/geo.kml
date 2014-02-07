@@ -3,7 +3,7 @@
 
 <Style id="transBluePoly">
       <LineStyle>
-       <color>7f00ffff</color>
+       <color>ff00ffff</color>
         <width>1.5</width>
       </LineStyle>
       <PolyStyle>
@@ -13,7 +13,7 @@
 
 <Style id="poi">
       <IconStyle>
-      <Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
+      <Icon><href>http://sverhoeven.github.io/vogelhetuit-api/example/trips/kml/puzzle.png</href></Icon>
       </IconStyle>
 </Style>
 
