@@ -112,48 +112,157 @@ Any errors will be in English. The website/app is responsible to translate it fo
 <li>The ‘<em>_by’ and ‘</em>_on’ attributes are updated automaticly when a user performs a change to a resources.</li>
 </ul>
 </div><a href="#page:species" class="btn btn-default pull-right">Next&nbsp;<i class="fa fa-arrow-circle-right"></i></a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'species', style: {marginTop: page() == 'species' ? '38px' : ''}"><div class="panel panel-default"><div class="panel-heading"><h3 id="species">Species&nbsp;<a href="#page:species"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>Species can be used to filter pois, trips or stories.</p>
-<h4 id="species-species">Species&nbsp;<a href="#page:species,header:species-species"><i class="fa fa-link"></i></a></h4><section id="species-species-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve a species</span><a href="#page:species,header:species-species-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/species/{id}</code></div><div class="panel-body"><p>Retrieving a single species requires the anonymous role.</p>
+<h4 id="species-species">Species&nbsp;<a href="#page:species,header:species-species"><i class="fa fa-link"></i></a></h4><p>The banner and logo are media resources. Media has the forllowing urls:</p>
+<ul>
+<li>reference, the original uploaded image</li>
+<li>big, the image scaled to 1000px maximum width</li>
+<li>small, the image scaled to 200px maximum width </li>
+</ul>
+<blockquote>
+<p>TODO allow api to update banner and logo by uploading new media and setting species.banner to new media id. </p>
+</blockquote>
+<section id="species-species-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve a species</span><a href="#page:species,header:species-species-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/species/{id}</code></div><div class="panel-body"><p>Retrieving a single species requires the anonymous role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Species identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#688991" class="pull-right">Toggle</a></li><li id="688991" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#515055" class="pull-right">Toggle</a></li><li id="515055" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">name</span>": <span class="value"><span class="string">"Kleine mantelmeeuw"</span></span>,
     "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;p&gt;html describing species and why it is being researched&lt;/p&gt;"</span></span>,
+    "<span class="attribute">banner</span>": <span class="value">{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+        "<span class="attribute">width</span>": <span class="value"><span class="number">800</span></span>,
+        "<span class="attribute">height</span>": <span class="value"><span class="number">558</span></span>,
+        "<span class="attribute">urls</span>": <span class="value">{
+            "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg"</span></span>,
+            "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg"</span></span>,
+            "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"</span>
+        </span>}
+    </span>}</span>, 
+    "<span class="attribute">logo</span>": <span class="value">{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">2</span></span>,
+        "<span class="attribute">width</span>": <span class="value"><span class="number">320</span></span>,
+        "<span class="attribute">height</span>": <span class="value"><span class="number">181</span></span>,
+        "<span class="attribute">urls</span>": <span class="value">{
+            "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg"</span></span>,
+            "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg"</span></span>,
+            "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"</span>
+        </span>}
+    </span>}</span>,
     "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
 </span>}
 </code></pre></li></ul></section><section id="species-species-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Update a species.</span><a href="#page:species,header:species-species-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/species/{id}</code></div><div class="panel-body"><p>Updating a single species requires the researcher role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Species identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#61268" class="pull-right">Toggle</a></li><li id="61268" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#478625" class="pull-right">Toggle</a></li><li id="478625" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">name</span>": <span class="value"><span class="string">"Kleine mantelmeeuw"</span></span>,
     "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;p&gt;html describing species and why it is being researched&lt;/p&gt;"</span></span>,
+    "<span class="attribute">banner</span>": <span class="value">{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+        "<span class="attribute">width</span>": <span class="value"><span class="number">800</span></span>,
+        "<span class="attribute">height</span>": <span class="value"><span class="number">558</span></span>,
+        "<span class="attribute">urls</span>": <span class="value">{
+            "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg"</span></span>,
+            "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg"</span></span>,
+            "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"</span>
+        </span>}
+    </span>}</span>, 
+    "<span class="attribute">logo</span>": <span class="value">{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">2</span></span>,
+        "<span class="attribute">width</span>": <span class="value"><span class="number">320</span></span>,
+        "<span class="attribute">height</span>": <span class="value"><span class="number">181</span></span>,
+        "<span class="attribute">urls</span>": <span class="value">{
+            "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg"</span></span>,
+            "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg"</span></span>,
+            "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"</span>
+        </span>}
+    </span>}</span>,
     "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
 </span>}
 </code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong></li></ul></section><section id="species-species-delete" class="panel panel-danger"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Delete a species.</span><a href="#page:species,header:species-species-delete" class="btn btn-xs btn-danger">DELETE</a>&nbsp;<code>/species/{id}</code></div><div class="panel-body"><p>Deleting a single species requires the researcher role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Species identifier.</p>
 </dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="species-species-collection">Species Collection&nbsp;<a href="#page:species,header:species-species-collection"><i class="fa fa-link"></i></a></h4><section id="species-species-collection-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve list of species</span><a href="#page:species,header:species-species-collection-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/species</code></div><div class="panel-body"><p>Retrieving a list of species requires the anonymous role.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#555030" class="pull-right">Toggle</a></li><li id="555030" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#996952" class="pull-right">Toggle</a></li><li id="996952" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">items</span>":<span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">name</span>": <span class="value"><span class="string">"Kleine mantelmeeuw"</span></span>,
+        "<span class="attribute">banner</span>": <span class="value">{
+            "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+            "<span class="attribute">width</span>": <span class="value"><span class="number">800</span></span>,
+            "<span class="attribute">height</span>": <span class="value"><span class="number">558</span></span>,
+            "<span class="attribute">urls</span>": <span class="value">{
+                "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg"</span></span>,
+                "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg"</span></span>,
+                "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"</span>
+            </span>}
+        </span>}</span>,
+        "<span class="attribute">logo</span>": <span class="value">{
+            "<span class="attribute">id</span>": <span class="value"><span class="number">2</span></span>,
+            "<span class="attribute">width</span>": <span class="value"><span class="number">320</span></span>,
+            "<span class="attribute">height</span>": <span class="value"><span class="number">181</span></span>,
+            "<span class="attribute">urls</span>": <span class="value">{
+                "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg"</span></span>,
+                "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg"</span></span>,
+                "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"</span>
+            </span>}
+        </span>}</span>,
         "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
         "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
     </span>}]
 </span>}
 </code></pre></li></ul></section><section id="species-species-collection-post" class="panel panel-success"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Create a single species.</span><a href="#page:species,header:species-species-collection-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/species</code></div><div class="panel-body"><p>Creating a single species requires the researcher role.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#485107" class="pull-right">Toggle</a></li><li id="485107" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#812514" class="pull-right">Toggle</a></li><li id="812514" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">name</span>": <span class="value"><span class="string">"Kleine mantelmeeuw"</span></span>,
     "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;p&gt;html describing species and why it is being researched&lt;/p&gt;"</span></span>,
+    "<span class="attribute">banner</span>": <span class="value">{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+        "<span class="attribute">width</span>": <span class="value"><span class="number">800</span></span>,
+        "<span class="attribute">height</span>": <span class="value"><span class="number">558</span></span>,
+        "<span class="attribute">urls</span>": <span class="value">{
+            "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg"</span></span>,
+            "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg"</span></span>,
+            "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"</span>
+        </span>}
+    </span>}</span>, 
+    "<span class="attribute">logo</span>": <span class="value">{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">2</span></span>,
+        "<span class="attribute">width</span>": <span class="value"><span class="number">320</span></span>,
+        "<span class="attribute">height</span>": <span class="value"><span class="number">181</span></span>,
+        "<span class="attribute">urls</span>": <span class="value">{
+            "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg"</span></span>,
+            "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg"</span></span>,
+            "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"</span>
+        </span>}
+    </span>}</span>,
     "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
 </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#436218" class="pull-right">Toggle</a></li><li id="436218" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#643444" class="pull-right">Toggle</a></li><li id="643444" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">name</span>": <span class="value"><span class="string">"Kleine mantelmeeuw"</span></span>,
     "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;p&gt;html describing species and why it is being researched&lt;/p&gt;"</span></span>,
+    "<span class="attribute">banner</span>": <span class="value">{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+        "<span class="attribute">width</span>": <span class="value"><span class="number">800</span></span>,
+        "<span class="attribute">height</span>": <span class="value"><span class="number">558</span></span>,
+        "<span class="attribute">urls</span>": <span class="value">{
+            "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg"</span></span>,
+            "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg"</span></span>,
+            "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"</span>
+        </span>}
+    </span>}</span>, 
+    "<span class="attribute">logo</span>": <span class="value">{
+        "<span class="attribute">id</span>": <span class="value"><span class="number">2</span></span>,
+        "<span class="attribute">width</span>": <span class="value"><span class="number">320</span></span>,
+        "<span class="attribute">height</span>": <span class="value"><span class="number">181</span></span>,
+        "<span class="attribute">urls</span>": <span class="value">{
+            "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg"</span></span>,
+            "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg"</span></span>,
+            "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"</span>
+        </span>}
+    </span>}</span>,
     "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
 </span>}
@@ -161,14 +270,34 @@ Any errors will be in English. The website/app is responsible to translate it fo
 <h4 id="trips-trip">Trip&nbsp;<a href="#page:trips,header:trips-trip"><i class="fa fa-link"></i></a></h4><section id="trips-trip-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve a trip.</span><a href="#page:trips,header:trips-trip-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips/{id}</code></div><div class="panel-body"><p>Retrieving a visible trip requires the anonymous role.
 Retrieving a invisible trip requires the researcher role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Trip identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#483351" class="pull-right">Toggle</a></li><li id="483351" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#404033" class="pull-right">Toggle</a></li><li id="404033" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">species</span>": <span class="value">{
-      "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
-      "<span class="attribute">name</span>": <span class="value"><span class="string">"Kleine mantelmeeuw"</span></span>,
-      "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;p&gt;html describing species and why it is being researched&lt;/p&gt;"</span></span>,
-      "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
-      "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+        "<span class="attribute">name</span>": <span class="value"><span class="string">"Kleine mantelmeeuw"</span></span>,
+        "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;p&gt;html describing species and why it is being researched&lt;/p&gt;"</span></span>,
+        "<span class="attribute">banner</span>": <span class="value">{
+            "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+            "<span class="attribute">width</span>": <span class="value"><span class="number">800</span></span>,
+            "<span class="attribute">height</span>": <span class="value"><span class="number">558</span></span>,
+            "<span class="attribute">urls</span>": <span class="value">{
+                "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg"</span></span>,
+                "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg"</span></span>,
+                "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"</span>
+            </span>}
+        </span>}</span>,
+        "<span class="attribute">logo</span>": <span class="value">{
+            "<span class="attribute">id</span>": <span class="value"><span class="number">2</span></span>,
+            "<span class="attribute">width</span>": <span class="value"><span class="number">320</span></span>,
+            "<span class="attribute">height</span>": <span class="value"><span class="number">181</span></span>,
+            "<span class="attribute">urls</span>": <span class="value">{
+                "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg"</span></span>,
+                "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg"</span></span>,
+                "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"</span>
+            </span>}
+        </span>}</span>,
+        "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
+        "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
     </span>}</span>,
     "<span class="attribute">tracker</span>": <span class="value"><span class="number">355</span></span>,
     "<span class="attribute">start</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span></span>,
@@ -196,14 +325,34 @@ Retrieving a invisible trip requires the researcher role.</p>
 </span>}
 </code></pre></li></ul></section><section id="trips-trip-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Update a trip.</span><a href="#page:trips,header:trips-trip-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/trips/{id}</code></div><div class="panel-body"><p>Updating a trip requires the researcher role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Trip identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#268646" class="pull-right">Toggle</a></li><li id="268646" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#790909" class="pull-right">Toggle</a></li><li id="790909" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">species</span>": <span class="value">{
-      "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
-      "<span class="attribute">name</span>": <span class="value"><span class="string">"Kleine mantelmeeuw"</span></span>,
-      "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;p&gt;html describing species and why it is being researched&lt;/p&gt;"</span></span>,
-      "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
-      "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+        "<span class="attribute">name</span>": <span class="value"><span class="string">"Kleine mantelmeeuw"</span></span>,
+        "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;p&gt;html describing species and why it is being researched&lt;/p&gt;"</span></span>,
+        "<span class="attribute">banner</span>": <span class="value">{
+            "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+            "<span class="attribute">width</span>": <span class="value"><span class="number">800</span></span>,
+            "<span class="attribute">height</span>": <span class="value"><span class="number">558</span></span>,
+            "<span class="attribute">urls</span>": <span class="value">{
+                "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg"</span></span>,
+                "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg"</span></span>,
+                "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"</span>
+            </span>}
+        </span>}</span>,
+        "<span class="attribute">logo</span>": <span class="value">{
+            "<span class="attribute">id</span>": <span class="value"><span class="number">2</span></span>,
+            "<span class="attribute">width</span>": <span class="value"><span class="number">320</span></span>,
+            "<span class="attribute">height</span>": <span class="value"><span class="number">181</span></span>,
+            "<span class="attribute">urls</span>": <span class="value">{
+                "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg"</span></span>,
+                "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg"</span></span>,
+                "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"</span>
+            </span>}
+        </span>}</span>,
+        "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
+        "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
     </span>}</span>,
     "<span class="attribute">tracker</span>": <span class="value"><span class="number">355</span></span>,
     "<span class="attribute">start</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span></span>,
@@ -236,14 +385,34 @@ Retrieving a invisible trip requires the researcher role.</p>
 <p>Retrieving a full visible trip requires the anonymous role.
 Retrieving a full invisible trip requires the researcher role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Trip identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#314959" class="pull-right">Toggle</a></li><li id="314959" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#912408" class="pull-right">Toggle</a></li><li id="912408" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">species</span>": <span class="value">{
-      "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
-      "<span class="attribute">name</span>": <span class="value"><span class="string">"Kleine mantelmeeuw"</span></span>,
-      "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;p&gt;html describing species and why it is being researched&lt;/p&gt;"</span></span>,
-      "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
-      "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+        "<span class="attribute">name</span>": <span class="value"><span class="string">"Kleine mantelmeeuw"</span></span>,
+        "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;p&gt;html describing species and why it is being researched&lt;/p&gt;"</span></span>,
+        "<span class="attribute">banner</span>": <span class="value">{
+            "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+            "<span class="attribute">width</span>": <span class="value"><span class="number">800</span></span>,
+            "<span class="attribute">height</span>": <span class="value"><span class="number">558</span></span>,
+            "<span class="attribute">urls</span>": <span class="value">{
+                "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg"</span></span>,
+                "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg"</span></span>,
+                "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"</span>
+            </span>}
+        </span>}</span>,
+        "<span class="attribute">logo</span>": <span class="value">{
+            "<span class="attribute">id</span>": <span class="value"><span class="number">2</span></span>,
+            "<span class="attribute">width</span>": <span class="value"><span class="number">320</span></span>,
+            "<span class="attribute">height</span>": <span class="value"><span class="number">181</span></span>,
+            "<span class="attribute">urls</span>": <span class="value">{
+                "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg"</span></span>,
+                "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg"</span></span>,
+                "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"</span>
+            </span>}
+        </span>}</span>,                
+        "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
+        "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
     </span>}</span>,
     "<span class="attribute">tracker</span>": <span class="value"><span class="number">355</span></span>,
     "<span class="attribute">start</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span></span>,
@@ -299,7 +468,7 @@ Retrieving a full invisible trip requires the researcher role.</p>
 <section id="trips-kml-file-of-trip-get" class="panel panel-info"><div class="panel-heading"><a href="#page:trips,header:trips-kml-file-of-trip-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips/{id}/geo.kml</code></div><div class="panel-body"><p>Retrieving a full visible trip requires the anonymous role.
 Retrieving a full invisible trip requires the researcher role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Trip identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#343126" class="pull-right">Toggle</a></li><li id="343126" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/vnd.google-earth.kml+xml</span><br></code></pre><h5>Body</h5><pre><code><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#144437" class="pull-right">Toggle</a></li><li id="144437" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/vnd.google-earth.kml+xml</span><br></code></pre><h5>Body</h5><pre><code><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="tag">&lt;<span class="title">kml</span> <span class="attribute">xmlns</span>=<span class="value">"http://www.opengis.net/kml/2.2"</span>&gt;</span><span class="tag">&lt;<span class="title">Document</span>&gt;</span>
 
 <span class="tag">&lt;<span class="title">Style</span> <span class="attribute">id</span>=<span class="value">"transBluePoly"</span>&gt;</span><span class="css">
@@ -365,14 +534,34 @@ Retrieving a full invisible trip requires the researcher role.</p>
 <p>TODO add visualization options, eg. color for speed, color for hour of day</p>
 </blockquote>
 <p>Creating a trip requires the researcher role.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#401259" class="pull-right">Toggle</a></li><li id="401259" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#182761" class="pull-right">Toggle</a></li><li id="182761" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">species</span>": <span class="value">{
-      "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
-      "<span class="attribute">name</span>": <span class="value"><span class="string">"Kleine mantelmeeuw"</span></span>,
-      "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;p&gt;html describing species and why it is being researched&lt;/p&gt;"</span></span>,
-      "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
-      "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+        "<span class="attribute">name</span>": <span class="value"><span class="string">"Kleine mantelmeeuw"</span></span>,
+        "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;p&gt;html describing species and why it is being researched&lt;/p&gt;"</span></span>,
+        "<span class="attribute">banner</span>": <span class="value">{
+            "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+            "<span class="attribute">width</span>": <span class="value"><span class="number">800</span></span>,
+            "<span class="attribute">height</span>": <span class="value"><span class="number">558</span></span>,
+            "<span class="attribute">urls</span>": <span class="value">{
+                "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg"</span></span>,
+                "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg"</span></span>,
+                "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"</span>
+            </span>}
+        </span>}</span>,
+        "<span class="attribute">logo</span>": <span class="value">{
+            "<span class="attribute">id</span>": <span class="value"><span class="number">2</span></span>,
+            "<span class="attribute">width</span>": <span class="value"><span class="number">320</span></span>,
+            "<span class="attribute">height</span>": <span class="value"><span class="number">181</span></span>,
+            "<span class="attribute">urls</span>": <span class="value">{
+                "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg"</span></span>,
+                "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg"</span></span>,
+                "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"</span>
+            </span>}
+        </span>}</span>,
+        "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
+        "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
     </span>}</span>,
     "<span class="attribute">tracker</span>": <span class="value"><span class="number">355</span></span>,
     "<span class="attribute">start</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span></span>,
@@ -398,14 +587,34 @@ Retrieving a full invisible trip requires the researcher role.</p>
     "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
 </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#797723" class="pull-right">Toggle</a></li><li id="797723" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#304434" class="pull-right">Toggle</a></li><li id="304434" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">species</span>": <span class="value">{
-      "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
-      "<span class="attribute">name</span>": <span class="value"><span class="string">"Kleine mantelmeeuw"</span></span>,
-      "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;p&gt;html describing species and why it is being researched&lt;/p&gt;"</span></span>,
-      "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
-      "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
+        "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+        "<span class="attribute">name</span>": <span class="value"><span class="string">"Kleine mantelmeeuw"</span></span>,
+        "<span class="attribute">body</span>": <span class="value"><span class="string">"&lt;p&gt;html describing species and why it is being researched&lt;/p&gt;"</span></span>,
+        "<span class="attribute">banner</span>": <span class="value">{
+            "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
+            "<span class="attribute">width</span>": <span class="value"><span class="number">800</span></span>,
+            "<span class="attribute">height</span>": <span class="value"><span class="number">558</span></span>,
+            "<span class="attribute">urls</span>": <span class="value">{
+                "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg"</span></span>,
+                "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg"</span></span>,
+                "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"</span>
+            </span>}
+        </span>}</span>,
+        "<span class="attribute">logo</span>": <span class="value">{
+            "<span class="attribute">id</span>": <span class="value"><span class="number">2</span></span>,
+            "<span class="attribute">width</span>": <span class="value"><span class="number">320</span></span>,
+            "<span class="attribute">height</span>": <span class="value"><span class="number">181</span></span>,
+            "<span class="attribute">urls</span>": <span class="value">{
+                "<span class="attribute">reference</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg"</span></span>,
+                "<span class="attribute">big</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg"</span></span>,
+                "<span class="attribute">small</span>": <span class="value"><span class="string">"http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"</span>
+            </span>}
+        </span>}</span>,
+        "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
+        "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
     </span>}</span>,
     "<span class="attribute">tracker</span>": <span class="value"><span class="number">355</span></span>,
     "<span class="attribute">start</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span></span>,
@@ -433,7 +642,7 @@ Retrieving a full invisible trip requires the researcher role.</p>
 </span>}
 </code></pre></li></ul></section><section id="trips-trips-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of trips.</span><a href="#page:trips,header:trips-trips-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips</code></div><div class="panel-body"><p>Retrieving a list visible trips requires the anonymous role.
 Retrieving a list visible and invisible trips requires the researcher role.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#506126" class="pull-right">Toggle</a></li><li id="506126" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#685366" class="pull-right">Toggle</a></li><li id="685366" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">12</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
@@ -447,7 +656,7 @@ Retrieving a list visible and invisible trips requires the researcher role.</p>
     </span>}]
 </span>}
 </code></pre></li></ul></section><h4 id="trips-list-of-trips-filtered-on-tracker">List of trips filtered on tracker&nbsp;<a href="#page:trips,header:trips-list-of-trips-filtered-on-tracker"><i class="fa fa-link"></i></a></h4><section id="trips-list-of-trips-filtered-on-tracker-get" class="panel panel-info"><div class="panel-heading"><a href="#page:trips,header:trips-list-of-trips-filtered-on-tracker-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips?tracker={tracker}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>tracker</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>355</span></span><p>A tracker identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#891372" class="pull-right">Toggle</a></li><li id="891372" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#749104" class="pull-right">Toggle</a></li><li id="749104" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">12</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
@@ -461,7 +670,7 @@ Retrieving a list visible and invisible trips requires the researcher role.</p>
     </span>}]
 </span>}
 </code></pre></li></ul></section><h4 id="trips-list-of-trips-filtered-on-species">List of trips filtered on species&nbsp;<a href="#page:trips,header:trips-list-of-trips-filtered-on-species"><i class="fa fa-link"></i></a></h4><section id="trips-list-of-trips-filtered-on-species-get" class="panel panel-info"><div class="panel-heading"><a href="#page:trips,header:trips-list-of-trips-filtered-on-species-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips?species={species}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>species</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>A species identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#235041" class="pull-right">Toggle</a></li><li id="235041" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#851068" class="pull-right">Toggle</a></li><li id="851068" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">12</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
@@ -479,7 +688,7 @@ Retrieving a list visible and invisible trips requires the researcher role.</p>
 Retrieving a invisible poi (if trip is invisible, poi is also invisible) requires the researcher role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Trip identifier.</p>
 </dd><dt>poi</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Point of interest identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#66194" class="pull-right">Toggle</a></li><li id="66194" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#859298" class="pull-right">Toggle</a></li><li id="859298" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">trip</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">location</span>": <span class="value">{
@@ -494,8 +703,8 @@ Retrieving a invisible poi (if trip is invisible, poi is also invisible) require
         "<span class="attribute">title</span>": <span class="value"><span class="string">"Question text"</span></span>,
         "<span class="attribute">description</span>" : <span class="value"><span class="string">"Description text"</span></span>,
         "<span class="attribute">shortname</span>": <span class="value"><span class="string">"Shortname or alias"</span></span>,
-        "<span class="attribute">other</span>": <span class="value"><span class="literal">true</span>
-        <span class="string">"options"</span>: [{
+        "<span class="attribute">other</span>": <span class="value"><span class="literal">true</span></span>,
+        "<span class="attribute">options</span>": <span class="value">[{
             "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
             "<span class="attribute">title</span>": <span class="value"><span class="string">"Title of option"</span></span>,
             "<span class="attribute">value</span>": <span class="value"><span class="string">"Value of option"</span>
@@ -509,7 +718,7 @@ Retrieving a invisible poi (if trip is invisible, poi is also invisible) require
 </code></pre></li></ul></section><section id="pois-point-of-interest-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Update a POI</span><a href="#page:pois,header:pois-point-of-interest-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/trips/{trip}/pois/{poi}</code></div><div class="panel-body"><p>Updating a poi requires the researcher role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Trip identifier.</p>
 </dd><dt>poi</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Point of interest identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#906336" class="pull-right">Toggle</a></li><li id="906336" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#197880" class="pull-right">Toggle</a></li><li id="197880" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">trip</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">location</span>": <span class="value">{
@@ -524,8 +733,8 @@ Retrieving a invisible poi (if trip is invisible, poi is also invisible) require
         "<span class="attribute">title</span>": <span class="value"><span class="string">"Question text"</span></span>,
         "<span class="attribute">description</span>" : <span class="value"><span class="string">"Description text"</span></span>,
         "<span class="attribute">shortname</span>": <span class="value"><span class="string">"Shortname or alias"</span></span>,
-        "<span class="attribute">other</span>": <span class="value"><span class="literal">true</span>
-        <span class="string">"options"</span>: [{
+        "<span class="attribute">other</span>": <span class="value"><span class="literal">true</span></span>,
+        "<span class="attribute">options</span>": <span class="value">[{
             "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
             "<span class="attribute">title</span>": <span class="value"><span class="string">"Title of option"</span></span>,
             "<span class="attribute">value</span>": <span class="value"><span class="string">"Value of option"</span>
@@ -542,7 +751,7 @@ Retrieving a invisible poi (if trip is invisible, poi is also invisible) require
 </dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="pois-pois">POIs&nbsp;<a href="#page:pois,header:pois-pois"><i class="fa fa-link"></i></a></h4><p>Collection of point of interests.</p>
 <section id="pois-pois-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List POIs</span><a href="#page:pois,header:pois-pois-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/pois</code></div><div class="panel-body"><p>Retrieving a list of visible pois requires the anonymous role.
 Retrieving a list of visible and invisible (if trip is invisible then poi is also invisible) pois requires the researcher role.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#426627" class="pull-right">Toggle</a></li><li id="426627" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#68542" class="pull-right">Toggle</a></li><li id="68542" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
@@ -560,7 +769,7 @@ Retrieving a list of visible and invisible (if trip is invisible then poi is als
 </dd><dt>minlat</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>11.96245</span></span><p>Minimum latitude</p>
 </dd><dt>maxlon</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>56.14687</span></span><p>Maximum longitude</p>
 </dd><dt>maxlat</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>13.06027</span></span><p>Maximum latitude</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#464239" class="pull-right">Toggle</a></li><li id="464239" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#833689" class="pull-right">Toggle</a></li><li id="833689" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
@@ -577,7 +786,7 @@ Retrieving a list of visible and invisible (if trip is invisible then poi is als
 </code></pre></li></ul></section><h4 id="pois-list-of-pois-ordered-on-distance-from-a-location">List of POIs ordered on distance from a location&nbsp;<a href="#page:pois,header:pois-list-of-pois-ordered-on-distance-from-a-location"><i class="fa fa-link"></i></a></h4><p>Sets the distance field.</p>
 <section id="pois-list-of-pois-ordered-on-distance-from-a-location-get" class="panel panel-info"><div class="panel-heading"><a href="#page:pois,header:pois-list-of-pois-ordered-on-distance-from-a-location-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/pois?dist={lon},{lat}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>lon</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>6.97245</span></span><p>Longitude of location</p>
 </dd><dt>lat</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>53.12368</span></span><p>Latitude of location</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#829955" class="pull-right">Toggle</a></li><li id="829955" class="list-group-item collapse"><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#949754" class="pull-right">Toggle</a></li><li id="949754" class="list-group-item collapse"><h5>Body</h5><pre><code>{
         "<span class="attribute">total</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">items</span>": <span class="value">[{
             "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
@@ -596,7 +805,7 @@ Retrieving a list of visible and invisible (if trip is invisible then poi is als
 <section id="pois-list-of-pois-filtered-on-distance-from-a-location-get" class="panel panel-info"><div class="panel-heading"><a href="#page:pois,header:pois-list-of-pois-filtered-on-distance-from-a-location-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/pois?dist={lon},{lat}&amp;radius={radius}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>lon</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>6.97245</span></span><p>Longitude of location</p>
 </dd><dt>lat</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>53.12368</span></span><p>Latitude of location</p>
 </dd><dt>radius</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>100</span></span><p>Radius in meters</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#817898" class="pull-right">Toggle</a></li><li id="817898" class="list-group-item collapse"><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#60795" class="pull-right">Toggle</a></li><li id="60795" class="list-group-item collapse"><h5>Body</h5><pre><code>{
         "<span class="attribute">total</span>": <span class="value"><span class="number">1</span></span>,
         "<span class="attribute">items</span>": <span class="value">[{
             "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
@@ -612,7 +821,7 @@ Retrieving a list of visible and invisible (if trip is invisible then poi is als
         </span>}]
 </span>}
 </code></pre></li></ul></section><h4 id="pois-list-of-pois-filtered-on-a-tracker">List of POIs filtered on a tracker&nbsp;<a href="#page:pois,header:pois-list-of-pois-filtered-on-a-tracker"><i class="fa fa-link"></i></a></h4><section id="pois-list-of-pois-filtered-on-a-tracker-get" class="panel panel-info"><div class="panel-heading"><a href="#page:pois,header:pois-list-of-pois-filtered-on-a-tracker-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/pois?tracker={tracker}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>tracker</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>355</span></span><p>A tracker identifier</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#439921" class="pull-right">Toggle</a></li><li id="439921" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#889950" class="pull-right">Toggle</a></li><li id="889950" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
@@ -626,7 +835,7 @@ Retrieving a list of visible and invisible (if trip is invisible then poi is als
         "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
     </span>}]
 </span>}
-</code></pre></li></ul></section><h4 id="pois-list-of-pois-ordered-by-newest-poi-first">List of POIs ordered by newest POI first&nbsp;<a href="#page:pois,header:pois-list-of-pois-ordered-by-newest-poi-first"><i class="fa fa-link"></i></a></h4><section id="pois-list-of-pois-ordered-by-newest-poi-first-get" class="panel panel-info"><div class="panel-heading"><a href="#page:pois,header:pois-list-of-pois-ordered-by-newest-poi-first-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/pois?sort=created_on</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#121186" class="pull-right">Toggle</a></li><li id="121186" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li></ul></section><h4 id="pois-list-of-pois-ordered-by-newest-poi-first">List of POIs ordered by newest POI first&nbsp;<a href="#page:pois,header:pois-list-of-pois-ordered-by-newest-poi-first"><i class="fa fa-link"></i></a></h4><section id="pois-list-of-pois-ordered-by-newest-poi-first-get" class="panel panel-info"><div class="panel-heading"><a href="#page:pois,header:pois-list-of-pois-ordered-by-newest-poi-first-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/pois?sort=created_on</code></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#552863" class="pull-right">Toggle</a></li><li id="552863" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
@@ -641,7 +850,7 @@ Retrieving a list of visible and invisible (if trip is invisible then poi is als
     </span>}]
 </span>}
 </code></pre></li></ul></section><h4 id="pois-collection-of-points-of-interest-of-a-trip">Collection of points of interest of a trip&nbsp;<a href="#page:pois,header:pois-collection-of-points-of-interest-of-a-trip"><i class="fa fa-link"></i></a></h4><section id="pois-collection-of-points-of-interest-of-a-trip-post" class="panel panel-success"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Create a point of interest</span><a href="#page:pois,header:pois-collection-of-points-of-interest-of-a-trip-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/trips/{trip}/pois</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Trip identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#402286" class="pull-right">Toggle</a></li><li id="402286" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#815168" class="pull-right">Toggle</a></li><li id="815168" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">trip</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">location</span>": <span class="value">{
@@ -656,8 +865,8 @@ Retrieving a list of visible and invisible (if trip is invisible then poi is als
         "<span class="attribute">title</span>": <span class="value"><span class="string">"Question text"</span></span>,
         "<span class="attribute">description</span>" : <span class="value"><span class="string">"Description text"</span></span>,
         "<span class="attribute">shortname</span>": <span class="value"><span class="string">"Shortname or alias"</span></span>,
-        "<span class="attribute">other</span>": <span class="value"><span class="literal">true</span>
-        <span class="string">"options"</span>: [{
+        "<span class="attribute">other</span>": <span class="value"><span class="literal">true</span></span>,
+        "<span class="attribute">options</span>": <span class="value">[{
             "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
             "<span class="attribute">title</span>": <span class="value"><span class="string">"Title of option"</span></span>,
             "<span class="attribute">value</span>": <span class="value"><span class="string">"Value of option"</span>
@@ -668,7 +877,7 @@ Retrieving a list of visible and invisible (if trip is invisible then poi is als
     "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
 </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#626142" class="pull-right">Toggle</a></li><li id="626142" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#104700" class="pull-right">Toggle</a></li><li id="104700" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">trip</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">location</span>": <span class="value">{
@@ -683,8 +892,8 @@ Retrieving a list of visible and invisible (if trip is invisible then poi is als
         "<span class="attribute">title</span>": <span class="value"><span class="string">"Question text"</span></span>,
         "<span class="attribute">description</span>" : <span class="value"><span class="string">"Description text"</span></span>,
         "<span class="attribute">shortname</span>": <span class="value"><span class="string">"Shortname or alias"</span></span>,
-        "<span class="attribute">other</span>": <span class="value"><span class="literal">true</span>
-        <span class="string">"options"</span>: [{
+        "<span class="attribute">other</span>": <span class="value"><span class="literal">true</span></span>,
+        "<span class="attribute">options</span>": <span class="value">[{
             "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
             "<span class="attribute">title</span>": <span class="value"><span class="string">"Title of option"</span></span>,
             "<span class="attribute">value</span>": <span class="value"><span class="string">"Value of option"</span>
@@ -696,7 +905,7 @@ Retrieving a list of visible and invisible (if trip is invisible then poi is als
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
 </span>}
 </code></pre></li></ul></section><section id="pois-collection-of-points-of-interest-of-a-trip-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List points of interest for a trip</span><a href="#page:pois,header:pois-collection-of-points-of-interest-of-a-trip-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/trips/{trip}/pois</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Trip identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#800439" class="pull-right">Toggle</a></li><li id="800439" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#192185" class="pull-right">Toggle</a></li><li id="192185" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
@@ -727,7 +936,7 @@ Retrieving a invisible question (if trip is invisible, question is also invisibl
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Trip identifier.</p>
 </dd><dt>poi</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Point of interest identifier.</p>
 </dd><dt>question</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Question identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#408638" class="pull-right">Toggle</a></li><li id="408638" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#979155" class="pull-right">Toggle</a></li><li id="979155" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">type</span>": <span class="value"><span class="string">"radio, image or video or ..."</span></span>,
     "<span class="attribute">title</span>": <span class="value"><span class="string">"Question text"</span></span>,
@@ -745,7 +954,7 @@ Retrieving a invisible question (if trip is invisible, question is also invisibl
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Trip identifier.</p>
 </dd><dt>poi</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Point of interest identifier.</p>
 </dd><dt>question</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Question identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#900117" class="pull-right">Toggle</a></li><li id="900117" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#872542" class="pull-right">Toggle</a></li><li id="872542" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">type</span>": <span class="value"><span class="string">"radio, image or video or ..."</span></span>,
     "<span class="attribute">title</span>": <span class="value"><span class="string">"Question text"</span></span>,
@@ -766,7 +975,7 @@ Retrieving a invisible question (if trip is invisible, question is also invisibl
 </dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="questions-questions">Questions&nbsp;<a href="#page:questions,header:questions-questions"><i class="fa fa-link"></i></a></h4><section id="questions-questions-post" class="panel panel-success"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Create a question</span><a href="#page:questions,header:questions-questions-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/trips/{trip}/pois/{poi}/questions</code></div><div class="panel-body"><p>Creation of question requires researcher role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Trip identifier.</p>
 </dd><dt>poi</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Point of interest identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#920467" class="pull-right">Toggle</a></li><li id="920467" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#876284" class="pull-right">Toggle</a></li><li id="876284" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">type</span>": <span class="value"><span class="string">"radio, image or video or ..."</span></span>,
     "<span class="attribute">title</span>": <span class="value"><span class="string">"Question text"</span></span>,
@@ -780,7 +989,7 @@ Retrieving a invisible question (if trip is invisible, question is also invisibl
     "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
 </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#153361" class="pull-right">Toggle</a></li><li id="153361" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#603364" class="pull-right">Toggle</a></li><li id="603364" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">type</span>": <span class="value"><span class="string">"radio, image or video or ..."</span></span>,
     "<span class="attribute">title</span>": <span class="value"><span class="string">"Question text"</span></span>,
@@ -798,7 +1007,7 @@ Retrieving a invisible question (if trip is invisible, question is also invisibl
 Retrieving a list if visible and invisible question requires the researcher role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>trip</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Trip identifier.</p>
 </dd><dt>poi</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Point of interest identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#366682" class="pull-right">Toggle</a></li><li id="366682" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#300064" class="pull-right">Toggle</a></li><li id="300064" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
@@ -816,7 +1025,7 @@ Retrieving a list if visible and invisible question requires the researcher role
     </span>}]
 </span>}
 </code></pre></li></ul></section><h4 id="questions-question-library">Question library&nbsp;<a href="#page:questions,header:questions-question-library"><i class="fa fa-link"></i></a></h4><section id="questions-question-library-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of questions</span><a href="#page:questions,header:questions-question-library-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/questions</code></div><div class="panel-body"><p>Fetch list of questions independ of trip or poi.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#511731" class="pull-right">Toggle</a></li><li id="511731" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#222533" class="pull-right">Toggle</a></li><li id="222533" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
@@ -845,7 +1054,7 @@ The ‘moderated_by’ and ‘moderated_on’ fields are filled when answer has 
 <section id="questions-answer-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve an answer</span><a href="#page:questions,header:questions-answer-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/answers/{answer}</code></div><div class="panel-body"><p>Registered role will retrieve your own answer.
 Moderator role will retrieve any answer.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>answer</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Answer identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#820744" class="pull-right">Toggle</a></li><li id="820744" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#102238" class="pull-right">Toggle</a></li><li id="102238" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">lon</span>": <span class="value"><span class="number">54.642</span></span>,
     "<span class="attribute">lat</span>": <span class="value"><span class="number">12.543</span></span>,
@@ -881,7 +1090,7 @@ This will delete the answer and if question type is image or video will also del
 </dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="questions-answers">Answers&nbsp;<a href="#page:questions,header:questions-answers"><i class="fa fa-link"></i></a></h4><section id="questions-answers-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve moderated answers for a question</span><a href="#page:questions,header:questions-answers-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/questions/{question}/answers</code></div><div class="panel-body"><p>Registered role will retrieve your own answers.
 Researcher role will retrieve all answers.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>question</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Question identifier</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#883880" class="pull-right">Toggle</a></li><li id="883880" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#467785" class="pull-right">Toggle</a></li><li id="467785" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
@@ -907,8 +1116,8 @@ Answers with media use <em>multipart/form-data</em> content type with the <code>
 </blockquote>
 <p>If answer send media then in the response the answer value will be the url where the media can be downloaded.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>question</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Question identifier</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#725854" class="pull-right">Toggle</a></li><li id="725854" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/x-www-form-urlencoded; charset=utf-8</span><br></code></pre><h5>Body</h5><pre><code>json=<span class="variable">%7B</span><span class="variable">%0A</span>++++<span class="variable">%22value</span><span class="variable">%22</span><span class="variable">%3A</span>+<span class="variable">%22some</span>+answer<span class="variable">%22</span><span class="variable">%2C</span><span class="variable">%0A</span>++++<span class="variable">%22lon</span><span class="variable">%22</span><span class="variable">%3A</span>+<span class="number">54.642</span><span class="variable">%2C</span><span class="variable">%0A</span>++++<span class="variable">%22lat</span><span class="variable">%22</span><span class="variable">%3A</span>+<span class="number">12.543</span><span class="variable">%2C</span><span class="variable">%0A</span>++++<span class="variable">%22answered_on</span><span class="variable">%22</span><span class="variable">%3A</span>+<span class="variable">%222013</span>-09-<span class="number">04</span>T12<span class="variable">%3A30</span><span class="variable">%3A00</span>+<span class="number">00</span>:<span class="number">00</span><span class="variable">%22</span><span class="variable">%0A</span><span class="variable">%7D</span><span class="variable">%0A</span>
-</code></pre></li><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#700080" class="pull-right">Toggle</a></li><li id="700080" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">multipart/form-data;boundary=AaB03x</span><br></code></pre><h5>Body</h5><pre><code><span class="literal">-</span><span class="literal">-</span><span class="comment">AaB03x</span>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#595108" class="pull-right">Toggle</a></li><li id="595108" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/x-www-form-urlencoded; charset=utf-8</span><br></code></pre><h5>Body</h5><pre><code>json=<span class="variable">%7B</span><span class="variable">%0A</span>++++<span class="variable">%22value</span><span class="variable">%22</span><span class="variable">%3A</span>+<span class="variable">%22some</span>+answer<span class="variable">%22</span><span class="variable">%2C</span><span class="variable">%0A</span>++++<span class="variable">%22lon</span><span class="variable">%22</span><span class="variable">%3A</span>+<span class="number">54.642</span><span class="variable">%2C</span><span class="variable">%0A</span>++++<span class="variable">%22lat</span><span class="variable">%22</span><span class="variable">%3A</span>+<span class="number">12.543</span><span class="variable">%2C</span><span class="variable">%0A</span>++++<span class="variable">%22answered_on</span><span class="variable">%22</span><span class="variable">%3A</span>+<span class="variable">%222013</span>-09-<span class="number">04</span>T12<span class="variable">%3A30</span><span class="variable">%3A00</span>+<span class="number">00</span>:<span class="number">00</span><span class="variable">%22</span><span class="variable">%0A</span><span class="variable">%7D</span><span class="variable">%0A</span>
+</code></pre></li><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#760723" class="pull-right">Toggle</a></li><li id="760723" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">multipart/form-data;boundary=AaB03x</span><br></code></pre><h5>Body</h5><pre><code><span class="literal">-</span><span class="literal">-</span><span class="comment">AaB03x</span>
 <span class="comment">Content</span><span class="literal">-</span><span class="comment">Disposition:</span> <span class="comment">form</span><span class="literal">-</span><span class="comment">data;</span> <span class="comment">name="json"</span>
 <span class="comment">Content</span><span class="literal">-</span><span class="comment">Type:</span> <span class="comment">application/json</span>
 
@@ -927,7 +1136,7 @@ Answers with media use <em>multipart/form-data</em> content type with the <code>
 <span class="string">.</span><span class="string">.</span><span class="string">.</span> <span class="comment">content</span> <span class="comment">of</span> <span class="comment">image1</span><span class="string">.</span><span class="comment">png</span>
 
 <span class="literal">-</span><span class="literal">-</span><span class="comment">AaB03x</span>
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#374019" class="pull-right">Toggle</a></li><li id="374019" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#854737" class="pull-right">Toggle</a></li><li id="854737" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">lon</span>": <span class="value"><span class="number">54.642</span></span>,
     "<span class="attribute">lat</span>": <span class="value"><span class="number">12.543</span></span>,
@@ -956,21 +1165,21 @@ Answers with media use <em>multipart/form-data</em> content type with the <code>
 </code></pre></li></ul></section><h4 id="questions-unmoderated-answers-for-question">Unmoderated answers for question&nbsp;<a href="#page:questions,header:questions-unmoderated-answers-for-question"><i class="fa fa-link"></i></a></h4><section id="questions-unmoderated-answers-for-question-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve unmoderated answers</span><a href="#page:questions,header:questions-unmoderated-answers-for-question-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/questions/{question}/answers/unmoderated</code></div><div class="panel-body"><p>Retrieving your own unmoderated answers for a question requires the registered role.
 Retrieving all unmoderated answers for a question requires the moderator role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>question</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Question identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#290505" class="pull-right">Toggle</a></li><li id="290505" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code><span class="cell">{
-    "total": <span class="number">0</span>,
-    "items: []
-}</span>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#874034" class="pull-right">Toggle</a></li><li id="874034" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="attribute">total</span>": <span class="value"><span class="number">0</span></span>,
+    "<span class="attribute">items</span>": <span class="value">[]
+</span>}
 </code></pre></li></ul></section><h4 id="questions-all-unmoderated-answers">All unmoderated answers&nbsp;<a href="#page:questions,header:questions-all-unmoderated-answers"><i class="fa fa-link"></i></a></h4><section id="questions-all-unmoderated-answers-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve unmoderated answers</span><a href="#page:questions,header:questions-all-unmoderated-answers-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/answers/unmoderated</code></div><div class="panel-body"><p>Retrieving your own unmoderated answers for a question requires the registered role.
 Retrieving all unmoderated answers for a question requires the moderator role.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#336024" class="pull-right">Toggle</a></li><li id="336024" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code><span class="cell">{
-    "total": <span class="number">0</span>,
-    "items: []
-}</span>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#100343" class="pull-right">Toggle</a></li><li id="100343" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="attribute">total</span>": <span class="value"><span class="number">0</span></span>,
+    "<span class="attribute">items</span>": <span class="value">[]
+</span>}
 </code></pre></li></ul></section></div></div><a href="#page:stories" class="btn btn-default pull-right">Next&nbsp;<i class="fa fa-arrow-circle-right"></i></a><a href="#page:pois" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div><div data-bind="visible: page() == 'stories', style: {marginTop: page() == 'stories' ? '38px' : ''}"><div class="panel panel-default"><div class="panel-heading"><h3 id="stories">Stories&nbsp;<a href="#page:stories"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>A story is about a trip and it’s POIs combined with the supplied answers and insight of researcher.</p>
 <h4 id="stories-story">Story&nbsp;<a href="#page:stories,header:stories-story"><i class="fa fa-link"></i></a></h4><section id="stories-story-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Get a story</span><a href="#page:stories,header:stories-story-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/stories/{id}</code></div><div class="panel-body"><p>Retrieving a visible story requires the anonymous role.
 Retrieving a invisible story requires the researcher role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Story identifier</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#671648" class="pull-right">Toggle</a></li><li id="671648" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#580279" class="pull-right">Toggle</a></li><li id="580279" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">trip</span>": <span class="value">{
         "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
@@ -1065,7 +1274,7 @@ Retrieving a invisible story requires the researcher role.</p>
 </span>}
 </code></pre></li></ul></section><section id="stories-story-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Update a story</span><a href="#page:stories,header:stories-story-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/stories/{id}</code></div><div class="panel-body"><p>Updating a story requires the researcher role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Story identifier</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#234705" class="pull-right">Toggle</a></li><li id="234705" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#83798" class="pull-right">Toggle</a></li><li id="83798" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">trip</span>": <span class="value">{
         "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
@@ -1161,7 +1370,7 @@ Retrieving a invisible story requires the researcher role.</p>
 </code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong></li></ul></section><section id="stories-story-delete" class="panel panel-danger"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Delete a story</span><a href="#page:stories,header:stories-story-delete" class="btn btn-xs btn-danger">DELETE</a>&nbsp;<code>/stories/{id}</code></div><div class="panel-body"><p>Deleting a story requires the researcher role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Story identifier</p>
 </dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="stories-stories">Stories&nbsp;<a href="#page:stories,header:stories-stories"><i class="fa fa-link"></i></a></h4><section id="stories-stories-post" class="panel panel-success"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Create a story</span><a href="#page:stories,header:stories-stories-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/stories</code></div><div class="panel-body"><p>Creating a story requires the researcher role.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#539728" class="pull-right">Toggle</a></li><li id="539728" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#993478" class="pull-right">Toggle</a></li><li id="993478" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">trip</span>": <span class="value">{
         "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
@@ -1254,7 +1463,7 @@ Retrieving a invisible story requires the researcher role.</p>
     "<span class="attribute">created_by</span>": <span class="value"><span class="number">2</span></span>,
     "<span class="attribute">created_on</span>": <span class="value"><span class="string">"2013-04-14T10:00:00+00:00"</span>
 </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#689947" class="pull-right">Toggle</a></li><li id="689947" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#532775" class="pull-right">Toggle</a></li><li id="532775" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
     "<span class="attribute">trip</span>": <span class="value">{
         "<span class="attribute">id</span>": <span class="value"><span class="number">1</span></span>,
@@ -1349,7 +1558,7 @@ Retrieving a invisible story requires the researcher role.</p>
 </span>}
 </code></pre></li></ul></section><section id="stories-stories-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of stories</span><a href="#page:stories,header:stories-stories-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/stories</code></div><div class="panel-body"><p>Retrieving visible stories requires the anonymous role.
 Retrieving visible and invisible stories requires the researcher role.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#810395" class="pull-right">Toggle</a></li><li id="810395" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#772455" class="pull-right">Toggle</a></li><li id="772455" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">15</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="string">"1"</span></span>,
@@ -1361,7 +1570,7 @@ Retrieving visible and invisible stories requires the researcher role.</p>
     </span>}]
 </span>}
 </code></pre></li></ul></section><h4 id="stories-list-of-stories-filtered-by-species">List of stories filtered by species&nbsp;<a href="#page:stories,header:stories-list-of-stories-filtered-by-species"><i class="fa fa-link"></i></a></h4><section id="stories-list-of-stories-filtered-by-species-get" class="panel panel-info"><div class="panel-heading"><a href="#page:stories,header:stories-list-of-stories-filtered-by-species-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/stories?species={species}</code></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>species</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Species identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#498416" class="pull-right">Toggle</a></li><li id="498416" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#252896" class="pull-right">Toggle</a></li><li id="252896" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">15</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
         "<span class="attribute">id</span>": <span class="value"><span class="string">"1"</span></span>,
@@ -1382,7 +1591,7 @@ Retrieving visible and invisible stories requires the researcher role.</p>
 <li>administrator, can assign roles to users.</li>
 </ul>
 <h4 id="users-roles">Roles&nbsp;<a href="#page:users,header:users-roles"><i class="fa fa-link"></i></a></h4><section id="users-roles-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of roles</span><a href="#page:users,header:users-roles-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/roles</code></div><div class="panel-body"><p>Retrieving a list of roles requires the admin role.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#223588" class="pull-right">Toggle</a></li><li id="223588" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#6916" class="pull-right">Toggle</a></li><li id="6916" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
     <span class="string">"ROLE_USER"</span>,
     <span class="string">"ROLE_MODERATOR"</span>,
     <span class="string">"ROLE_RESEARCHER"</span>,
@@ -1392,7 +1601,7 @@ Retrieving visible and invisible stories requires the researcher role.</p>
 <section id="users-user-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Retrieve a user</span><a href="#page:users,header:users-user-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/users/{user}</code></div><div class="panel-body"><p>A user can retrieve his/her own user information.
 Retrieving a user requires the researcher role. As the researcher needs contact information for follow up questions.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>user</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>4</span></span><p>User identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#256937" class="pull-right">Toggle</a></li><li id="256937" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#959483" class="pull-right">Toggle</a></li><li id="959483" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">4</span></span>,
     "<span class="attribute">username</span>": <span class="value"><span class="string">"user"</span></span>,
     "<span class="attribute">email</span>": <span class="value"><span class="string">"user@vogelhetuit.nl"</span></span>,
@@ -1404,7 +1613,7 @@ Retrieving a user requires the researcher role. As the researcher needs contact 
 </code></pre></li></ul></section><section id="users-user-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Update a user</span><a href="#page:users,header:users-user-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/users/{user}</code></div><div class="panel-body"><p>A user can update his/her own user information.
 Updating a user requires the admin role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>user</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>4</span></span><p>User identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#508970" class="pull-right">Toggle</a></li><li id="508970" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#626110" class="pull-right">Toggle</a></li><li id="626110" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">4</span></span>,
     "<span class="attribute">username</span>": <span class="value"><span class="string">"user"</span></span>,
     "<span class="attribute">email</span>": <span class="value"><span class="string">"user@vogelhetuit.nl"</span></span>,
@@ -1417,9 +1626,9 @@ Updating a user requires the admin role.</p>
 Deleting a user requires the admin role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>user</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>4</span></span><p>User identifier.</p>
 </dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="users-self">Self&nbsp;<a href="#page:users,header:users-self"><i class="fa fa-link"></i></a></h4><section id="users-self-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">User information of authenticated user</span><a href="#page:users,header:users-self-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/users/self</code></div><div class="panel-body"><p>A user can retrieve his/her own user information.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>302</code></strong><a data-toggle="collapse" data-target="#575095" class="pull-right">Toggle</a></li><li id="575095" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/users/1</span><br></code></pre></li></ul></section><h4 id="users-collection-of-users">Collection of users&nbsp;<a href="#page:users,header:users-collection-of-users"><i class="fa fa-link"></i></a></h4><section id="users-collection-of-users-post" class="panel panel-success"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Create a user</span><a href="#page:users,header:users-collection-of-users-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/users</code></div><div class="panel-body"><p>Creat a user requires the anonymous role.
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>302</code></strong><a data-toggle="collapse" data-target="#446299" class="pull-right">Toggle</a></li><li id="446299" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Location</span>: <span class="string">/users/1</span><br></code></pre></li></ul></section><h4 id="users-collection-of-users">Collection of users&nbsp;<a href="#page:users,header:users-collection-of-users"><i class="fa fa-link"></i></a></h4><section id="users-collection-of-users-post" class="panel panel-success"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Create a user</span><a href="#page:users,header:users-collection-of-users-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/users</code></div><div class="panel-body"><p>Creat a user requires the anonymous role.
 A created user will automaticly get the <em>ROLE_USER</em> role.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#207597" class="pull-right">Toggle</a></li><li id="207597" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#584368" class="pull-right">Toggle</a></li><li id="584368" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">username</span>": <span class="value"><span class="string">"user"</span></span>,
     "<span class="attribute">password</span>": <span class="value"><span class="string">"user"</span></span>,
     "<span class="attribute">email</span>": <span class="value"><span class="string">"user@vogelhetuit.nl"</span></span>,
@@ -1427,7 +1636,7 @@ A created user will automaticly get the <em>ROLE_USER</em> role.</p>
     "<span class="attribute">lastname</span>": <span class="value"><span class="string">"last name"</span></span>,
     "<span class="attribute">phone</span>": <span class="value"><span class="string">"(Mobile) phone number, used by researcher to ask feedback"</span>
 </span>}
-</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#513331" class="pull-right">Toggle</a></li><li id="513331" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#532420" class="pull-right">Toggle</a></li><li id="532420" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">id</span>": <span class="value"><span class="number">4</span></span>,
     "<span class="attribute">username</span>": <span class="value"><span class="string">"user"</span></span>,
     "<span class="attribute">email</span>": <span class="value"><span class="string">"user@vogelhetuit.nl"</span></span>,
@@ -1437,7 +1646,7 @@ A created user will automaticly get the <em>ROLE_USER</em> role.</p>
     "<span class="attribute">roles</span>": <span class="value">[]
 </span>}
 </code></pre></li></ul></section><section id="users-collection-of-users-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">List of users</span><a href="#page:users,header:users-collection-of-users-get" class="btn btn-xs btn-primary">GET</a>&nbsp;<code>/users</code></div><div class="panel-body"><p>Retrieving a list of users requires the moderator role.</p>
-</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#564958" class="pull-right">Toggle</a></li><li id="564958" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#966591" class="pull-right">Toggle</a></li><li id="966591" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Content-Type</span>: <span class="string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
     "<span class="attribute">total</span>": <span class="value"><span class="number">4</span></span>,
     "<span class="attribute">items</span>": <span class="value">[{
       "<span class="attribute">username</span>": <span class="value"><span class="string">"admin"</span></span>,
@@ -1473,7 +1682,7 @@ A created user will automaticly get the <em>ROLE_USER</em> role.</p>
 </code></pre></li></ul></section><h4 id="users-relation-of-user-and-role">Relation of user and role&nbsp;<a href="#page:users,header:users-relation-of-user-and-role"><i class="fa fa-link"></i></a></h4><section id="users-relation-of-user-and-role-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">Set role of user</span><a href="#page:users,header:users-relation-of-user-and-role-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/users/{user}/roles/{role}</code></div><div class="panel-body"><p>Set a role of user requires the admin role.</p>
 </div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>user</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>User identifier.</p>
 </dd><dt>role</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>Role identifier.</p>
-</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="users-login">Login&nbsp;<a href="#page:users,header:users-login"><i class="fa fa-link"></i></a></h4><section id="users-login-post" class="panel panel-success"><div class="panel-heading"><a href="#page:users,header:users-login-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/login</code></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#257131" class="pull-right">Toggle</a></li><li id="257131" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Authentication</span>: <span class="string">Basic &lt;base64 encoded username:password&gt;</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>302</code></strong><a data-toggle="collapse" data-target="#194068" class="pull-right">Toggle</a></li><li id="194068" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Set-Cookie</span>: <span class="string">vhu_auth={token}; Path=/; Secure; HttpOnly</span><br><span class="attribute">Location</span>: <span class="string">/users/1</span><br></code></pre></li></ul></section></div></div><a href="#page:stories" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div></div></div></div><p style="text-align: center;" class="text-muted">Generated by <a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a> on 10 Feb 2014</p><div id="localFile" style="display: none; position: absolute; top: 0; left: 0; width: 100%; color: white; background: red; font-size: 150%; text-align: center; padding: 1em;">This page may not display correctly when opened as a local file. Instead, view it from a web server.
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="users-login">Login&nbsp;<a href="#page:users,header:users-login"><i class="fa fa-link"></i></a></h4><section id="users-login-post" class="panel panel-success"><div class="panel-heading"><a href="#page:users,header:users-login-post" class="btn btn-xs btn-success">POST</a>&nbsp;<code>/login</code></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#198202" class="pull-right">Toggle</a></li><li id="198202" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Authentication</span>: <span class="string">Basic &lt;base64 encoded username:password&gt;</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>302</code></strong><a data-toggle="collapse" data-target="#773113" class="pull-right">Toggle</a></li><li id="773113" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="attribute">Set-Cookie</span>: <span class="string">vhu_auth={token}; Path=/; Secure; HttpOnly</span><br><span class="attribute">Location</span>: <span class="string">/users/1</span><br></code></pre></li></ul></section></div></div><a href="#page:stories" class="btn btn-default"><i class="fa fa-arrow-circle-left"></i> Previous</a><div class="clearfix"></div><hr></div></div></div></div><p style="text-align: center;" class="text-muted">Generated by <a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a> on 10 Feb 2014</p><div id="localFile" style="display: none; position: absolute; top: 0; left: 0; width: 100%; color: white; background: red; font-size: 150%; text-align: center; padding: 1em;">This page may not display correctly when opened as a local file. Instead, view it from a web server.
 
 </div></body><script src="//code.jquery.com/jquery-1.10.1.min.js"></script><script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script><script type="text/javascript">
 (function() {

@@ -59,6 +59,13 @@ Species can be used to filter pois, trips or stories.
 
 ## Species [/species/{id}]
 
+The banner and logo are media resources. Media has the forllowing urls:
+* reference, the original uploaded image
+* big, the image scaled to 1000px maximum width
+* small, the image scaled to 200px maximum width 
+
+> TODO allow api to update banner and logo by uploading new media and setting species.banner to new media id. 
+
 + Parameters
     + id (number, `1`) ... Species identifier.
 
@@ -68,6 +75,26 @@ Species can be used to filter pois, trips or stories.
             "id": 1,
             "name": "Kleine mantelmeeuw",
             "body": "<p>html describing species and why it is being researched</p>",
+            "banner": {
+                "id": 1,
+                "width": 800,
+                "height": 558,
+                "urls": {
+                    "reference": "http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg",
+                    "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg",
+                    "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"
+                }
+            }, 
+            "logo": {
+                "id": 2,
+                "width": 320,
+                "height": 181,
+                "urls": {
+                    "reference": "http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg",
+                    "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg",
+                    "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"
+                }
+            },
             "created_by": 2,
             "created_on": "2013-04-14T10:00:00+00:00"
         }
@@ -105,6 +132,26 @@ Deleting a single species requires the researcher role.
             "items":[{
                 "id": 1,
                 "name": "Kleine mantelmeeuw",
+                "banner": {
+                    "id": 1,
+                    "width": 800,
+                    "height": 558,
+                    "urls": {
+                        "reference": "http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg",
+                        "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg",
+                        "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"
+                    }
+                },
+                "logo": {
+                    "id": 2,
+                    "width": 320,
+                    "height": 181,
+                    "urls": {
+                        "reference": "http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg",
+                        "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg",
+                        "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"
+                    }
+                },
                 "created_by": 2,
                 "created_on": "2013-04-14T10:00:00+00:00"
             }]
@@ -143,11 +190,31 @@ A trip resource is set of timestamped coordinates with the eEcology tracker iden
         {
             "id": 1,
             "species": {
-              "id": 1,
-              "name": "Kleine mantelmeeuw",
-              "body": "<p>html describing species and why it is being researched</p>",
-              "created_by": 2,
-              "created_on": "2013-04-14T10:00:00+00:00"
+                "id": 1,
+                "name": "Kleine mantelmeeuw",
+                "body": "<p>html describing species and why it is being researched</p>",
+                "banner": {
+                    "id": 1,
+                    "width": 800,
+                    "height": 558,
+                    "urls": {
+                        "reference": "http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg",
+                        "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg",
+                        "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"
+                    }
+                },
+                "logo": {
+                    "id": 2,
+                    "width": 320,
+                    "height": 181,
+                    "urls": {
+                        "reference": "http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg",
+                        "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg",
+                        "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"
+                    }
+                },
+                "created_by": 2,
+                "created_on": "2013-04-14T10:00:00+00:00"
             },
             "tracker": 355,
             "start": "2013-04-14T10:00:00+00:00",
@@ -215,11 +282,31 @@ Retrieving a full invisible trip requires the researcher role.
         {
             "id": 1,
             "species": {
-              "id": 1,
-              "name": "Kleine mantelmeeuw",
-              "body": "<p>html describing species and why it is being researched</p>",
-              "created_by": 2,
-              "created_on": "2013-04-14T10:00:00+00:00"
+                "id": 1,
+                "name": "Kleine mantelmeeuw",
+                "body": "<p>html describing species and why it is being researched</p>",
+                "banner": {
+                    "id": 1,
+                    "width": 800,
+                    "height": 558,
+                    "urls": {
+                        "reference": "http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg",
+                        "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg",
+                        "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"
+                    }
+                },
+                "logo": {
+                    "id": 2,
+                    "width": 320,
+                    "height": 181,
+                    "urls": {
+                        "reference": "http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg",
+                        "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg",
+                        "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"
+                    }
+                },                
+                "created_by": 2,
+                "created_on": "2013-04-14T10:00:00+00:00"
             },
             "tracker": 355,
             "start": "2013-04-14T10:00:00+00:00",
@@ -439,7 +526,7 @@ A point of interest is a place on a trip where a questions are connected to.
                 "title": "Question text",
                 "description" : "Description text",
                 "shortname": "Shortname or alias",
-                "other": true
+                "other": true,
                 "options": [{
                     "id": 1,
                     "title": "Title of option",
@@ -903,7 +990,7 @@ Retrieving all unmoderated answers for a question requires the moderator role.
 
         {
             "total": 0,
-            "items: []
+            "items": []
         }
 
 ## All unmoderated answers [/answers/unmoderated]
@@ -917,7 +1004,7 @@ Retrieving all unmoderated answers for a question requires the moderator role.
 
         {
             "total": 0,
-            "items: []
+            "items": []
         }
 
 # Group Stories
