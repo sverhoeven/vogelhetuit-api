@@ -1246,11 +1246,18 @@ Retrieving a user requires the researcher role. As the researcher needs contact 
 ### Update a user [PUT]
 
 A user can update his/her own user information.
-Updating a user requires the admin role.
+Updating a user requires the admin role or self.
 
 + Request
 
-    [User][]
+        {
+            "username": "user",
+            "password": "user",
+            "email": "user@vogelhetuit.nl",
+            "firstname": "first name",
+            "lastname": "last name",
+            "phone": "(Mobile) phone number, used by researcher to ask feedback"
+        }
 
 + Response 201
 
@@ -1334,6 +1341,28 @@ Retrieving a list of users requires the moderator role.
               "id": 4
             }]
         }
+
+## Generate a random user [/users/auto]
+
+The returned cookie can be used to do follow API requests.
+The returned username/password can be used to login when cookie is no longer valid.
+
+### [POST]
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Set-Cookie: vhu_auth={token}; Path=/; Secure; HttpOnly
+            
+    + Body
+    
+            {
+                "id": 5,
+                "username": "<randomly generated username>",
+                "password": "<randomly generated password>",
+                "email": "<randomly generated email>"
+            }
 
 ## Relation of user and role [/users/{user}/roles/{role}]
 
