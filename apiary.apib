@@ -1,0 +1,1394 @@
+FORMAT: 1A
+HOST: https://api.vogelhetuit.nl/v1
+
+# Vogel het uit
+The *Vogel het uit* service for sharing gps tracks (trips), assigning points of interest, attaching questions to poi, recieving answers and building trip story.
+
+# Architecture
+
+![Architecture](http://sverhoeven.github.io/vogelhetuit-api/Architecture.svg "Schema")
+
+# Formatting
+
+- Geo data must be in [GeoJSON](http://www.geojson.org) format.
+- Timestamps must be in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) (YYYY-MM-DDTHH:MM:SSZ) format.
+
+# Authentication
+
+Routes which require *anonymous* role can be requested without authentication.
+
+Use Basic authentication on `POST /login` to authenticate and use returned cookie to authentication for other routes.
+
+# Filtering
+
+To filter a collection, you can append (? or &)&lt;property&gt;=&lt;value&gt; to the url.
+The &lt;property&gt; should be the name of a field and &lt;value&gt; is the value you want to filter by.
+Multiple filters can be used.
+Filters which can't be specified using  &lt;property&gt;=&lt;value&gt; like spatial filters will be listed seperately.
+
+# Pagination
+
+For urls with collections use `page` query attribute (defaults to 1). The default pagesize is 10 and can be changed with `pagesize` query attribute.
+
+Example on `/species?page=3&pagesize=20`:
+
++ Response 200 (application/json)
+
+        {
+            "total": 0,
+            "items": []
+        }
+
+# Sorting
+
+To sort a collection, you can append  ?order=&lt;field1&gt;,&lt;field2&gt; asc,&lt;field3&gt; desc.
+
+# Multi lingual
+
+The text fields which can be filled with this API should be made in the language for the target audience.
+Any errors will be in English. The website/app is responsible to translate it for the user.
+
+# Read-only attributes
+
+The following attributes are read-only, when set during creating or update they will be silently ignored:
+* The '_links' attribute is a way for hyperlinking between resources. The format used is HAL, see http://stateless.co/hal_specification.html.
+* The '*_by' and '*_on' attributes are updated automaticly when a user performs a change to a resources.
+
+# Group Species
+Species can be used to filter pois, trips or stories.
+
+## Species [/species/{id}]
+
+The banner and logo are media resources. Media has the forllowing urls:
+* reference, the original uploaded image
+* big, the image scaled to 1000px maximum width
+* small, the image scaled to 200px maximum width 
+
+> TODO allow api to update banner and logo by uploading new media and setting species.banner to new media id. 
+
++ Parameters
+    + id (number, `1`) ... Species identifier.
+
++ Model (application/json)
+
+        {
+            "id": 1,
+            "name": "Kleine mantelmeeuw",
+            "body": "<p>html describing species and why it is being researched</p>",
+            "banner": {
+                "id": 1,
+                "width": 800,
+                "height": 558,
+                "urls": {
+                    "reference": "http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg",
+                    "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg",
+                    "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"
+                }
+            }, 
+            "logo": {
+                "id": 2,
+                "width": 320,
+                "height": 181,
+                "urls": {
+                    "reference": "http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg",
+                    "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg",
+                    "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"
+                }
+            },
+            "created_by": 2,
+            "created_on": "2013-04-14T10:00:00+00:00"
+        }
+
+### Retrieve a species [GET]
+
+Retrieving a single species requires the anonymous role.
+
++ Response 200
+
+    [Species][]
+
+### Update a species. [PUT]
+
+Updating a single species requires the researcher role.
+
++ Request
+
+    [Species][]
+
++ Response 200
+
+### Delete a species. [DELETE]
+
+Deleting a single species requires the researcher role.
+
++ Response 204
+
+## Species Collection [/species]
+
++ Model (application/json)
+
+        {
+            "total": 1,
+            "items":[{
+                "id": 1,
+                "name": "Kleine mantelmeeuw",
+                "banner": {
+                    "id": 1,
+                    "width": 800,
+                    "height": 558,
+                    "urls": {
+                        "reference": "http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg",
+                        "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg",
+                        "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"
+                    }
+                },
+                "logo": {
+                    "id": 2,
+                    "width": 320,
+                    "height": 181,
+                    "urls": {
+                        "reference": "http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg",
+                        "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg",
+                        "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"
+                    }
+                },
+                "created_by": 2,
+                "created_on": "2013-04-14T10:00:00+00:00"
+            }]
+        }
+
+### Retrieve list of species [GET]
+
+Retrieving a list of species requires the anonymous role.
+
++ Response 200
+
+    [Species Collection][]
+
+### Create a single species. [POST]
+
+Creating a single species requires the researcher role.
+
++ Request
+
+    [Species][]
+
++ Response 201
+
+    [Species][]
+
+# Group Trips
+A trip resource is set of timestamped coordinates with the eEcology tracker identifier.
+
+## Trip [/trips/{id}]
+
++ Parameters
+    + id (number, `1`) ... Trip identifier.
+
++ Model (application/json)
+
+        {
+            "id": 1,
+            "species": {
+                "id": 1,
+                "name": "Kleine mantelmeeuw",
+                "body": "<p>html describing species and why it is being researched</p>",
+                "banner": {
+                    "id": 1,
+                    "width": 800,
+                    "height": 558,
+                    "urls": {
+                        "reference": "http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg",
+                        "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg",
+                        "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"
+                    }
+                },
+                "logo": {
+                    "id": 2,
+                    "width": 320,
+                    "height": 181,
+                    "urls": {
+                        "reference": "http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg",
+                        "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg",
+                        "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"
+                    }
+                },
+                "created_by": 2,
+                "created_on": "2013-04-14T10:00:00+00:00"
+            },
+            "tracker": 355,
+            "start": "2013-04-14T10:00:00+00:00",
+            "end": "2013-04-15T12:00:00+00:00",
+            "body": "<p>html describing a trip</p>",
+            "geo": {
+                "type": "FeatureCollection",
+                "features": [{
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [54.342, 12.543, -5]},
+                    "properties": {"ts":  "2013-04-15T12:05:00+00:00"}
+                }, {
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [54.442, 12.543, -3]},
+                    "properties": {"ts":  "2013-04-15T12:10:00+00:00"}
+                }, {
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [54.642, 12.543, -3]},
+                    "properties": {"ts":  "2013-04-15T12:15:00+00:00"}
+                }]
+            },
+            "visible": true,
+            "created_by": 2,
+            "created_on": "2013-04-14T10:00:00+00:00"
+        }
+
+### Retrieve a trip. [GET]
+
+Retrieving a visible trip requires the anonymous role.
+Retrieving a invisible trip requires the researcher role.
+
++ Response 200
+
+    [Trip][]
+
+### Update a trip. [PUT]
+Updating a trip requires the researcher role.
+
++ Request
+
+    [Trip][]
+
++ Response 200
+
+### Delete a trip. [DELETE]
+Deleting a trip requires the researcher role.
+
++ Response 204
+
+## Full trip [/trips/{id}/full]
+
+A full trip has points, pois and questions.
+
+### GET
+Trip, but with Points of interests, Questions embedded into them. This is a shortcut instead of downloading a trip, loop over POIs, loop over questions.
+
+Retrieving a full visible trip requires the anonymous role.
+Retrieving a full invisible trip requires the researcher role.
+
++ Parameters
+    + id (number, `1`) ... Trip identifier.
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "species": {
+                "id": 1,
+                "name": "Kleine mantelmeeuw",
+                "body": "<p>html describing species and why it is being researched</p>",
+                "banner": {
+                    "id": 1,
+                    "width": 800,
+                    "height": 558,
+                    "urls": {
+                        "reference": "http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg",
+                        "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg",
+                        "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"
+                    }
+                },
+                "logo": {
+                    "id": 2,
+                    "width": 320,
+                    "height": 181,
+                    "urls": {
+                        "reference": "http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg",
+                        "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg",
+                        "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"
+                    }
+                },                
+                "created_by": 2,
+                "created_on": "2013-04-14T10:00:00+00:00"
+            },
+            "tracker": 355,
+            "start": "2013-04-14T10:00:00+00:00",
+            "end": "2013-04-15T12:00:00+00:00",
+            "body": "<p>html describing a trip</p>",
+            "geo": {
+                "type": "FeatureCollection",
+                "features": [{
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [54.342, 12.543, -5]},
+                    "properties": {"ts":  "2013-04-15T12:05:00+00:00"}
+                }, {
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [54.442, 12.543, -3]},
+                    "properties": {"ts":  "2013-04-15T12:10:00+00:00"}
+                }, {
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [54.642, 12.543, -3]},
+                    "properties": {"ts":  "2013-04-15T12:15:00+00:00"}
+                }]
+            },
+            "pois": [{
+                "id": 1,
+                "location": {
+                    "type": "Point",
+                    "coordinates": [54.642, 12.543]
+                },
+                "radius": 100,
+                "body": "<p>html describing motiviation for the poi</p>",
+                "questions": [{
+                    "id": 1,
+                    "type": "radio, image or video or ...",
+                    "title": "Question text",
+                    "description" : "Description text",
+                    "shortname": "Shortname or alias",
+                    "other": true,
+                    "options": [{
+                        "id": 1,
+                        "title": "Title of option",
+                        "value": "Value of option"
+                    }],
+                    "created_by": 2,
+                    "created_on": "2013-04-14T10:00:00+00:00"
+                }],
+                "created_by": 2,
+                "created_on": "2013-04-14T10:00:00+00:00"
+            }],
+            "visible": true,
+            "created_by": 2,
+            "created_on": "2013-04-14T10:00:00+00:00"
+        }
+
+## Kml file of trip [/trips/{id}/geo.kml]
+
+A trip with points and pois as a kml file.
+
+### GET
+
+Retrieving a full visible trip requires the anonymous role.
+Retrieving a full invisible trip requires the researcher role.
+
++ Parameters
+    + id (number, `1`) ... Trip identifier.
+
++ Response 200 (application/vnd.google-earth.kml+xml)
+
+        <?xml version="1.0" encoding="UTF-8"?>
+        <kml xmlns="http://www.opengis.net/kml/2.2"><Document>
+
+        <Style id="transBluePoly">
+              <LineStyle>
+               <color>7fccff00</color>
+                <width>1.5</width>
+              </LineStyle>
+              <PolyStyle>
+                <color>7d58faf4</color>
+              </PolyStyle>
+        </Style>
+
+        <Style id="poi">
+              <IconStyle>
+              <Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
+              </IconStyle>
+        </Style>
+
+        <Folder>
+          <name>Trip</name>
+          <open>1</open>
+        <Placemark>
+         <name>Trip 355</name>
+         <LineString>
+          <altitudeMode>clampToGround</altitudeMode>
+          <coordinates>
+            </coordinates>
+         </LineString>
+
+         <styleUrl>#transBluePoly</styleUrl>
+        </Placemark>
+        </Folder>
+
+        <Folder>
+          <name>POIs</name>
+          <open>1</open>
+         <Placemark>
+            <name>Poi 1</name>
+            <description>
+             <![CDATA[
+             <p>html describing motiviation for the poi</p>
+             ]]>
+             </description>
+            <Point>
+              <coordinates>
+              54.64200, 12.54300
+              </coordinates>
+            </Point>
+            <styleUrl>#poi</styleUrl>
+          </Placemark>
+        </Folder>
+
+        </Document></kml>
+
+
+## Trips [/trips]
+
++ Model (application/json)
+
+        {
+            "total": 12,
+            "items": [{
+                "id": 1,
+                "species": 1,
+                "tracker": 355,
+                "start": "2013-04-14T10:00:00+00:00",
+                "end": "2013-04-15T12:00:00+00:00",
+                "visible": true,
+                "created_by": 2,
+                "created_on": "2013-04-14T10:00:00+00:00"
+            }]
+        }
+
+### Create a trip. [POST]
+
+The Trip resource requires the following attributes:
+
+- tracker (string) ... Tracker identifier.
+- start (string) ... Start time of trip.
+- end (string) ... End time of trip.
+- geo (GeoJSON) ... List of features that appear between start and end time.
+- visible (boolean) ... Visiblility of trip. A hidden trip can only be seen by users with *researcher* role.
+
+> TODO add visualization options, eg. color for speed, color for hour of day
+
+Creating a trip requires the researcher role.
+
++ Request
+
+    [Trip][]
+
++ Response 201
+
+    [Trip][]
+
+### List of trips. [GET]
+
+Retrieving a list visible trips requires the anonymous role.
+Retrieving a list visible and invisible trips requires the researcher role.
+
++ Response 200
+
+    [Trips][]
+
+## List of trips filtered on tracker [/trips?tracker={tracker}]
+
++ Parameters
+    + tracker (number, `355`) ... A tracker identifier.
+
+### GET
+
++ Response 200
+
+    [Trips][]
+
+## List of trips filtered on species [/trips?species={species}]
+
++ Parameters
+    + species (number, `1`) ... A species identifier.
+
+### GET
+
++ Response 200
+
+    [Trips][]
+
+# Group POIs
+A point of interest is a place on a trip where a questions are connected to.
+
+## Point of interest [/trips/{trip}/pois/{poi}]
+
++ Parameters
+    + trip (number, `1`) ... Trip identifier.
+    + poi (number, `1`) ... Point of interest identifier.
+
++ Model (application/json)
+
+        {
+            "id": 1,
+            "trip": 1,
+            "location": {
+                "type": "Point",
+                "coordinates": [54.642, 12.543]
+            },
+            "radius": 100,
+            "body": "<p>html describing motiviation for the poi</p>",
+            "questions": [{
+                "id": 1,
+                "type": "radio, image or video or ...",
+                "title": "Question text",
+                "description" : "Description text",
+                "shortname": "Shortname or alias",
+                "other": true,
+                "options": [{
+                    "id": 1,
+                    "title": "Title of option",
+                    "value": "Value of option"
+                }],
+                "created_by": 2,
+                "created_on": "2013-04-14T10:00:00+00:00"
+            }],
+            "created_by": 2,
+            "created_on": "2013-04-14T10:00:00+00:00"
+        }
+
+### Retrieve a POI [GET]
+
+Retrieving a visible poi requires the anonymous role.
+Retrieving a invisible poi (if trip is invisible, poi is also invisible) requires the researcher role.
+
++ Response 200
+
+    [Point of interest][]
+
+### Update a POI [PUT]
+
+Updating a poi requires the researcher role.
+
++ Request
+
+    [Point of interest][]
+
++ Response 200
+
+### Delete a POI [DELETE]
+
+Deleting a poi requires the researcher role.
+
++ Response 204
+
+## POIs [/pois]
+
+Collection of point of interests.
+
++ Model (application/json)
+
+        {
+            "total": 1,
+            "items": [{
+                "id": 1,
+                "trip": 1,
+                "location": {
+                    "type": "Point",
+                    "coordinates": [54.642, 12.543]
+                },
+                "radius": 100,
+                "created_by": 2,
+                "created_on": "2013-04-14T10:00:00+00:00"
+            }]
+        }
+
+### List POIs [GET]
+
+Retrieving a list of visible pois requires the anonymous role.
+Retrieving a list of visible and invisible (if trip is invisible then poi is also invisible) pois requires the researcher role.
+
++ Response 200
+
+    [POIs][]
+
+## List of POIs filtered on geo bounding box [/pois?bbox={minlon},{minlat},{maxlon},{maxlat}]
+
++ Parameters
+    + minlon (number, `53.11368`) ... Minimum longitude
+    + minlat (number, `11.96245`) ... Minimum latitude
+    + maxlon (number, `56.14687`) ... Maximum longitude
+    + maxlat (number, `13.06027`) ... Maximum latitude
+
+### GET
+
++ Response 200
+
+    [POIs][]
+
+## List of POIs ordered on distance from a location [/pois?dist={lon},{lat}]
+
+Sets the distance field.
+
++ Parameters
+    + lon (number, `6.97245`) ... Longitude of location
+    + lat (number, `53.12368`) ... Latitude of location
+
+### GET
+
++ Response 200
+
+        {
+                "total": 1,
+                "items": [{
+                    "id": 1,
+                    "trip": 1,
+                    "location": {
+                        "type": "Point",
+                        "coordinates": [54.642, 12.543]
+                    },
+                    "radius": 100,
+                    "distance": 1234,
+                    "created_by": 2,
+                    "created_on": "2013-04-14T10:00:00+00:00"
+                }]
+        }
+
+## List of POIs filtered on distance from a location [/pois?dist={lon},{lat}&radius={radius}]
+
+Sets the distance field and filters out POI's further away then radius.
+
++ Parameters
+    + lon (number, `6.97245`) ... Longitude of location
+    + lat (number, `53.12368`) ... Latitude of location
+    + radius (number, `100`) ... Radius in meters
+
+### GET
+
++ Response 200
+
+        {
+                "total": 1,
+                "items": [{
+                    "id": 1,
+                    "trip": 1,
+                    "location": {
+                        "type": "Point",
+                        "coordinates": [54.642, 12.543]
+                    },
+                    "radius": 100,
+                    "distance": 1234,
+                    "created_by": 2,
+                    "created_on": "2013-04-14T10:00:00+00:00"
+                }]
+        }
+
+## List of POIs filtered on a tracker [/pois?tracker={tracker}]
+
++ Parameters
+    + tracker (number, `355`) ... A tracker identifier
+
+### GET
+
++ Response 200
+
+    [POIs][]
+
+## List of POIs ordered by newest POI first [/pois?sort=created_on]
+
+### GET
+
++ Response 200
+
+    [POIs][]
+
+## Collection of points of interest of a trip [/trips/{trip}/pois]
+
++ Parameters
+    + trip (number, `1`) ... Trip identifier.
+
+### Create a point of interest [POST]
+
++ Request
+
+    [Point of interest][]
+
++ Response 201
+
+    [Point of interest][]
+
+### List points of interest for a trip [GET]
+
++ Response 200
+
+    [POIs][]
+
+# Group Questions
+See http://manual.limesurvey.org/LimeSurvey_Manual for question types
+and http://developer.surveygizmo.com/rest-api-documentation/objects/ for possible API.
+
+## Question [/trips/{trip}/pois/{poi}/questions/{question}]
+
+Types of questions:
+
+- radio, multiple options with only one possible choice
+- dropdown, a dropdown menu
+- checkbox, multiple options with one or more possible choices
+- text, short text field for an open question, this can be used as comment field.
+- image, the answer value should be the url of the Media resource that was uploaded before submitting the answer.
+- video, the answer value should be the url of the Media resource that was uploaded before submitting the answer.
+
+When 'Other' option is true then use a short text field as answer value.
+
++ Parameter
+    + trip (number, `1`) ... Trip identifier.
+    + poi (number, `1`) ... Point of interest identifier.
+    + question (number, `1`) ... Question identifier.
+
++ Model (application/json)
+
+        {
+            "id": 1,
+            "type": "radio, image or video or ...",
+            "title": "Question text",
+            "description" : "Description text",
+            "shortname": "Shortname or alias",
+            "other": true,
+            "options": [{
+                "title": "Title of option",
+                "value": "Value of option"
+            }],
+            "created_by": 2,
+            "created_on": "2013-04-14T10:00:00+00:00"
+        }
+
+### Retrieve a question [GET]
+
+Retrieving a visible question requires the anonymous role.
+Retrieving a invisible question (if trip is invisible, question is also invisible) requires the researcher role.
+
++ Response 200
+
+    [Question][]
+
+### Update a question [PUT]
+
+Updating a question requires the researcher role.
+
++ Request
+
+    [Question][]
+
++ Response 200
+
+### Delete a question [DELETE]
+
+Deleting a question requires the researcher role.
+
++ Response 204
+
+## Questions [/trips/{trip}/pois/{poi}/questions]
+
++ Parameters
+    + trip (number, `1`) ... Trip identifier.
+    + poi (number, `1`) ... Point of interest identifier.
+
++ Model (application/json)
+
+        {
+            "total": 1,
+            "items": [{
+                "id": 1,
+                "type": "radio, image or video or ...",
+                "title": "Question text",
+                "description" : "Description text",
+                "shortname": "Shortname or alias",
+                "other": true,
+                "options": [{
+                    "title": "Title of option",
+                    "value": "Value of option"
+                }],
+                "created_by": 2,
+                "created_on": "2013-04-14T10:00:00+00:00"
+            }]
+        }
+
+### Create a question [POST]
+
+Creation of question requires researcher role.
+
++ Request
+
+    [Question][]
+
++ Response 201
+
+    [Question][]
+
+### List of questions [GET]
+
+Retrieving a list of visible question requires the anonymous role.
+Retrieving a list if visible and invisible question requires the researcher role.
+
++ Response 200
+
+    [Questions][]
+
+## Question library [/questions]
+
+### List of questions [GET]
+Fetch list of questions independ of trip or poi.
+
++ Response 200
+
+    [Questions][]
+
+## Answer [/answers/{answer}]
+
+Attributes:
+
+- answered_on, need to know when answer was given.
+- location, need to know where answer was given.
+- orientation, optional, heading or direction and tilting, used when question type is image or video otherwise ignored.
+- value, the answer itself. For a media type answer the answer will be empty, the media can be downloaded in the admin website.
+
+The 'answered_by' field is only set when user was logged in.
+The 'moderated_by' and 'moderated_on' fields are filled when answer has been approved.
+
++ Parameters
+    + answer (number, `1`) ... Answer identifier.
+
++ Model (application/json)
+
+        {
+            "id": 1,
+            "lon": 54.642,
+            "lat": 12.543,
+            "head": 225.00,
+            "tilt": 45.0,
+            "value": "value",
+            "question": {
+                "id": 1,
+                "type": "radio, image or video or ...",
+                "title": "Question text",
+                "description" : "Description text",
+                "shortname": "Shortname or alias",
+                "other": true,
+                "options": [{
+                    "title": "Title of option",
+                    "value": "Value of option"
+                }],
+                "created_by": 2,
+                "created_on": "2013-04-14T10:00:00+00:00"
+            },
+            "answered_by": 4,
+            "answered_on": "2013-09-04T12:30:00+00:00",
+            "moderated_on": "2013-09-14T14:30:00+00:00",
+            "moderated_by": 3
+        }
+
+### Retrieve an answer [GET]
+
+Registered role will retrieve your own answer.
+Moderator role will retrieve any answer.
+
++ Response 200
+
+    [Answer][]
+
+## Moderate answer [/answers/{answer}/moderate]
+
++ Parameters
+    + answer (number, `1`) ... Answer identifier.
+
+### Approve answer [PUT]
+Moderate media by approving it.
+
+Approving an answer requires the moderator role.
+
++ Response 204
+
+### Disapprove answer [DELETE]
+Moderate media by disapproving it.
+This will delete the answer and if question type is image or video will also delete the uploaded media.
+
+Disapproving an answer requires the moderator role.
+
++ Response 204
+
+## Answers [/questions/{question}/answers]
+
++ Parameters
+    + question (number, `1`) ... Question identifier
+
++ Model (application/json)
+
+        {
+            "total": 1,
+            "items": [{
+                "id": 1,
+                "question": 1,
+                "lon": 54.642,
+                "lat": 12.543,
+                "head": 225.00,
+                "tilt": 45.0,
+                "value": "value",
+                "answered_by": 4,
+                "answered_on": "2013-09-04T12:30:00+00:00",
+                "moderated_on": "2013-09-14T12:30:00+00:00",
+                "moderated_by": 3
+            }]
+        }
+
+### Retrieve moderated answers for a question [GET]
+
+Registered role will retrieve your own answers.
+Researcher role will retrieve all answers.
+
++ Response 200
+
+    [Answers][]
+
+### Create an answer [POST]
+
+Answers can contain a media file like a image or video, this prevents using a normal POST body with json os use file upload form submission.
+
+Answers without media use *application/x-www-form-urlencoded* content type with the `json` form field, see first request.
+Answers with media use *multipart/form-data* content type with the `json` and `media` form fields, see second request.
+
+The `json` form field is a json encoded string of the Answer resource.
+
+Create an answer requires the anonymous role.
+
+> TODO should anonymous user be allowed to upload media or are only registered users allowed to do that?
+
+If answer send media then in the response the answer value will be the url where the media can be downloaded.
+
++ Request (application/x-www-form-urlencoded; charset=utf-8)
+
+        json=%7B%0A++++%22value%22%3A+%22some+answer%22%2C%0A++++%22lon%22%3A+54.642%2C%0A++++%22lat%22%3A+12.543%2C%0A++++%22answered_on%22%3A+%222013-09-04T12%3A30%3A00+00:00%22%0A%7D%0A
+
++ Request (multipart/form-data;boundary=AaB03x)
+
+        --AaB03x
+        Content-Disposition: form-data; name="json"
+        Content-Type: application/json
+
+        {
+            "value": "some answer",
+            "lon": 54.642,
+            "lat": 12.543,
+            "head": 225.00,
+            "tilt": 45.0,
+            "answered_on": "2013-09-04T12:30:00+00:00"
+        }
+        --AaB03x
+        Content-Disposition: form-data; name="media"; filename="image1.png"
+        Content-Type: image/png
+
+        ... content of image1.png
+
+        --AaB03x
+
++ Response 201
+
+    [Answer][]
+
+## Unmoderated answers for question [/questions/{question}/answers/unmoderated]
+
++ Parameters
+    + question (number, `1`) ... Question identifier.
+
+### Retrieve unmoderated answers [GET]
+
+Retrieving your own unmoderated answers for a question requires the registered role.
+Retrieving all unmoderated answers for a question requires the moderator role.
+
++ Response 200 (application/json)
+
+        {
+            "total": 0,
+            "items": []
+        }
+
+## All unmoderated answers [/answers/unmoderated]
+
+### Retrieve unmoderated answers [GET]
+
+Retrieving your own unmoderated answers for a question requires the registered role.
+Retrieving all unmoderated answers for a question requires the moderator role.
+
++ Response 200 (application/json)
+
+        {
+            "total": 0,
+            "items": []
+        }
+
+# Group Stories
+A story is about a trip and it's POIs combined with the supplied answers and insight of researcher.
+
+## Story [/stories/{id}]
+
++ Parameters
+    + id (number, `1`) ... Story identifier
+
++ Model (application/json)
+
+        {
+            "id": 1,
+            "trip": {
+                "id": 1,
+                "tracker": 355,
+                "start": "2009-01-01T00:00:00+0000",
+                "end": "2009-01-01T00:00:00+0000",
+                "body": "<p>bl bla blayjhfghfdghdf<\/p>",
+                "geo": {
+                    "type": "FeatureCollection",
+                    "features": [{
+                 "geometry": {
+                    "coordinates": [
+                       54.342, 12.543, -5
+                    ],
+                    "type": "Point"
+                 },
+                 "type": "Feature",
+                 "properties": {
+                    "ts": "2013-04-15T12:05:00+0000"
+                 }
+              }, {
+                 "geometry": {
+                    "coordinates": [
+                       54.442, 12.543, -3
+                    ],
+                    "type": "Point"
+                 },
+                 "type": "Feature",
+                 "properties": {
+                    "ts": "2013-04-15T12:10:00+0000"
+                 }
+              }, {
+                 "geometry": {
+                    "coordinates": [
+                       54.642, 12.543, -3
+                    ],
+                    "type": "Point"
+                 },
+                 "type": "Feature",
+                 "properties": {
+                    "ts": "2013-04-15T12:15:00+0000"
+                 }
+              }]
+                },
+                "visible": true,
+                "species": {
+                    "created_by": 1,
+                    "id": 1,
+                    "name": "Gull",
+                    "body": "<p>Gull eats everything<\/p>",
+                    "created_on": "2014-02-01T14:23:01+0000"
+                },
+                "created_by": 2,
+                "created_on": "2014-02-01T15:46:43+0000",
+                "pois": [
+                    {
+                        "created_by": 2,
+                        "location": {
+                            "type": "Point",
+                            "coordinates": [
+                                4.56,
+                                1.23
+                            ]
+                        },
+                        "id": 1,
+                        "radius": 100,
+                        "body": "<p>bla bla<\/p>",
+                        "created_on": "2014-02-01T16:56:46+0000",
+                        "questions": [{
+                            "id": 1,
+                            "type": "radio, image or video or ...",
+                            "title": "Question text",
+                            "description": "Description text",
+                            "shortname": "Shortname or alias",
+                            "other": true,
+                            "options": [{
+                                "value": "Value of option",
+                                "title": "Title of option",
+                                "id": 1
+                             }],
+                            "created_on": "2013-04-14T10:00:00+0000",
+                            "created_by": 2
+                       }]
+                    }
+                ]
+            },
+            "title": "Title of story",
+            "body": "<html of story>",
+            "visible": true,
+            "created_by": 2,
+            "created_on": "2013-04-14T10:00:00+00:00"
+        }
+
+### Get a story [GET]
+
+Retrieving a visible story requires the anonymous role.
+Retrieving a invisible story requires the researcher role.
+
++ Response 200
+
+    [Story][]
+
+### Update a story [PUT]
+
+Updating a story requires the researcher role.
+
++ Request
+
+    [Story][]
+
++ Response 200
+
+### Delete a story [DELETE]
+
+Deleting a story requires the researcher role.
+
++ Response 204
+
+## Stories [/stories]
+
++ Model (application/json)
+
+        {
+            "total": 15,
+            "items": [{
+                "id": "1",
+                "trip": "1",
+                "title": "Title of story",
+                "visible": "Boolean whether story should be visible",
+                "created_by": 2,
+                "created_on": "2013-04-14T10:00:00+00:00"
+            }]
+        }
+
+
+### Create a story [POST]
+
+Creating a story requires the researcher role.
+
++ Request
+
+    [Story][]
+
++ Response 201
+
+    [Story][]
+
+### List of stories [GET]
+
+Retrieving visible stories requires the anonymous role.
+Retrieving visible and invisible stories requires the researcher role.
+
++ Response 200
+
+    [Stories][]
+
+## List of stories filtered by species [/stories?species={species}]
+
+### GET
+
++ Parameters
+    + species (number, `1`) ... Species identifier.
+
++ Response 200
+
+    [Stories][]
+
+# Group Users
+User administration and profile.
+
+Roles:
+
+- anonymous, can answer questions, but can not change anything else (this includes submitting comments and media).
+- registered, can answer questions, submit comments and media. Can also see in his/her profile the work he/she done.
+- moderator, can see answers of everyone and delete answers. Same for comments and media.
+- researcher, can fetch tracks and create a trip, poi, questions and a story.
+- administrator, can assign roles to users.
+
+## Roles [/roles]
+
++ Model (application/json)
+
+        [
+            "ROLE_USER",
+            "ROLE_MODERATOR",
+            "ROLE_RESEARCHER",
+            "ROLE_ADMIN"
+        ]
+
+### List of roles [GET]
+
+Retrieving a list of roles requires the admin role.
+
++ Response 200
+
+    [Roles][]
+
+## User [/users/{user}]
+
+The `password` and `password_verify` are only required during creation and update. They will not be retrieved.
+
++ Parameters
+    + user (number, `4`) ... User identifier.
+
++ Model (application/json)
+
+        {
+            "id": 4,
+            "username": "user",
+            "email": "user@vogelhetuit.nl",
+            "firstname": "first name",
+            "lastname": "last name",
+            "phone": "(Mobile) phone number, used by researcher to ask feedback",
+            "roles": []
+        }
+
+### Retrieve a user [GET]
+
+A user can retrieve his/her own user information.
+Retrieving a user requires the researcher role. As the researcher needs contact information for follow up questions.
+
++ Response 200
+
+    [User][]
+
+### Update a user [PUT]
+
+A user can update his/her own user information.
+Updating a user requires the admin role or self.
+
++ Request
+
+        {
+            "username": "user",
+            "password": "user",
+            "email": "user@vogelhetuit.nl",
+            "firstname": "first name",
+            "lastname": "last name",
+            "phone": "(Mobile) phone number, used by researcher to ask feedback"
+        }
+
++ Response 201
+
+### Deleta a user [DELETE]
+
+A user can delete his/her own user information.
+Deleting a user requires the admin role.
+
++ Response 204
+
+## Self [/users/self]
+
+### User information of authenticated user [GET]
+
+A user can retrieve his/her own user information.
+
++ Response 302
+
+    + Headers
+
+            Location: /users/1
+
+## Collection of users [/users]
+
+### Create a user [POST]
+
+Creat a user requires the anonymous role.
+A created user will automaticly get the *ROLE_USER* role.
+
++ Request (application/json)
+
+        {
+            "username": "user",
+            "password": "user",
+            "email": "user@vogelhetuit.nl",
+            "firstname": "first name",
+            "lastname": "last name",
+            "phone": "(Mobile) phone number, used by researcher to ask feedback"
+        }
+
++ Response 201
+
+    [User][]
+
+### List of users [GET]
+
+Retrieving a list of users requires the moderator role.
+
++ Response 200 (application/json)
+
+        {
+            "total": 4,
+            "items": [{
+              "username": "admin",
+              "email": "admin@vogelhetuit.nl",
+              "roles": [
+                "ROLE_ADMIN"
+              ],
+              "id": 1
+            },
+            {
+              "username": "researcher",
+              "email": "researcher@vogelhetuit.nl",
+              "roles": [
+                "ROLE_RESEARCHER"
+              ],
+              "id": 2
+            },
+            {
+              "username": "moderator",
+              "email": "moderator@vogelhetuit.nl",
+              "roles": [
+                "ROLE_MODERATOR"
+              ],
+              "id": 3
+            },
+            {
+              "username": "user",
+              "email": "user@vogelhetuit.nl",
+              "roles": [],
+              "id": 4
+            }]
+        }
+
+## Generate a random user [/users/auto]
+
+The returned cookie can be used to do follow API requests.
+The returned username/password can be used to login when cookie is no longer valid.
+
+### Generate a random user [POST]
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Set-Cookie: vhu_auth={token}; Path=/; Secure; HttpOnly
+            
+    + Body
+    
+            {
+                "id": 5,
+                "username": "<randomly generated username>",
+                "password": "<randomly generated password>",
+                "email": "<randomly generated email>"
+            }
+
+## Relation of user and role [/users/{user}/roles/{role}]
+
++ Parameters
+    + user (string) ... User identifier.
+    + role (string) ... Role identifier.
+
+### Set role of user [PUT]
+
+Set a role of user requires the admin role.
+
++ Response 204
+
+## Login [/login]
+
+### Login [POST]
+
++ Request
+
+    + Headers
+
+            Authentication: Basic <base64 encoded username:password>
+
++ Response 302
+
+    + Headers
+
+            Set-Cookie: vhu_auth={token}; Path=/; Secure; HttpOnly
+            Location: /users/1
