@@ -62,9 +62,9 @@ Species can be used to filter pois, trips or stories.
 The banner, logo and app_menu_item are media resources. Media has the forllowing urls:
 * reference, the original uploaded image
 * big, the image scaled to 1000px maximum width
-* small, the image scaled to 200px maximum width 
+* small, the image scaled to 200px maximum width
 
-> TODO allow api to update banner and logo by uploading new media and setting species.banner to new media id. 
+> TODO allow api to update banner and logo by uploading new media and setting species.banner to new media id.
 
 + Parameters
     + id (number, `1`) ... Species identifier.
@@ -84,7 +84,7 @@ The banner, logo and app_menu_item are media resources. Media has the forllowing
                     "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg",
                     "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"
                 }
-            }, 
+            },
             "logo": {
                 "id": 2,
                 "width": 320,
@@ -104,6 +104,13 @@ The banner, logo and app_menu_item are media resources. Media has the forllowing
                     "big": "http:\/\/localhost:8333\/uploads\/media\/species\/0001\/01\/thumb_1_species_big.jpeg",
                     "small": "http:\/\/localhost:8333\/uploads\/media\/species\/0001\/01\/thumb_1_species_small.jpeg"
                 }
+            },
+            "stats": {
+                "nr_answerers": 1,
+                "nr_answers": 1,
+                "nr_pois": 1,
+                "nr_questions": 1,
+                "nr_trips": 1
             },
             "created_by": 2,
             "created_on": "2013-04-14T10:00:00+00:00"
@@ -172,6 +179,13 @@ Deleting a single species requires the researcher role.
                         "small": "http:\/\/localhost:8333\/uploads\/media\/species\/0001\/01\/thumb_1_species_small.jpeg"
                     }
                 },
+                "stats": {
+                    "nr_answerers": 1,
+                    "nr_answers": 1,
+                    "nr_pois": 1,
+                    "nr_questions": 1,
+                    "nr_trips": 1
+                },
                 "created_by": 2,
                 "created_on": "2013-04-14T10:00:00+00:00"
             }]
@@ -196,6 +210,64 @@ Creating a single species requires the researcher role.
 + Response 201
 
     [Species][]
+
+## Retrieve list of species with a distance to a location [/species?dist={lon,lat}]
+
++ Parameters
+    + lon (number, `7.049235`) ... Longitude.
+    + lat (number, `53.123681`) ... Latitude.
+
+### Distance to closest poi [GET]
+
++ Response 200 (application/json)
+
+        {
+            "total": 1,
+            "items":[{
+                "id": 1,
+                "name": "Kleine mantelmeeuw",
+                "banner": {
+                    "id": 1,
+                    "width": 800,
+                    "height": 558,
+                    "urls": {
+                        "reference": "http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg",
+                        "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg",
+                        "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"
+                    }
+                },
+                "logo": {
+                    "id": 2,
+                    "width": 320,
+                    "height": 181,
+                    "urls": {
+                        "reference": "http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg",
+                        "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg",
+                        "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"
+                    }
+                },
+                "app_menu_item": {
+                    "id": 1,
+                    "width": 800,
+                    "height": 558,
+                    "urls": {
+                        "reference": "http:\/\/localhost:8333\/uploads\/media\/species\/0001\/01\/54acdefade9378e05b0ebf0e3fdc0850c37ca9d8.jpeg",
+                        "big": "http:\/\/localhost:8333\/uploads\/media\/species\/0001\/01\/thumb_1_species_big.jpeg",
+                        "small": "http:\/\/localhost:8333\/uploads\/media\/species\/0001\/01\/thumb_1_species_small.jpeg"
+                    }
+                },
+                "stats": {
+                    "dist_closest_poi": 6153.096,
+                    "nr_answerers": 1,
+                    "nr_answers": 1,
+                    "nr_pois": 1,
+                    "nr_questions": 1,
+                    "nr_trips": 1
+                },
+                "created_by": 2,
+                "created_on": "2013-04-14T10:00:00+00:00"
+            }]
+        }
 
 # Group Trips
 A trip resource is set of timestamped coordinates with the eEcology tracker identifier.
@@ -324,7 +396,7 @@ Retrieving a full invisible trip requires the researcher role.
                         "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg",
                         "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"
                     }
-                },                
+                },
                 "created_by": 2,
                 "created_on": "2013-04-14T10:00:00+00:00"
             },
@@ -1374,9 +1446,9 @@ The returned username/password can be used to login when cookie is no longer val
     + Headers
 
             Set-Cookie: vhu_auth={token}; Path=/; Secure; HttpOnly
-            
+
     + Body
-    
+
             {
                 "id": 5,
                 "username": "<randomly generated username>",
