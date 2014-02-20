@@ -468,34 +468,67 @@ Retrieving a full invisible trip requires the researcher role.
         <?xml version="1.0" encoding="UTF-8"?>
         <kml xmlns="http://www.opengis.net/kml/2.2"><Document>
 
-        <Style id="transBluePoly">
+        <Style id="trip">
               <LineStyle>
-               <color>7fccff00</color>
-                <width>1.5</width>
+                <color>7f00ffff</color>
+                <width>4</width>
               </LineStyle>
               <PolyStyle>
-                <color>7d58faf4</color>
+                <color>4f00afff</color>
               </PolyStyle>
         </Style>
 
         <Style id="poi">
               <IconStyle>
-              <Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon>
+              <Icon><href>http://localhost:8333/bundles/vhuapi/images/puzzle.png</href></Icon>
+              </IconStyle>
+        </Style>
+
+        <Style id="start">
+              <IconStyle>
+              <Icon><href>http://localhost:8333/bundles/vhuapi/images/puzzle-aqua.png</href></Icon>
+              </IconStyle>
+        </Style>
+
+        <Style id="finish">
+              <IconStyle>
+              <Icon><href>http://localhost:8333/bundles/vhuapi/images/puzzle-purple.png</href></Icon>
               </IconStyle>
         </Style>
 
         <Folder>
           <name>Trip</name>
           <open>1</open>
+          <Placemark>
+            <name>Trip 355</name>
+            <LineString>
+            <altitudeMode>absolute</altitudeMode>
+            <extrude>1</extrude>
+            <coordinates>
+                54.34200,12.54300,-5
+                54.44200,12.54300,-3
+                54.64200,12.54300,-3
+                </coordinates>
+          </LineString>
+          <styleUrl>#trip</styleUrl>
+        </Placemark>
         <Placemark>
-         <name>Trip 355</name>
-         <LineString>
-          <altitudeMode>clampToGround</altitudeMode>
-          <coordinates>
-            </coordinates>
-         </LineString>
-
-         <styleUrl>#transBluePoly</styleUrl>
+            <name>Start</name>
+            <Point>
+              <coordinates>
+              54.34200,12.54300,-5
+              </coordinates>
+            </Point>
+            <styleUrl>#start</styleUrl>
+        </Placemark>
+        <Placemark>
+            <name>Finish</name>
+            <Point>
+              <coordinates>
+               54.64200,12.54300,-3
+              </coordinates>
+            </Point>
+            <styleUrl>#finish</styleUrl>
         </Placemark>
         </Folder>
 
@@ -520,7 +553,6 @@ Retrieving a full invisible trip requires the researcher role.
 
         </Document></kml>
 
-
 ## Trips [/trips]
 
 + Model (application/json)
@@ -535,7 +567,13 @@ Retrieving a full invisible trip requires the researcher role.
                 "end": "2013-04-15T12:00:00+00:00",
                 "visible": true,
                 "created_by": 2,
-                "created_on": "2013-04-14T10:00:00+00:00"
+                "created_on": "2013-04-14T10:00:00+00:00",
+                "stats": {
+                    "nr_pois": 1,
+                    "nr_questions": 1,
+                    "nr_answers": 1,
+                    "nr_answerers": 1
+                }
             }]
         }
 
@@ -591,6 +629,37 @@ Retrieving a list visible and invisible trips requires the researcher role.
 + Response 200
 
     [Trips][]
+
+## Retrieve list of trips with a distance to a location [/trips?dist={lon,lat}]
+
++ Parameters
+    + lon (number, `7.049235`) ... Longitude.
+    + lat (number, `53.123681`) ... Latitude.
+
+### Distance to closest poi [GET]
+
++ Response 200 (application/json)
+
+        {
+            "total": 12,
+            "items": [{
+                "id": 1,
+                "species": 1,
+                "tracker": 355,
+                "start": "2013-04-14T10:00:00+00:00",
+                "end": "2013-04-15T12:00:00+00:00",
+                "visible": true,
+                "created_by": 2,
+                "created_on": "2013-04-14T10:00:00+00:00",
+                "stats": {
+                    "nr_pois": 1,
+                    "nr_questions": 1,
+                    "nr_answers": 1,
+                    "nr_answerers": 1.
+                    "dist_closest_poi": 6153.096
+                }
+            }]
+        }
 
 # Group POIs
 A point of interest is a place on a trip where a questions are connected to.
@@ -753,7 +822,12 @@ Sets the distance field and filters out POI's further away then radius.
                     "radius": 100,
                     "distance": 1234,
                     "created_by": 2,
-                    "created_on": "2013-04-14T10:00:00+00:00"
+                    "created_on": "2013-04-14T10:00:00+00:00",
+                    "stats": {
+                        "nr_questions": 1,
+                        "nr_answers": 1,
+                        "nr_answerers": 1
+                    }
                 }]
         }
 
@@ -796,6 +870,42 @@ Sets the distance field and filters out POI's further away then radius.
 + Response 200
 
     [POIs][]
+
+## Retrieve list of points of interest with a distance to a location [/pois?dist={lon,lat}]
+
++ Parameters
+    + lon (number, `7.049235`) ... Longitude.
+    + lat (number, `53.123681`) ... Latitude.
+
+### Distance to poi [GET]
+
++ Response 200 (application/json)
+
+        {
+            "total": 8,
+            "items": [
+                {
+                    "created_by": 2,
+                    "trip": 1,
+                    "location": {
+                        "type": "Point",
+                        "coordinates": [
+                            54.642,
+                            12.543
+                        ]
+                    },
+                    "id": 1,
+                    "radius": 100,
+                    "created_on": "2013-04-14T10:00:00+0200",
+                    "distance": 6153.096,
+                    "stats": {
+                        "nr_questions": 1,
+                        "nr_answers": 1,
+                        "nr_answerers": 1
+                    }
+                }
+            ]
+        }
 
 # Group Questions
 See http://manual.limesurvey.org/LimeSurvey_Manual for question types
