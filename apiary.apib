@@ -312,19 +312,20 @@ A trip resource is set of timestamped coordinates with the eEcology tracker iden
             "start": "2013-04-14T10:00:00+00:00",
             "end": "2013-04-15T12:00:00+00:00",
             "body": "<p>html describing a trip</p>",
+            "place": "Amsterdam",
             "geo": {
                 "type": "FeatureCollection",
                 "features": [{
                     "type": "Feature",
-                    "geometry": {"type": "Point", "coordinates": [54.342, 12.543, -5]},
+                    "geometry": {"type": "Point", "coordinates": [4.880729,52.395173,20]},
                     "properties": {"ts":  "2013-04-15T12:05:00+00:00"}
                 }, {
                     "type": "Feature",
-                    "geometry": {"type": "Point", "coordinates": [54.442, 12.543, -3]},
+                    "geometry": {"type": "Point", "coordinates": [4.884600,52.371303,10]},
                     "properties": {"ts":  "2013-04-15T12:10:00+00:00"}
                 }, {
                     "type": "Feature",
-                    "geometry": {"type": "Point", "coordinates": [54.642, 12.543, -3]},
+                    "geometry": {"type": "Point", "coordinates": [4.964354,52.350452,20]},
                     "properties": {"ts":  "2013-04-15T12:15:00+00:00"}
                 }]
             },
@@ -404,19 +405,20 @@ Retrieving a full invisible trip requires the researcher role.
             "start": "2013-04-14T10:00:00+00:00",
             "end": "2013-04-15T12:00:00+00:00",
             "body": "<p>html describing a trip</p>",
+            "place": "Amsterdam",
             "geo": {
                 "type": "FeatureCollection",
                 "features": [{
                     "type": "Feature",
-                    "geometry": {"type": "Point", "coordinates": [54.342, 12.543, -5]},
+                    "geometry": {"type": "Point", "coordinates": [4.880729,52.395173,20]},
                     "properties": {"ts":  "2013-04-15T12:05:00+00:00"}
                 }, {
                     "type": "Feature",
-                    "geometry": {"type": "Point", "coordinates": [54.442, 12.543, -3]},
+                    "geometry": {"type": "Point", "coordinates": [4.884600,52.371303,10]},
                     "properties": {"ts":  "2013-04-15T12:10:00+00:00"}
                 }, {
                     "type": "Feature",
-                    "geometry": {"type": "Point", "coordinates": [54.642, 12.543, -3]},
+                    "geometry": {"type": "Point", "coordinates": [4.964354,52.350452,20]},
                     "properties": {"ts":  "2013-04-15T12:15:00+00:00"}
                 }]
             },
@@ -424,7 +426,7 @@ Retrieving a full invisible trip requires the researcher role.
                 "id": 1,
                 "location": {
                     "type": "Point",
-                    "coordinates": [54.642, 12.543]
+                    "coordinates": [4.938947,52.342929]
                 },
                 "radius": 100,
                 "body": "<p>html describing motiviation for the poi</p>",
@@ -465,93 +467,89 @@ Retrieving a full invisible trip requires the researcher role.
 
 + Response 200 (application/vnd.google-earth.kml+xml)
 
-        <?xml version="1.0" encoding="UTF-8"?>
-        <kml xmlns="http://www.opengis.net/kml/2.2"><Document>
-
-        <Style id="trip">
-              <LineStyle>
-                <color>7f00ffff</color>
-                <width>4</width>
-              </LineStyle>
-              <PolyStyle>
-                <color>4f00afff</color>
-              </PolyStyle>
-        </Style>
-
-        <Style id="poi">
-              <IconStyle>
-              <Icon><href>http://localhost:8333/bundles/vhuapi/images/puzzle.png</href></Icon>
-              </IconStyle>
-        </Style>
-
-        <Style id="start">
-              <IconStyle>
-              <Icon><href>http://localhost:8333/bundles/vhuapi/images/puzzle-aqua.png</href></Icon>
-              </IconStyle>
-        </Style>
-
-        <Style id="finish">
-              <IconStyle>
-              <Icon><href>http://localhost:8333/bundles/vhuapi/images/puzzle-purple.png</href></Icon>
-              </IconStyle>
-        </Style>
-
-        <Folder>
-          <name>Trip</name>
-          <open>1</open>
-          <Placemark>
-            <name>Trip 355</name>
-            <LineString>
-            <altitudeMode>absolute</altitudeMode>
-            <extrude>1</extrude>
-            <coordinates>
-                54.34200,12.54300,-5
-                54.44200,12.54300,-3
-                54.64200,12.54300,-3
-                </coordinates>
-          </LineString>
-          <styleUrl>#trip</styleUrl>
-        </Placemark>
-        <Placemark>
-            <name>Start</name>
-            <Point>
-              <coordinates>
-              54.34200,12.54300,-5
-              </coordinates>
-            </Point>
-            <styleUrl>#start</styleUrl>
-        </Placemark>
-        <Placemark>
-            <name>Finish</name>
-            <Point>
-              <coordinates>
-               54.64200,12.54300,-3
-              </coordinates>
-            </Point>
-            <styleUrl>#finish</styleUrl>
-        </Placemark>
-        </Folder>
-
-        <Folder>
-          <name>POIs</name>
-          <open>1</open>
-         <Placemark>
-            <name>Poi 1</name>
-            <description>
-             <![CDATA[
-             <p>html describing motiviation for the poi</p>
-             ]]>
-             </description>
-            <Point>
-              <coordinates>
-              54.64200, 12.54300
-              </coordinates>
-            </Point>
-            <styleUrl>#poi</styleUrl>
-          </Placemark>
-        </Folder>
-
-        </Document></kml>
+            <?xml version="1.0" ?>
+            <kml xmlns="http://www.opengis.net/kml/2.2">
+                <Document>
+                    <Style id="start">
+                        <IconStyle>
+                            <Icon>
+                                <href>http://localhost:8333/bundles/vhuapi/images/trip-start.png</href>
+                            </Icon>
+                        </IconStyle>
+                    </Style>
+                    <Style id="finish">
+                        <IconStyle>
+                            <Icon>
+                                <href>http://localhost:8333/bundles/vhuapi/images/trip-finish.png</href>
+                            </Icon>
+                        </IconStyle>
+                    </Style>
+                    <Style id="trip-1">
+                        <LineStyle>
+                            <color>7f00ffff</color>
+                            <width>4</width>
+                        </LineStyle>
+                        <PolyStyle>
+                            <color>4f00afff</color>
+                        </PolyStyle>
+                    </Style>
+                    <Style id="poisof-1">
+                        <IconStyle>
+                            <Icon>
+                                <href>http://localhost:8333/bundles/vhuapi/images/puzzle-ffff00.png</href>
+                            </Icon>
+                        </IconStyle>
+                    </Style>
+                    <Folder id="1">
+                        <name>Trip 355</name>
+                        <Placemark>
+                            <LineString>
+                                <altitudeMode>absolute</altitudeMode>
+                                <extrude>1</extrude>
+                                <coordinates>
+                            4.88073,52.39517,20
+                            4.88460,52.37130,10
+                            4.96435,52.35045,20
+                            </coordinates>
+                            </LineString>
+                            <styleUrl>#trip-1</styleUrl>
+                        </Placemark>
+                        <Placemark>
+                            <name>Start</name>
+                            <description>April 14, 2013 10:00</description>
+                            <Point>
+                                <coordinates>
+                  4.88073,52.39517,20
+                  </coordinates>
+                            </Point>
+                            <styleUrl>#start</styleUrl>
+                        </Placemark>
+                        <Placemark>
+                            <name>Finish</name>
+                            <description>April 15, 2013 12:00</description>
+                            <Point>
+                                <coordinates>
+                   4.96435,52.35045,20
+                  </coordinates>
+                            </Point>
+                            <styleUrl>#finish</styleUrl>
+                        </Placemark>
+                        <Folder>
+                            <name>POIs</name>
+                            <open>1</open>
+                            <Placemark id="1">
+                                <name>POI 1</name>
+                                <Point>
+                                    <coordinates>
+                      4.93895, 52.34293
+                      </coordinates>
+                                </Point>
+                                <styleUrl>#poisof-1</styleUrl>
+                            </Placemark>
+                        </Folder>
+                    </Folder>
+                </Document>
+            </kml>
 
 ## Trips [/trips]
 
@@ -563,6 +561,7 @@ Retrieving a full invisible trip requires the researcher role.
                 "id": 1,
                 "species": 1,
                 "tracker": 355,
+                "place": "Amsterdam",
                 "start": "2013-04-14T10:00:00+00:00",
                 "end": "2013-04-15T12:00:00+00:00",
                 "visible": true,
@@ -633,8 +632,8 @@ Retrieving a list visible and invisible trips requires the researcher role.
 ## Retrieve list of trips with a distance to a location [/trips?dist={lon,lat}]
 
 + Parameters
-    + lon (number, `7.049235`) ... Longitude.
-    + lat (number, `53.123681`) ... Latitude.
+    + lon (number, `4.949235`) ... Longitude.
+    + lat (number, `52.323681`) ... Latitude.
 
 ### Distance to closest poi [GET]
 
@@ -656,10 +655,103 @@ Retrieving a list visible and invisible trips requires the researcher role.
                     "nr_questions": 1,
                     "nr_answers": 1,
                     "nr_answerers": 1.
-                    "dist_closest_poi": 6153.096
-                }
+                    "dist_closest_poi": 2.252
+                },
+                "place": "Amsterdam"
             }]
         }
+
+## List of trips in kml format [/trips/geo.kml]
+
+The filters of `/trips` also work on this resources.
+
+### GET
+
++ Response 200 (application/vnd.google-earth.kml+xml)
+
+            <?xml version="1.0" ?>
+            <kml xmlns="http://www.opengis.net/kml/2.2">
+                <Document>
+                    <Style id="start">
+                        <IconStyle>
+                            <Icon>
+                                <href>http://localhost:8333/bundles/vhuapi/images/trip-start.png</href>
+                            </Icon>
+                        </IconStyle>
+                    </Style>
+                    <Style id="finish">
+                        <IconStyle>
+                            <Icon>
+                                <href>http://localhost:8333/bundles/vhuapi/images/trip-finish.png</href>
+                            </Icon>
+                        </IconStyle>
+                    </Style>
+                    <Style id="trip-1">
+                        <LineStyle>
+                            <color>7f00ffff</color>
+                            <width>4</width>
+                        </LineStyle>
+                        <PolyStyle>
+                            <color>4f00afff</color>
+                        </PolyStyle>
+                    </Style>
+                    <Style id="poisof-1">
+                        <IconStyle>
+                            <Icon>
+                                <href>http://localhost:8333/bundles/vhuapi/images/puzzle-ffff00.png</href>
+                            </Icon>
+                        </IconStyle>
+                    </Style>
+                    <Folder id="1">
+                        <name>Trip 355</name>
+                        <Placemark>
+                            <LineString>
+                                <altitudeMode>absolute</altitudeMode>
+                                <extrude>1</extrude>
+                                <coordinates>
+                            4.88073,52.39517,20
+                            4.88460,52.37130,10
+                            4.96435,52.35045,20
+                            </coordinates>
+                            </LineString>
+                            <styleUrl>#trip-1</styleUrl>
+                        </Placemark>
+                        <Placemark>
+                            <name>Start</name>
+                            <description>April 14, 2013 10:00</description>
+                            <Point>
+                                <coordinates>
+                  4.88073,52.39517,20
+                  </coordinates>
+                            </Point>
+                            <styleUrl>#start</styleUrl>
+                        </Placemark>
+                        <Placemark>
+                            <name>Finish</name>
+                            <description>April 15, 2013 12:00</description>
+                            <Point>
+                                <coordinates>
+                   4.96435,52.35045,20
+                  </coordinates>
+                            </Point>
+                            <styleUrl>#finish</styleUrl>
+                        </Placemark>
+                        <Folder>
+                            <name>POIs</name>
+                            <open>1</open>
+                            <Placemark id="1">
+                                <name>POI 1</name>
+                                <Point>
+                                    <coordinates>
+                      4.93895, 52.34293
+                      </coordinates>
+                                </Point>
+                                <styleUrl>#poisof-1</styleUrl>
+                            </Placemark>
+                        </Folder>
+                    </Folder>
+                </Document>
+            </kml>
 
 # Group POIs
 A point of interest is a place on a trip where a questions are connected to.
@@ -677,7 +769,7 @@ A point of interest is a place on a trip where a questions are connected to.
             "trip": 1,
             "location": {
                 "type": "Point",
-                "coordinates": [54.642, 12.543]
+                "coordinates": [4.938947, 52.342929]
             },
             "radius": 100,
             "body": "<p>html describing motiviation for the poi</p>",
@@ -738,7 +830,7 @@ Collection of point of interests.
                 "trip": 1,
                 "location": {
                     "type": "Point",
-                    "coordinates": [54.642, 12.543]
+                    "coordinates": [4.938947, 52.342929]
                 },
                 "radius": 100,
                 "created_by": 2,
@@ -758,10 +850,10 @@ Retrieving a list of visible and invisible (if trip is invisible then poi is als
 ## List of POIs filtered on geo bounding box [/pois?bbox={minlon},{minlat},{maxlon},{maxlat}]
 
 + Parameters
-    + minlon (number, `53.11368`) ... Minimum longitude
-    + minlat (number, `11.96245`) ... Minimum latitude
-    + maxlon (number, `56.14687`) ... Maximum longitude
-    + maxlat (number, `13.06027`) ... Maximum latitude
+    + minlon (number, `4.8`) ... Minimum longitude
+    + minlat (number, `52.3`) ... Minimum latitude
+    + maxlon (number, `5.0`) ... Maximum longitude
+    + maxlat (number, `52.5`) ... Maximum latitude
 
 ### GET
 
@@ -774,8 +866,8 @@ Retrieving a list of visible and invisible (if trip is invisible then poi is als
 Sets the distance field.
 
 + Parameters
-    + lon (number, `6.97245`) ... Longitude of location
-    + lat (number, `53.12368`) ... Latitude of location
+    + lon (number, `4.8`) ... Longitude of location
+    + lat (number, `52.4`) ... Latitude of location
 
 ### GET
 
@@ -788,7 +880,7 @@ Sets the distance field.
                     "trip": 1,
                     "location": {
                         "type": "Point",
-                        "coordinates": [54.642, 12.543]
+                        "coordinates": [4.938947, 52.342929]
                     },
                     "radius": 100,
                     "distance": 1234,
@@ -802,8 +894,8 @@ Sets the distance field.
 Sets the distance field and filters out POI's further away then radius.
 
 + Parameters
-    + lon (number, `6.97245`) ... Longitude of location
-    + lat (number, `53.12368`) ... Latitude of location
+    + lon (number, `4.8`) ... Longitude of location
+    + lat (number, `52.4`) ... Latitude of location
     + radius (number, `100`) ... Radius in meters
 
 ### GET
@@ -817,7 +909,7 @@ Sets the distance field and filters out POI's further away then radius.
                     "trip": 1,
                     "location": {
                         "type": "Point",
-                        "coordinates": [54.642, 12.543]
+                        "coordinates": [4.938947, 52.342929]
                     },
                     "radius": 100,
                     "distance": 1234,
@@ -874,8 +966,8 @@ Sets the distance field and filters out POI's further away then radius.
 ## Retrieve list of points of interest with a distance to a location [/pois?dist={lon,lat}]
 
 + Parameters
-    + lon (number, `7.049235`) ... Longitude.
-    + lat (number, `53.123681`) ... Latitude.
+    + lon (number, `4.8`) ... Longitude of location
+    + lat (number, `52.4`) ... Latitude of location
 
 ### Distance to poi [GET]
 
@@ -1046,8 +1138,8 @@ The 'moderated_by' and 'moderated_on' fields are filled when answer has been app
 
         {
             "id": 1,
-            "lon": 54.642,
-            "lat": 12.543,
+            "lon": 4.938907,
+            "lat": 52.342909,
             "head": 225.00,
             "tilt": 45.0,
             "value": "value",
@@ -1112,8 +1204,8 @@ Disapproving an answer requires the moderator role.
             "items": [{
                 "id": 1,
                 "question": 1,
-                "lon": 54.642,
-                "lat": 12.543,
+                "lon": 4.938907,
+                "lat": 52.342909,
                 "head": 225.00,
                 "tilt": 45.0,
                 "value": "value",
@@ -1160,8 +1252,8 @@ If answer send media then in the response the answer value will be the url where
 
         {
             "value": "some answer",
-            "lon": 54.642,
-            "lat": 12.543,
+            "lon": 4.938907,
+            "lat": 52.342909,
             "head": 225.00,
             "tilt": 45.0,
             "answered_on": "2013-09-04T12:30:00+00:00"
@@ -1227,6 +1319,7 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
                 "start": "2009-01-01T00:00:00+0000",
                 "end": "2009-01-01T00:00:00+0000",
                 "body": "<p>bl bla blayjhfghfdghdf<\/p>",
+                "place": "Amsterdam",
                 "geo": {
                     "type": "FeatureCollection",
                     "features": [{
