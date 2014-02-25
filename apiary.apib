@@ -1237,9 +1237,7 @@ Answers with media use *multipart/form-data* content type with the `json` and `m
 
 The `json` form field is a json encoded string of the Answer resource.
 
-Create an answer requires the anonymous role.
-
-> TODO should anonymous user be allowed to upload media or are only registered users allowed to do that?
+Create an answer requires the registered user role.
 
 If answer send media then in the response the answer value will be the url where the media can be downloaded.
 
