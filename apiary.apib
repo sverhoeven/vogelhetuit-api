@@ -562,7 +562,34 @@ Retrieving a full invisible trip requires the researcher role.
             "total": 12,
             "items": [{
                 "id": 1,
-                "species": 1,
+                "species": {
+                    "id": 1,
+                    "name": "Kleine mantelmeeuw",
+                    "body": "<p>html describing species and why it is being researched</p>",
+                    "facts": "<table><tr><td>Name</td><td>Value</td></tr></table>",
+                    "banner": {
+                        "id": 1,
+                        "width": 800,
+                        "height": 558,
+                        "urls": {
+                            "reference": "http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg",
+                            "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg",
+                            "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"
+                        }
+                    },
+                    "logo": {
+                        "id": 2,
+                        "width": 320,
+                        "height": 181,
+                        "urls": {
+                            "reference": "http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg",
+                            "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg",
+                            "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"
+                        }
+                    },
+                    "created_by": 2,
+                    "created_on": "2013-04-14T10:00:00+00:00"
+                },
                 "tracker": 355,
                 "place": "Amsterdam",
                 "start": "2013-04-14T10:00:00+00:00",
@@ -646,7 +673,34 @@ Retrieving a list visible and invisible trips requires the researcher role.
             "total": 12,
             "items": [{
                 "id": 1,
-                "species": 1,
+                "species": {
+                    "id": 1,
+                    "name": "Kleine mantelmeeuw",
+                    "body": "<p>html describing species and why it is being researched</p>",
+                    "facts": "<table><tr><td>Name</td><td>Value</td></tr></table>",
+                    "banner": {
+                        "id": 1,
+                        "width": 800,
+                        "height": 558,
+                        "urls": {
+                            "reference": "http://localhost:8000/uploads/media/species/0001/01/ca9e366f26e6c4fbe25f844a552711ac2f202d0d.jpeg",
+                            "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_big.jpeg",
+                            "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_1_species_small.jpeg"
+                        }
+                    },
+                    "logo": {
+                        "id": 2,
+                        "width": 320,
+                        "height": 181,
+                        "urls": {
+                            "reference": "http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg",
+                            "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg",
+                            "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"
+                        }
+                    },
+                    "created_by": 2,
+                    "created_on": "2013-04-14T10:00:00+00:00"
+                },
                 "tracker": 355,
                 "start": "2013-04-14T10:00:00+00:00",
                 "end": "2013-04-15T12:00:00+00:00",
@@ -1323,48 +1377,90 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
                 "place": "Amsterdam",
                 "geo": {
                     "type": "FeatureCollection",
-                    "features": [{
-                 "geometry": {
-                    "coordinates": [
-                       54.342, 12.543, -5
-                    ],
-                    "type": "Point"
-                 },
-                 "type": "Feature",
-                 "properties": {
-                    "ts": "2013-04-15T12:05:00+0000"
-                 }
-              }, {
-                 "geometry": {
-                    "coordinates": [
-                       54.442, 12.543, -3
-                    ],
-                    "type": "Point"
-                 },
-                 "type": "Feature",
-                 "properties": {
-                    "ts": "2013-04-15T12:10:00+0000"
-                 }
-              }, {
-                 "geometry": {
-                    "coordinates": [
-                       54.642, 12.543, -3
-                    ],
-                    "type": "Point"
-                 },
-                 "type": "Feature",
-                 "properties": {
-                    "ts": "2013-04-15T12:15:00+0000"
-                 }
-              }]
+                    "features": [
+                        {
+                            "type": "Feature",
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    4.88073,
+                                    52.39517,
+                                    20
+                                ]
+                            },
+                            "properties": {
+                                "ts": "2013-04-15T12:05:00+0000"
+                            }
+                        },
+                        {
+                            "type": "Feature",
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    4.8846,
+                                    52.3713,
+                                    10
+                                ]
+                            },
+                            "properties": {
+                                "ts": "2013-04-15T12:10:00+0000"
+                            }
+                        },
+                        {
+                            "type": "Feature",
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    4.96435,
+                                    52.35045,
+                                    20
+                                ]
+                            },
+                            "properties": {
+                                "ts": "2013-04-15T12:15:00+0000"
+                            }
+                        }
+                    ]
                 },
                 "visible": true,
                 "species": {
-                    "created_by": 1,
+                    "created_by": 2,
                     "id": 1,
-                    "name": "Gull",
-                    "body": "<p>Gull eats everything<\/p>",
-                    "created_on": "2014-02-01T14:23:01+0000"
+                    "name": "Kleine mantelmeeuw",
+                    "body": "<p>De kleine mantelmeeuw is &eacute;&eacute;n van de 22 verschillende soorten meeuwen die in Nederland zijn waargenomen. Met zijn donkergrijze mantel en rug en gele snavel en poten lijkt hij erg op de zilvermeeuw (<em>Larus argentatus<\/em>). Gedurende het broedseizoen broeden deze meeuwen in kolonies in de duinen, op industriegebieden en op daken in steden. Na het broedseizoen migreren deze vogels naar gebieden van Groot-Brittanni&euml; tot aan Mauritani&euml;, Gambia en Senegal. Kleine mantelmeeuwen zijn echte omnivoren en eten vis, zoogdieren, vogels, verschillende soorten insecten, planten en afval.<\/p>\n                           <p>Een belangrijke broedkolonie voor onderzoek bevindt zich op Texel. Hier broeden jaarlijks ongeveer 11.500 paren Kleine mantelmeeuwen en 5.000 paren Zilvermeeuwen. In de gegevens die hiermee zijn verzameld kunnen we zien dat meeuwen afhankelijk zijn van veel verschillende soorten voedsel tijdens het broedseizoen. Ook is gebleken dat de duur van voedselzoektochten kan verschillen van een paar uur tot meer dan 36 uur. Kleine veranderingen in de manier waarop wij gebruik maken van het land kunnen grote gevolgen hebben voor de meeuwen. Zo zijn een aantal meeuwen van deze kolonie bijvoorbeeld afhankelijk van de visserij op de Noordzee. Als er met andere methodes gewerkt zal gaan worden, betekent dit dat er minder vis beschikbaar is als voedsel voor de meeuwen. Deze vogels zullen op zoek gaan naar andere voedselbronnen, al dan niet op land. Met <em>Vogel het uit!<\/em> willen we meer informatie krijgen over plekken die vaak door de vogels worden bezocht.<\/p>",
+                    "facts": "<ul><li>Lente 2008: 10 vogels kregen GPS-logger<\/li><li>Lente 2009: 3 vogels kregen GPS-logger<\/li><li>Lente 2010: 4 vogels kregen GPS-logger<\/li><li>Leuk weetje, bijv. langst afgelegde route?<\/li><li>Op <a href=\"http:\/\/www.uva-bits.nl\/species\/lesser-black-backed-gull\/\">UvA-BiTS<\/a><\/li><\/ul>",
+                    "created_on": "2013-04-14T10:00:00+0000",
+                    "banner": {
+                        "id": 1,
+                        "width": 800,
+                        "height": 558,
+                        "urls": {
+                            "reference": "http:\/\/coolhead:8333\/uploads\/media\/species\/0001\/01\/bacad5da8c098bc0aa5bf87bf31efcd6285cac75.jpeg",
+                            "big": "http:\/\/coolhead:8333\/uploads\/media\/species\/0001\/01\/thumb_1_species_big.jpeg",
+                            "small": "http:\/\/coolhead:8333\/uploads\/media\/species\/0001\/01\/thumb_1_species_small.jpeg"
+                        }
+                    },
+                    "logo": {
+                        "id": 2,
+                        "width": 320,
+                        "height": 181,
+                        "urls": {
+                            "reference": "http:\/\/coolhead:8333\/uploads\/media\/species\/0001\/01\/c7e31391737b4413f847c9cbf97cbb5e77ca10e7.jpeg",
+                            "big": "http:\/\/coolhead:8333\/uploads\/media\/species\/0001\/01\/thumb_2_species_big.jpeg",
+                            "small": "http:\/\/coolhead:8333\/uploads\/media\/species\/0001\/01\/thumb_2_species_small.jpeg"
+                        }
+                    },
+                    "app_menu_item": {
+                        "id": 1,
+                        "width": 800,
+                        "height": 558,
+                        "urls": {
+                            "reference": "http:\/\/coolhead:8333\/uploads\/media\/species\/0001\/01\/bacad5da8c098bc0aa5bf87bf31efcd6285cac75.jpeg",
+                            "big": "http:\/\/coolhead:8333\/uploads\/media\/species\/0001\/01\/thumb_1_species_big.jpeg",
+                            "small": "http:\/\/coolhead:8333\/uploads\/media\/species\/0001\/01\/thumb_1_species_small.jpeg"
+                        }
+                    },
+                    "summary": "Summary of bird"
                 },
                 "created_by": 2,
                 "created_on": "2014-02-01T15:46:43+0000",
@@ -1374,8 +1470,8 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
                         "location": {
                             "type": "Point",
                             "coordinates": [
-                                4.56,
-                                1.23
+                                4.93895,
+                                52.34293
                             ]
                         },
                         "id": 1,
