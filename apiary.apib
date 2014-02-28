@@ -1067,12 +1067,12 @@ and http://developer.surveygizmo.com/rest-api-documentation/objects/ for possibl
 
 Types of questions:
 
-- radio, multiple options with only one possible choice
-- dropdown, a dropdown menu
-- checkbox, multiple options with one or more possible choices
+- radio, multiple options with only one possible choice, when other==true then add additional option with text field, the answer value will be the text field value.
+- radioimg, multiple options with only one possible choice, the option title is an url to an image. Rendering of question should show images.
 - text, short text field for an open question, this can be used as comment field.
 - image, the answer value should be the url of the Media resource that was uploaded before submitting the answer.
 - video, the answer value should be the url of the Media resource that was uploaded before submitting the answer.
+- count, user enters a number, for example the number of a certain bird species that can be seen around a POI.
 
 When 'Other' option is true then use a short text field as answer value.
 
