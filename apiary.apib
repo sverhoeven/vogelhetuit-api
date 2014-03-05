@@ -1439,10 +1439,7 @@ Disapproving an answer requires the moderator role.
 
 + Response 204
 
-## Answers [/questions/{question}/answers]
-
-+ Parameters
-    + question (number, `1`) ... Question identifier
+## Answers [/answers]
 
 + Model (application/json)
 
@@ -1453,8 +1450,6 @@ Disapproving an answer requires the moderator role.
                 "question": 1,
                 "lon": 4.938907,
                 "lat": 52.342909,
-                "head": 225.00,
-                "tilt": 45.0,
                 "value": "value",
                 "answered_by": 4,
                 "answered_on": "2013-09-04T12:30:00+00:00",
@@ -1462,6 +1457,20 @@ Disapproving an answer requires the moderator role.
                 "moderated_by": 3
             }]
         }
+
+### List of moderated questions [GET]
+
+Registered role will retrieve your own answers.
+Researcher role will retrieve all answers.
+
++ Response 200
+
+    [Answers][]
+
+## Answers per question [/questions/{question}/answers]
+
++ Parameters
+    + question (number, `1`) ... Question identifier
 
 ### Retrieve moderated answers for a question [GET]
 
