@@ -437,15 +437,18 @@ Retrieving a full invisible trip requires the researcher role.
                 "body": "<p>html describing motiviation for the poi</p>",
                 "questions": [{
                     "id": 1,
-                    "type": "radio, image or video or ...",
+                    "type": "radio",
                     "title": "Question text",
                     "description" : "Description text",
                     "shortname": "Shortname or alias",
-                    "other": true,
                     "options": [{
                         "id": 1,
-                        "title": "Title of option",
-                        "value": "Value of option"
+                        "title": "Title of option1",
+                        "value": "Value of option1"
+                    }, {
+                        "id": 2,
+                        "title": "Title of option2",
+                        "value": "Value of option2"
                     }],
                     "created_by": 2,
                     "created_on": "2013-04-14T10:00:00+00:00"
@@ -835,15 +838,18 @@ A point of interest is a place on a trip where a questions are connected to.
             "body": "<p>html describing motiviation for the poi</p>",
             "questions": [{
                 "id": 1,
-                "type": "radio, image or video or ...",
+                "type": "radio",
                 "title": "Question text",
                 "description" : "Description text",
                 "shortname": "Shortname or alias",
-                "other": true,
                 "options": [{
                     "id": 1,
-                    "title": "Title of option",
-                    "value": "Value of option"
+                    "title": "Title of option1",
+                    "value": "Value of option1"
+                }, {
+                    "id": 2,
+                    "title": "Title of option2",
+                    "value": "Value of option2"
                 }],
                 "created_by": 2,
                 "created_on": "2013-04-14T10:00:00+00:00"
@@ -1065,16 +1071,139 @@ and http://developer.surveygizmo.com/rest-api-documentation/objects/ for possibl
 
 ## Question [/trips/{trip}/pois/{poi}/questions/{question}]
 
+A question must have a type, title, created_by and created_on fields. Optionally a question can have an image field.
+Depending on the question type some other fields are required, see examples below.
+
 Types of questions:
 
-- radio, multiple options with only one possible choice, when other==true then add additional option with text field, the answer value will be the text field value.
-- radioimg, multiple options with only one possible choice, the option title is an url to an image. Rendering of question should show images.
-- text, short text field for an open question, this can be used as comment field.
-- image, the answer value should be the url of the Media resource that was uploaded before submitting the answer.
-- video, the answer value should be the url of the Media resource that was uploaded before submitting the answer.
-- count, user enters a number, for example the number of a certain bird species that can be seen around a POI.
+- radio, multiple options with only one possible choice, the answer value should one of the options value properties.
+- radioimg, multiple options with only one possible choice, the option.image should be shown as question option, the answer value should one of the options value properties.
+- open, short text field for an open question, this can be used as comment question. The maximum length of the answer value is question.maximum property and the minimum length is 1.
+- photo, submit a photo.
+- video, submit a video.
+- count, user enters a number, for example the number of a certain bird species that can be seen around a POI. The minimum is 0 and maximum is the question.maximum property.
 
-When 'Other' option is true then use a short text field as answer value.
+### Example questions
+
+Radio question:
+````json
+        {
+            "created_by": 2,
+            "created_on": "2013-04-14T10:00:00+0000",
+            "description": "Description text",
+            "id": 1,
+            "options": [{
+                "id": 1,
+                "title": "Title of option1",
+                "value": "Value of option1"
+            }, {
+                "id": 2,
+                "title": "Title of option2",
+                "value": "Value of option2"
+            }],
+            "shortname": "Shortname or alias",
+            "title": "Question text of a multiple choice question",
+            "type": "radio"
+        }
+````
+Photo question:
+````json
+        {
+            "created_by": 2,
+            "created_on": "2013-04-14T10:00:00+0000",
+            "id": 2,
+            "title": "Question text to take a photo",
+            "type": "photo"
+        }
+````
+Video question:
+````json
+        {
+            "created_by": 2,
+            "created_on": "2013-04-14T10:00:00+0000",
+            "id": 3,
+            "title": "Question text to take a video",
+            "type": "video"
+        }
+````
+Open question:
+````json
+        {
+            "created_by": 2,
+            "created_on": "2013-04-14T10:00:00+0000",
+            "id": 4,
+            "title": "An open question",
+            "type": "open"
+        }
+````
+Count question:
+````json
+        {
+            "created_by": 2,
+            "created_on": "2013-04-14T10:00:00+0000",
+            "id": 5,
+            "maximum": 10,
+            "title": "A question where user must count somehting and give a number",
+            "type": "count"
+        }
+````
+Photo question with image as part of question text (title and image should be shown):
+````json
+        {
+            "created_by": 2,
+            "created_on": "2013-04-14T10:00:00+0000",
+            "id": 6,
+            "image": {
+                "height": 240,
+                "id": 3,
+                "urls": {
+                    "big": "http://localhost:8333/uploads/media/question/0001/01/thumb_3_question_big.png",
+                    "reference": "http://localhost:8333/uploads/media/question/0001/01/5f0e8f74a01ff26d12cdd0d19c391217a22ee21f.png"
+                },
+                "width": 200
+            },
+            "title": "An photo question with an image",
+            "type": "photo"
+        }
+````
+Radio image question:
+````json
+        {
+            "created_by": 2,
+            "created_on": "2013-04-14T10:00:00+0000",
+            "id": 7,
+            "options": [
+                {
+                    "id": 3,
+                    "image": {
+                        "height": 240,
+                        "id": 3,
+                        "urls": {
+                            "big": "http://localhost:8333/uploads/media/question/0001/01/thumb_3_question_big.png",
+                            "reference": "http://localhost:8333/uploads/media/question/0001/01/5f0e8f74a01ff26d12cdd0d19c391217a22ee21f.png"
+                        },
+                        "width": 200
+                    },
+                    "value": "Value of option1"
+                },
+                {
+                    "id": 4,
+                    "image": {
+                        "height": 150,
+                        "id": 4,
+                        "urls": {
+                            "big": "http://localhost:8333/uploads/media/question/0001/01/thumb_4_question_big.jpeg",
+                            "reference": "http://localhost:8333/uploads/media/question/0001/01/77f5ff35e0f21dc16605b9b84508d727da4a277c.jpeg"
+                        },
+                        "width": 150
+                    },
+                    "value": "Value of option2"
+                }
+            ],
+            "title": "Image choice question",
+            "type": "radioimg"
+        }
+````
 
 + Parameter
     + trip (number, `1`) ... Trip identifier.
@@ -1085,14 +1214,18 @@ When 'Other' option is true then use a short text field as answer value.
 
         {
             "id": 1,
-            "type": "radio, image or video or ...",
+            "type": "radio",
             "title": "Question text",
             "description" : "Description text",
             "shortname": "Shortname or alias",
-            "other": true,
             "options": [{
-                "title": "Title of option",
-                "value": "Value of option"
+                "id": 1,
+                "title": "Title of option1",
+                "value": "Value of option1"
+            }, {
+                "id": 2,
+                "title": "Title of option2",
+                "value": "Value of option2"
             }],
             "created_by": 2,
             "created_on": "2013-04-14T10:00:00+00:00"
@@ -1135,14 +1268,18 @@ Deleting a question requires the researcher role.
             "total": 1,
             "items": [{
                 "id": 1,
-                "type": "radio, image or video or ...",
+                "type": "radio",
                 "title": "Question text",
                 "description" : "Description text",
                 "shortname": "Shortname or alias",
-                "other": true,
                 "options": [{
-                    "title": "Title of option",
-                    "value": "Value of option"
+                    "id": 1,
+                    "title": "Title of option1",
+                    "value": "Value of option1"
+                }, {
+                    "id": 2,
+                    "title": "Title of option2",
+                    "value": "Value of option2"
                 }],
                 "created_by": 2,
                 "created_on": "2013-04-14T10:00:00+00:00"
@@ -1179,17 +1316,65 @@ Fetch list of questions independ of trip or poi.
 
     [Questions][]
 
+# Group Answers
+
 ## Answer [/answers/{answer}]
 
 Attributes:
 
-- answered_on, need to know when answer was given.
-- location, need to know where answer was given.
-- orientation, optional, heading or direction and tilting, used when question type is image or video otherwise ignored.
+- answered_on:, need to know when answer was given.
+- lon, lat: need to know where answer was given.
+- head, tilt: orientation of device, heading or direction and tilting, used when question type is image or video otherwise ignored.
 - value, the answer itself. For a media type answer the answer will be empty, the media can be downloaded in the admin website.
 
 The 'answered_by' field is only set when user was logged in.
 The 'moderated_by' and 'moderated_on' fields are filled when answer has been approved.
+
+### Example answers
+Answer for a radio question or radio image question:
+````json
+        {
+            "value": "Value of option1",
+            "lon": 54.642,
+            "lat": 12.543,
+            "answered_on": "2013-09-04T12:30:00Z"
+        }
+````
+
+Answer for a open question:
+
+````json
+        {
+            "value": "some answer",
+            "lon": 54.642,
+            "lat": 12.543,
+            "answered_on": "2013-09-04T12:30:00Z"
+        }
+````
+
+Answer for a count question:
+
+````json
+        {
+            "value": "5",
+            "lon": 54.642,
+            "lat": 12.543,
+            "answered_on": "2013-09-04T12:30:00Z"
+        }
+````
+
+
+Answer for a photo question or video question (the media is added as `media` form field):
+
+````json
+        {
+            "lon": 54.642,
+            "lat": 12.543,
+            "head": 225.00,
+            "tilt": 45.0,
+            "answered_on": "2013-09-04T12:30:00Z"
+        }
+````
 
 + Parameters
     + answer (number, `1`) ... Answer identifier.
@@ -1200,19 +1385,21 @@ The 'moderated_by' and 'moderated_on' fields are filled when answer has been app
             "id": 1,
             "lon": 4.938907,
             "lat": 52.342909,
-            "head": 225.00,
-            "tilt": 45.0,
-            "value": "value",
+            "value": "Value of option1",
             "question": {
                 "id": 1,
-                "type": "radio, image or video or ...",
+                "type": "radio",
                 "title": "Question text",
                 "description" : "Description text",
                 "shortname": "Shortname or alias",
-                "other": true,
                 "options": [{
-                    "title": "Title of option",
-                    "value": "Value of option"
+                    "id": 1,
+                    "title": "Title of option1",
+                    "value": "Value of option1"
+                }, {
+                    "id": 2,
+                    "title": "Title of option2",
+                    "value": "Value of option2"
                 }],
                 "created_by": 2,
                 "created_on": "2013-04-14T10:00:00+00:00"
@@ -1287,7 +1474,7 @@ Researcher role will retrieve all answers.
 
 ### Create an answer [POST]
 
-Answers can contain a media file like a image or video, this prevents using a normal POST body with json os use file upload form submission.
+Answers can contain a media file like a image or video, this prevents using a normal POST body with json so we need to use file upload form submission.
 
 Answers without media use *application/x-www-form-urlencoded* content type with the `json` form field, see first request.
 Answers with media use *multipart/form-data* content type with the `json` and `media` form fields, see second request.
@@ -1297,6 +1484,8 @@ The `json` form field is a json encoded string of the Answer resource.
 Create an answer requires the registered user role.
 
 If answer send media then in the response the answer value will be the url where the media can be downloaded.
+The answer value for a open or count question is the value the user entered.
+The answer value for a radio or radioimg question is the value of the option that was selected.
 
 + Request (application/x-www-form-urlencoded; charset=utf-8)
 
@@ -1327,6 +1516,14 @@ If answer send media then in the response the answer value will be the url where
 + Response 201
 
     [Answer][]
+
++ Response 422 (application/json)
+
+        [{"message": "Question does not allow media upload"}]
+
++ Response 409 (application/json)
+
+        [{"message": "Question already answered"}]
 
 ## Unmoderated answers for question [/questions/{question}/answers/unmoderated]
 
@@ -1484,15 +1681,18 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
                         "created_on": "2014-02-01T16:56:46+0000",
                         "questions": [{
                             "id": 1,
-                            "type": "radio, image or video or ...",
+                            "type": "radio",
                             "title": "Question text",
                             "description": "Description text",
                             "shortname": "Shortname or alias",
-                            "other": true,
                             "options": [{
-                                "value": "Value of option",
-                                "title": "Title of option",
-                                "id": 1
+                                "id": 1,
+                                "title": "Title of option1",
+                                "value": "Value of option1"
+                            }, {
+                                "id": 2,
+                                "title": "Title of option2",
+                                "value": "Value of option2"
                              }],
                             "created_on": "2013-04-14T10:00:00+0000",
                             "created_by": 2
