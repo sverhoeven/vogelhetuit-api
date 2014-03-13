@@ -8,6 +8,7 @@ Or at http://docs.vogelhetuit.apiary.io/
 Generate html
 -------------
 
+    npm install aglio
     aglio -t default-multi -i apiary.apib -o index.html
 
 Testing

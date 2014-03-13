@@ -1429,7 +1429,9 @@ Moderate media by approving it.
 
 Approving an answer requires the moderator role.
 
-+ Response 204
++ Response 200
+
+    [Answer][]
 
 ### Disapprove answer [DELETE]
 Moderate media by disapproving it.
@@ -1822,8 +1824,6 @@ Retrieving a list of roles requires the admin role.
 
 ## User [/users/{user}]
 
-The `password` and `password_verify` are only required during creation and update. They will not be retrieved.
-
 + Parameters
     + user (number, `4`) ... User identifier.
 
@@ -1836,6 +1836,15 @@ The `password` and `password_verify` are only required during creation and updat
             "firstname": "first name",
             "lastname": "last name",
             "phone": "(Mobile) phone number, used by researcher to ask feedback",
+            "photo": {
+                "height": 80, 
+                "id": 8, 
+                "urls": {
+                    "reference": "http://url.to/original/image", 
+                    "small": "http://url.to/80x80/image"
+                }, 
+                "width": 80
+            },
             "roles": []
         }
 
@@ -1852,6 +1861,7 @@ Retrieving a user requires the researcher role. As the researcher needs contact 
 
 A user can update his/her own user information.
 Updating a user requires the admin role or self.
+Use `users/{user}/photo` to update photo of user.
 
 + Request
 
@@ -1942,6 +1952,15 @@ Retrieving a list of users requires the moderator role.
             {
               "username": "user",
               "email": "user@vogelhetuit.nl",
+              "photo": {
+                  "height": 80, 
+                  "id": 8, 
+                  "urls": {
+                      "reference": "http://url.to/original/image", 
+                      "small": "http://url.to/80x80/image"
+                  }, 
+                  "width": 80
+              },
               "roles": [],
               "id": 4
             }]
@@ -1994,3 +2013,29 @@ Set a role of user requires the admin role.
 + Response 200
 
     [User][]
+
+## User photo [/users/{user}/photo]
+
+A user can add, update or delete his/her own photo.
+
++ Parameters
+    + user (string) ... User identifier.
+   
+### Add photo to user [POST]
+
++ Request (multipart/form-data; boundary=<random>)
+
+        --<random>
+        Content-Disposition: form-data; name="photo"; filename="photo.jpg"
+        Content-Type: image/jpg
+        Content-Transfer-Encoding: binary
+       
+        ... binary stream of photo ...
+
++ Response 200
+
+    [User][]
+
+### Delete photo of user [DELETE]
+
++ Response 204
