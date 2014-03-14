@@ -1837,12 +1837,12 @@ Retrieving a list of roles requires the admin role.
             "lastname": "last name",
             "phone": "(Mobile) phone number, used by researcher to ask feedback",
             "photo": {
-                "height": 80, 
-                "id": 8, 
+                "height": 80,
+                "id": 8,
                 "urls": {
-                    "reference": "http://url.to/original/image", 
+                    "reference": "http://url.to/original/image",
                     "small": "http://url.to/80x80/image"
-                }, 
+                },
                 "width": 80
             },
             "roles": []
@@ -1901,6 +1901,7 @@ A user can retrieve his/her own user information.
 
 Creat a user requires the anonymous role.
 A created user will automaticly get the *ROLE_USER* role.
+The returned cookie can be used to do follow API requests.
 
 + Request (application/json)
 
@@ -1913,9 +1914,23 @@ A created user will automaticly get the *ROLE_USER* role.
             "phone": "(Mobile) phone number, used by researcher to ask feedback"
         }
 
-+ Response 201
++ Response 201 (application/json)
 
-    [User][]
+    + Headers
+
+            Set-Cookie: vhu_auth={token}; Path=/; Secure; HttpOnly
+
+    + Body
+
+            {
+                "id": 4,
+                "username": "user",
+                "email": "user@vogelhetuit.nl",
+                "firstname": "first name",
+                "lastname": "last name",
+                "phone": "(Mobile) phone number, used by researcher to ask feedback",
+                "roles": []
+            }
 
 ### List of users [GET]
 
@@ -1953,12 +1968,12 @@ Retrieving a list of users requires the moderator role.
               "username": "user",
               "email": "user@vogelhetuit.nl",
               "photo": {
-                  "height": 80, 
-                  "id": 8, 
+                  "height": 80,
+                  "id": 8,
                   "urls": {
-                      "reference": "http://url.to/original/image", 
+                      "reference": "http://url.to/original/image",
                       "small": "http://url.to/80x80/image"
-                  }, 
+                  },
                   "width": 80
               },
               "roles": [],
@@ -2010,9 +2025,33 @@ Set a role of user requires the admin role.
 
             Authentication: Basic <base64 encoded username:password>
 
-+ Response 200
++ Response 200 (application/json)
 
-    [User][]
+    + Headers
+
+            Set-Cookie: vhu_auth={token}; Path=/; Secure; HttpOnly
+
+    + Body
+
+            {
+                "id": 4,
+                "username": "user",
+                "email": "user@vogelhetuit.nl",
+                "firstname": "first name",
+                "lastname": "last name",
+                "phone": "(Mobile) phone number, used by researcher to ask feedback",
+                "photo": {
+                    "height": 80,
+                    "id": 8,
+                    "urls": {
+                        "reference": "http://url.to/original/image",
+                        "small": "http://url.to/80x80/image"
+                    },
+                    "width": 80
+                },
+                "roles": []
+            }
+
 
 ## User photo [/users/{user}/photo]
 
@@ -2020,7 +2059,7 @@ A user can add, update or delete his/her own photo.
 
 + Parameters
     + user (string) ... User identifier.
-   
+
 ### Add photo to user [POST]
 
 + Request (multipart/form-data; boundary=<random>)
@@ -2029,7 +2068,7 @@ A user can add, update or delete his/her own photo.
         Content-Disposition: form-data; name="photo"; filename="photo.jpg"
         Content-Type: image/jpg
         Content-Transfer-Encoding: binary
-       
+
         ... binary stream of photo ...
 
 + Response 200
