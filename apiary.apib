@@ -107,7 +107,6 @@ The banner, logo and app_menu_item are media resources. Media has the forllowing
                 }
             },
             "stats": {
-                "nr_answerers": 1,
                 "nr_answers": 1,
                 "nr_pois": 1,
                 "nr_questions": 1,
@@ -181,7 +180,6 @@ Deleting a single species requires the researcher role.
                     }
                 },
                 "stats": {
-                    "nr_answerers": 1,
                     "nr_answers": 1,
                     "nr_pois": 1,
                     "nr_questions": 1,
@@ -259,7 +257,6 @@ Creating a single species requires the researcher role.
                 },
                 "stats": {
                     "dist_closest_poi": 6153.096,
-                    "nr_answerers": 1,
                     "nr_answers": 1,
                     "nr_pois": 1,
                     "nr_questions": 1,
@@ -564,15 +561,12 @@ Retrieving a full invisible trip requires the researcher role.
 + Model (application/json)
 
         {
-            "total": 12,
+            "total": 1,
             "items": [{
                 "id": 1,
                 "species": {
                     "id": 1,
                     "name": "Kleine mantelmeeuw",
-                    "body": "<p>html describing species and why it is being researched</p>",
-                    "facts": "<table><tr><td>Name</td><td>Value</td></tr></table>",
-                    "banner": {
                         "id": 1,
                         "width": 800,
                         "height": 558,
@@ -607,7 +601,6 @@ Retrieving a full invisible trip requires the researcher role.
                     "nr_pois": 1,
                     "nr_questions": 1,
                     "nr_answers": 1,
-                    "nr_answerers": 1
                 }
             }]
         }
@@ -639,7 +632,7 @@ Creating a trip requires the researcher role.
 Retrieving a list visible trips requires the anonymous role.
 Retrieving a list visible and invisible trips requires the researcher role.
 
-+ Response 200
++ Response 200 (application/json)
 
     [Trips][]
 
@@ -650,7 +643,7 @@ Retrieving a list visible and invisible trips requires the researcher role.
 
 ### GET
 
-+ Response 200
++ Response 200 (application/json)
 
     [Trips][]
 
@@ -661,7 +654,7 @@ Retrieving a list visible and invisible trips requires the researcher role.
 
 ### GET
 
-+ Response 200
++ Response 200 (application/json)
 
     [Trips][]
 
@@ -676,14 +669,12 @@ Retrieving a list visible and invisible trips requires the researcher role.
 + Response 200 (application/json)
 
         {
-            "total": 12,
+            "total": 1,
             "items": [{
                 "id": 1,
                 "species": {
                     "id": 1,
                     "name": "Kleine mantelmeeuw",
-                    "body": "<p>html describing species and why it is being researched</p>",
-                    "facts": "<table><tr><td>Name</td><td>Value</td></tr></table>",
                     "banner": {
                         "id": 1,
                         "width": 800,
@@ -717,7 +708,6 @@ Retrieving a list visible and invisible trips requires the researcher role.
                     "nr_pois": 1,
                     "nr_questions": 1,
                     "nr_answers": 1,
-                    "nr_answerers": 1.
                     "dist_closest_poi": 2.252
                 },
                 "place": "Amsterdam"
@@ -949,7 +939,7 @@ Sets the distance field.
                         "coordinates": [4.938947, 52.342929]
                     },
                     "radius": 100,
-                    "distance": 1234,
+                    "distance": 11.369,
                     "created_by": 2,
                     "created_on": "2013-04-14T10:00:00+00:00"
                 }]
@@ -978,13 +968,12 @@ Sets the distance field and filters out POI's further away then radius.
                         "coordinates": [4.938947, 52.342929]
                     },
                     "radius": 100,
-                    "distance": 1234,
+                    "distance": 11.369,
                     "created_by": 2,
                     "created_on": "2013-04-14T10:00:00+00:00",
                     "stats": {
                         "nr_questions": 1,
-                        "nr_answers": 1,
-                        "nr_answerers": 1
+                        "nr_answers": 1
                     }
                 }]
         }
@@ -1058,8 +1047,7 @@ Sets the distance field and filters out POI's further away then radius.
                     "distance": 6153.096,
                     "stats": {
                         "nr_questions": 1,
-                        "nr_answers": 1,
-                        "nr_answerers": 1
+                        "nr_answers": 1
                     }
                 }
             ]
