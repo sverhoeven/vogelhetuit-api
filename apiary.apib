@@ -658,7 +658,7 @@ Retrieving a list visible and invisible trips requires the researcher role.
 
     [Trips][]
 
-## Retrieve list of trips with a distance to a location [/trips?dist={lon,lat}]
+## List of trips ordered by distance to a location [/trips?dist={lon,lat}]
 
 + Parameters
     + lon (number, `4.949235`) ... Longitude.
@@ -1017,41 +1017,6 @@ Sets the distance field and filters out POI's further away then radius.
 + Response 200
 
     [POIs][]
-
-## Retrieve list of points of interest with a distance to a location [/pois?dist={lon,lat}]
-
-+ Parameters
-    + lon (number, `4.8`) ... Longitude of location
-    + lat (number, `52.4`) ... Latitude of location
-
-### Distance to poi [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "total": 8,
-            "items": [
-                {
-                    "created_by": 2,
-                    "trip": 1,
-                    "location": {
-                        "type": "Point",
-                        "coordinates": [
-                            54.642,
-                            12.543
-                        ]
-                    },
-                    "id": 1,
-                    "radius": 100,
-                    "created_on": "2013-04-14T10:00:00+0200",
-                    "distance": 6153.096,
-                    "stats": {
-                        "nr_questions": 1,
-                        "nr_answers": 1
-                    }
-                }
-            ]
-        }
 
 # Group Questions
 See http://manual.limesurvey.org/LimeSurvey_Manual for question types
