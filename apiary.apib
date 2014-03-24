@@ -2044,3 +2044,20 @@ A user can add, update or delete his/her own photo.
 ### Delete photo of user [DELETE]
 
 + Response 204
+
+## User statistics [/users/{user}/stats]
+
+A user can retrieve his/her own user statistics.
+
++ Parameters
+    + user (string, `4`) ... User identifier.
+    
+### Get stats of user [GET]
+
++ Response 200 (application/json)
+
+            {
+                "answers": 1,
+                "moderated_answers": 1,
+                "unmoderated_answers": 0
+             }
