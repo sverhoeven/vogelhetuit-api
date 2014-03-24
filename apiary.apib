@@ -330,6 +330,11 @@ A trip resource is set of timestamped coordinates with the eEcology tracker iden
                 }]
             },
             "visible": true,
+            "stats": {
+                "nr_answers": 0,
+                "nr_pois": 2,
+                "nr_questions": 14
+            },
             "created_by": 2,
             "created_on": "2013-04-14T10:00:00+00:00"
         }
@@ -454,6 +459,11 @@ Retrieving a full invisible trip requires the researcher role.
                 "created_on": "2013-04-14T10:00:00+00:00"
             }],
             "visible": true,
+            "stats": {
+                "nr_answers": 0,
+                "nr_pois": 2,
+                "nr_questions": 14
+            },
             "created_by": 2,
             "created_on": "2013-04-14T10:00:00+00:00"
         }
@@ -610,9 +620,7 @@ Retrieving a full invisible trip requires the researcher role.
 The Trip resource requires the following attributes:
 
 - tracker (string) ... Tracker identifier.
-- start (string) ... Start time of trip.
-- end (string) ... End time of trip.
-- geo (GeoJSON) ... List of features that appear between start and end time.
+- geo (GeoJSON) ... List of features with lon,lat alt point coordinates and ts (timestamp) property.
 - visible (boolean) ... Visiblility of trip. A hidden trip can only be seen by users with *researcher* role.
 
 > TODO add visualization options, eg. color for speed, color for hour of day
