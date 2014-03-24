@@ -59,10 +59,10 @@ Species can be used to filter pois, trips or stories.
 
 ## Species [/species/{id}]
 
-The banner, logo and app_menu_item are media resources. Media has the forllowing urls:
+The banner, logo, app_menu_item and app_logo are media resources. Media has the forllowing urls:
 * reference, the original uploaded image
-* big, the image scaled to 1000px maximum width
-* small, the image scaled to 200px maximum width
+* big, the image scaled to 1920px maximum width
+* small, the image scaled to 120px maximum width
 
 > TODO allow api to update banner and logo by uploading new media and setting species.banner to new media id.
 
@@ -104,6 +104,16 @@ The banner, logo and app_menu_item are media resources. Media has the forllowing
                     "reference": "http:\/\/localhost:8333\/uploads\/media\/species\/0001\/01\/54acdefade9378e05b0ebf0e3fdc0850c37ca9d8.jpeg",
                     "big": "http:\/\/localhost:8333\/uploads\/media\/species\/0001\/01\/thumb_1_species_big.jpeg",
                     "small": "http:\/\/localhost:8333\/uploads\/media\/species\/0001\/01\/thumb_1_species_small.jpeg"
+                }
+            },
+            "app_logo": {
+                "id": 2,
+                "width": 320,
+                "height": 181,
+                "urls": {
+                    "reference": "http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg",
+                    "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg",
+                    "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"
                 }
             },
             "stats": {
@@ -177,6 +187,16 @@ Deleting a single species requires the researcher role.
                         "reference": "http:\/\/localhost:8333\/uploads\/media\/species\/0001\/01\/54acdefade9378e05b0ebf0e3fdc0850c37ca9d8.jpeg",
                         "big": "http:\/\/localhost:8333\/uploads\/media\/species\/0001\/01\/thumb_1_species_big.jpeg",
                         "small": "http:\/\/localhost:8333\/uploads\/media\/species\/0001\/01\/thumb_1_species_small.jpeg"
+                    }
+                },
+                "app_logo": {
+                    "id": 2,
+                    "width": 320,
+                    "height": 181,
+                    "urls": {
+                        "reference": "http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg",
+                        "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg",
+                        "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"
                     }
                 },
                 "stats": {
@@ -253,6 +273,16 @@ Creating a single species requires the researcher role.
                         "reference": "http:\/\/localhost:8333\/uploads\/media\/species\/0001\/01\/54acdefade9378e05b0ebf0e3fdc0850c37ca9d8.jpeg",
                         "big": "http:\/\/localhost:8333\/uploads\/media\/species\/0001\/01\/thumb_1_species_big.jpeg",
                         "small": "http:\/\/localhost:8333\/uploads\/media\/species\/0001\/01\/thumb_1_species_small.jpeg"
+                    }
+                },
+                "app_logo": {
+                    "id": 2,
+                    "width": 320,
+                    "height": 181,
+                    "urls": {
+                        "reference": "http://localhost:8000/uploads/media/species/0001/01/bc2791fde7e746299795d026f2c3acfd307fb902.jpeg",
+                        "big": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_big.jpeg",
+                        "small": "http://localhost:8000/uploads/media/species/0001/01/thumb_2_species_small.jpeg"
                     }
                 },
                 "stats": {
@@ -1638,6 +1668,16 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
                             "small": "http:\/\/coolhead:8333\/uploads\/media\/species\/0001\/01\/thumb_1_species_small.jpeg"
                         }
                     },
+                    "app_logo": {
+                        "id": 2,
+                        "width": 320,
+                        "height": 181,
+                        "urls": {
+                            "reference": "http:\/\/coolhead:8333\/uploads\/media\/species\/0001\/01\/c7e31391737b4413f847c9cbf97cbb5e77ca10e7.jpeg",
+                            "big": "http:\/\/coolhead:8333\/uploads\/media\/species\/0001\/01\/thumb_2_species_big.jpeg",
+                            "small": "http:\/\/coolhead:8333\/uploads\/media\/species\/0001\/01\/thumb_2_species_small.jpeg"
+                        }
+                    },
                     "summary": "Summary of bird"
                 },
                 "created_by": 2,
@@ -2051,7 +2091,7 @@ A user can retrieve his/her own user statistics.
 
 + Parameters
     + user (string, `4`) ... User identifier.
-    
+
 ### Get stats of user [GET]
 
 + Response 200 (application/json)
