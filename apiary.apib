@@ -1307,6 +1307,40 @@ Fetch list of questions independ of trip or poi.
 
     [Questions][]
 
+## Copy questions [/poi/{src_poi}/questions]
+
++ Parameters
+    + src_poi (number, `1`) ... Point of interest identifier of source.
+    
+### Copy questions from one poi to another [COPY]
+
+Copies the questions from source POI to destination POI.
+
++ Request
+
+    + Headers
+    
+            Destination: /poi/{dst_poi}/questions
+
++ Response 201
+
+## Copy question [/questions/{question}]
+
++ Parameters
+    + question (number, `1`) ... Question indentifier of source.
+
+### Copy question to an poi [COPY]
+
+Copy the question to a destination POI.
+
++ Request
+
+    + Headers
+    
+            Destination: /poi/{dst_poi}/questions
+
++ Response 201
+
 # Group Answers
 
 ## Answer [/answers/{answer}]
