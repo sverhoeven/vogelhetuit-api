@@ -1056,6 +1056,103 @@ Sets the distance field and filters out POI's further away then radius.
 
     [POIs][]
 
+## Kml file of trip of poi [/pois/{poi}/geo.kml]
+
+A trip selected by one of it's poi with points and pois as a kml file.
+
+### GET
+
+Retrieving a visible trip requires the anonymous role.
+
++ Parameters
+    + poi (number, `1`) ... Trip identifier.
+
++ Response 200 (application/vnd.google-earth.kml+xml)
+
+            <?xml version="1.0" ?>
+            <kml xmlns="http://www.opengis.net/kml/2.2">
+                <Document>
+                    <Style id="start">
+                        <IconStyle>
+                            <Icon>
+                                <href>http://localhost:8333/bundles/vhuapi/images/trip-start.png</href>
+                            </Icon>
+                        </IconStyle>
+                    </Style>
+                    <Style id="finish">
+                        <IconStyle>
+                            <Icon>
+                                <href>http://localhost:8333/bundles/vhuapi/images/trip-finish.png</href>
+                            </Icon>
+                        </IconStyle>
+                    </Style>
+                    <Style id="trip-1">
+                        <LineStyle>
+                            <color>7f00ffff</color>
+                            <width>4</width>
+                        </LineStyle>
+                        <PolyStyle>
+                            <color>4f00afff</color>
+                        </PolyStyle>
+                    </Style>
+                    <Style id="poisof-1">
+                        <IconStyle>
+                            <Icon>
+                                <href>http://localhost:8333/bundles/vhuapi/images/puzzle-ffff00.png</href>
+                            </Icon>
+                        </IconStyle>
+                    </Style>
+                    <Folder id="1">
+                        <name>Trip 355</name>
+                        <Placemark>
+                            <LineString>
+                                <altitudeMode>absolute</altitudeMode>
+                                <extrude>1</extrude>
+                                <coordinates>
+                            4.88073,52.39517,20
+                            4.88460,52.37130,10
+                            4.96435,52.35045,20
+                            </coordinates>
+                            </LineString>
+                            <styleUrl>#trip-1</styleUrl>
+                        </Placemark>
+                        <Placemark>
+                            <name>Start</name>
+                            <description>April 14, 2013 10:00</description>
+                            <Point>
+                                <coordinates>
+                  4.88073,52.39517,20
+                  </coordinates>
+                            </Point>
+                            <styleUrl>#start</styleUrl>
+                        </Placemark>
+                        <Placemark>
+                            <name>Finish</name>
+                            <description>April 15, 2013 12:00</description>
+                            <Point>
+                                <coordinates>
+                   4.96435,52.35045,20
+                  </coordinates>
+                            </Point>
+                            <styleUrl>#finish</styleUrl>
+                        </Placemark>
+                        <Folder>
+                            <name>POIs</name>
+                            <open>1</open>
+                            <Placemark id="1">
+                                <name>POI 1</name>
+                                <Point>
+                                    <coordinates>
+                      4.93895, 52.34293
+                      </coordinates>
+                                </Point>
+                                <styleUrl>#poisof-1</styleUrl>
+                            </Placemark>
+                        </Folder>
+                    </Folder>
+                </Document>
+            </kml>
+
 # Group Questions
 See http://manual.limesurvey.org/LimeSurvey_Manual for question types
 and http://developer.surveygizmo.com/rest-api-documentation/objects/ for possible API.
@@ -1311,7 +1408,7 @@ Fetch list of questions independ of trip or poi.
 
 + Parameters
     + src_poi (number, `1`) ... Point of interest identifier of source.
-    
+
 ### Copy questions from one poi to another [COPY]
 
 Copies the questions from source POI to destination POI.
@@ -1319,7 +1416,7 @@ Copies the questions from source POI to destination POI.
 + Request
 
     + Headers
-    
+
             Destination: /poi/{dst_poi}/questions
 
 + Response 201
@@ -1336,7 +1433,7 @@ Copy the question to a destination POI.
 + Request
 
     + Headers
-    
+
             Destination: /poi/{dst_poi}/questions
 
 + Response 201
@@ -1912,6 +2009,27 @@ Use `users/{user}/photo` to update photo of user.
             "firstname": "first name",
             "lastname": "last name",
             "phone": "(Mobile) phone number, used by researcher to ask feedback"
+        }
+
++ Response 201
+
+### Partial update a user [PATCH]
+
+A user can update some of his/her own user information.
+The following user fields can be updated:
+* username
+* password
+* email
+* firstname
+* lastname
+* phone
+
+Updating a user requires the admin role or self.
+
++ Request
+
+        {
+            "email": "user@vogelhetuit.nl"
         }
 
 + Response 201
