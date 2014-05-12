@@ -844,6 +844,77 @@ The filters of `/trips` also work on this resources.
                 </Document>
             </kml>
 
+## List of trips in GeoJSON format [/trips/geo.json]
+
+The filters of `/trips` also work on this resources.
+
+All the trips are in one feature collection.
+In the GeoJSON format a trip consists of one feature with the track as a linestring and a point feature for each poi.
+
+### GET
+
++ Response 200 (application/json)
+
+            {
+                "type": "FeatureCollection",
+                "features": [
+                    {
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "LineString",
+                            "coordinates": [
+                                [
+                                    4.880729,
+                                    52.395173,
+                                    20
+                                ],
+                                [
+                                    4.8846,
+                                    52.371303,
+                                    10
+                                ],
+                                [
+                                    4.964354,
+                                    52.350452,
+                                    20
+                                ]
+                            ]
+                        },
+                        "properties": {
+                            "trip": 1,
+                            "color": "fbc300",
+                            "species": 1,
+                            "bbox": [
+                                52.350452,
+                                4.880729,
+                                52.395173,
+                                4.964354
+                            ]
+                        },
+                        "id": "t1"
+                    },
+                    {
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [
+                                4.93895,
+                                52.34293
+                            ]
+                        },
+                        "properties": {
+                            "poi": 1,
+                            "trip": 1,
+                            "color": "fbc300",
+                            "species": 1,
+                            "offset": 1,
+                            "title": "Kleine mantelmeeuw, Amsterdam, 1"
+                        },
+                        "id": "p1"
+                    }
+                ]
+            }
+
 # Group POIs
 A point of interest is a place on a trip where a questions are connected to.
 
