@@ -1833,6 +1833,20 @@ Retrieving all unmoderated answers for a question requires the moderator role.
             "items": []
         }
 
+## Answers of a trip as a csv file [/trips/{trip}/answers.csv]
+
++ Parameters
+    + trip (number, `1`) ... Trip identifier.
+
+### Retrieve answers of trip [GET]
+
+Retrieving all answers of a trip requires the moderator role.
+
++ Response 200 (text/csv)
+
+        answer_id,answer_lon,answer_lat,answer,answer_on,answer_by,answer_moderated_by,answer_dist2poi,answer_tilt,answer_head,question_id,question_type,question_title,poi_id,poi_lon,poi_lat,poi_offset
+        5,54.64200,12.54300,1-50,2013-09-04T12:30:00+0200,user,,6155.006,45.00000,225.00000,124,radio,Hoeveel roofvogels zie je in het perceel?,32,7.02329,53.13103,0
+
 # Group Stories
 A story is about a trip and it's POIs combined with the supplied answers and insight of researcher.
 
