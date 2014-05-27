@@ -596,6 +596,79 @@ Retrieving a full invisible trip requires the researcher role.
                 </Document>
             </kml>
 
+## Trip as GeoJSon [/trips/{id}/geo.json]
+
+A trip with track line and ois as a geojson file.
+
+### GET
+
+Retrieving a full visible trip requires the anonymous role.
+
++ Parameters
+    + id (number, `1`) ... Trip identifier.
+
++ Response 200 (application/json)
+
+            {
+                "features": [
+                    {
+                        "geometry": {
+                            "coordinates": [
+                                [
+                                    4.880729,
+                                    52.395173,
+                                    20
+                                ],
+                                [
+                                    4.8846,
+                                    52.371303,
+                                    10
+                                ],
+                                [
+                                    4.964354,
+                                    52.350452,
+                                    20
+                                ]
+                            ],
+                            "type": "LineString"
+                        },
+                        "id": "t7",
+                        "properties": {
+                            "bbox": [
+                                52.350452,
+                                4.880729,
+                                52.395173,
+                                4.964354
+                            ],
+                            "color": "fbc300",
+                            "species": 5,
+                            "trip": 7
+                        },
+                        "type": "Feature"
+                    },
+                    {
+                        "geometry": {
+                            "coordinates": [
+                                4.93895,
+                                52.34293
+                            ],
+                            "type": "Point"
+                        },
+                        "id": "p31",
+                        "properties": {
+                            "color": "fbc300",
+                            "offset": 1,
+                            "poi": 31,
+                            "species": 5,
+                            "title": "Kleine mantelmeeuw, Amsterdam, 1",
+                            "trip": 7
+                        },
+                        "type": "Feature"
+                    }
+                ],
+                "type": "FeatureCollection"
+            }
+
 ## Trips [/trips]
 
 + Model (application/json)
