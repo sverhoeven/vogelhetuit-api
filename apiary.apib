@@ -1514,6 +1514,42 @@ Copy the question to a destination POI.
 
 + Response 201
 
+## Question options [/questions/{question}/options]
+
+Includes nr of answers for each option.
+
++ Parameters
+    + question (number, `1`) ... Question indentifier.
+
++ Model (application/json)
+
+        [
+            {
+                "id": 1,
+                "title": "Title of option1",
+                "value": "Value of option1",
+                "nr_answers": 1
+            },
+            {
+                "id": 2,
+                "title": "Title of option2",
+                "value": "Value of option2",
+                "nr_answers": 1
+            }
+        ]
+
+### Retrieve options for a question [GET]
+
+Retrieving question options requires moderator role.
+
++ Response 200
+
+    [Question options][]
+
++ Response 404 (application/json)
+
+        [{"message": "Question has no options"}]
+
 # Group Answers
 
 ## Answer [/answers/{answer}]
