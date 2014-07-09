@@ -1653,13 +1653,22 @@ Moderator role will retrieve any answer.
 
     [Answer][]
 
+### Delete answer [DELETE]
+
+This will delete the answer and if question type is image or video will also delete the uploaded media.
+
+Deleting an answer requires the moderator role.
+
++ Response 204
+
 ## Moderate answer [/answers/{answer}/moderate]
 
 + Parameters
     + answer (number, `1`) ... Answer identifier.
 
 ### Approve answer [PUT]
-Moderate media by approving it.
+
+Moderate answer by approving it.
 
 Approving an answer requires the moderator role.
 
@@ -1667,13 +1676,13 @@ Approving an answer requires the moderator role.
 
     [Answer][]
 
-### Disapprove answer [DELETE]
-Moderate media by disapproving it.
-This will delete the answer and if question type is image or video will also delete the uploaded media.
+### Undo approved answer [DELETE]
 
-Disapproving an answer requires the moderator role.
+Undoing an approved answer requires the moderator role.
 
-+ Response 204
++ Response 200
+
+    [Answer][]
 
 ## Answers [/answers]
 
