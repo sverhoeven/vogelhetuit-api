@@ -466,6 +466,7 @@ Retrieving a full invisible trip requires the researcher role.
                     "coordinates": [4.938947,52.342929]
                 },
                 "radius": 100,
+                "order_number": 1,
                 "body": "short text describing motiviation for the poi",
                 "questions": [{
                     "id": 1,
@@ -1007,6 +1008,7 @@ A point of interest is a place on a trip where a questions are connected to.
                 "coordinates": [4.938947, 52.342929]
             },
             "radius": 100,
+            "order_number": 1,
             "body": "text describing motiviation for the poi",
             "questions": [{
                 "id": 1,
@@ -1071,6 +1073,7 @@ Collection of point of interests.
                     "coordinates": [4.938947, 52.342929]
                 },
                 "radius": 100,
+                "order_number": 1,
                 "created_by": 2,
                 "created_on": "2013-04-14T10:00:00+00:00"
             }]
@@ -1121,6 +1124,7 @@ Sets the distance field.
                         "coordinates": [4.938947, 52.342929]
                     },
                     "radius": 100,
+                    "order_number": 1,
                     "distance": 11.369,
                     "created_by": 2,
                     "created_on": "2013-04-14T10:00:00+00:00"
@@ -1150,6 +1154,7 @@ Sets the distance field and filters out POI's further away then radius.
                         "coordinates": [4.938947, 52.342929]
                     },
                     "radius": 100,
+                    "order_number": 1,
                     "distance": 11.369,
                     "created_by": 2,
                     "created_on": "2013-04-14T10:00:00+00:00",
@@ -1582,6 +1587,42 @@ Copy the question to a destination POI.
 
 + Response 201
 
+## Question options [/questions/{question}/options]
+
+Includes nr of answers for each option.
+
++ Parameters
+    + question (number, `1`) ... Question indentifier.
+
++ Model (application/json)
+
+        [
+            {
+                "id": 1,
+                "title": "Title of option1",
+                "value": "Value of option1",
+                "nr_answers": 1
+            },
+            {
+                "id": 2,
+                "title": "Title of option2",
+                "value": "Value of option2",
+                "nr_answers": 1
+            }
+        ]
+
+### Retrieve options for a question [GET]
+
+Retrieving question options requires moderator role.
+
++ Response 200
+
+    [Question options][]
+
++ Response 404 (application/json)
+
+        [{"message": "Question has no options"}]
+
 # Group Answers
 
 ## Answer [/answers/{answer}]
@@ -1685,13 +1726,22 @@ Moderator role will retrieve any answer.
 
     [Answer][]
 
+### Delete answer [DELETE]
+
+This will delete the answer and if question type is image or video will also delete the uploaded media.
+
+Deleting an answer requires the moderator role.
+
++ Response 204
+
 ## Moderate answer [/answers/{answer}/moderate]
 
 + Parameters
     + answer (number, `1`) ... Answer identifier.
 
 ### Approve answer [PUT]
-Moderate media by approving it.
+
+Moderate answer by approving it.
 
 Approving an answer requires the moderator role.
 
@@ -1699,13 +1749,13 @@ Approving an answer requires the moderator role.
 
     [Answer][]
 
-### Disapprove answer [DELETE]
-Moderate media by disapproving it.
-This will delete the answer and if question type is image or video will also delete the uploaded media.
+### Undo approved answer [DELETE]
 
-Disapproving an answer requires the moderator role.
+Undoing an approved answer requires the moderator role.
 
-+ Response 204
++ Response 200
+
+    [Answer][]
 
 ## Answers [/answers]
 
@@ -1983,6 +2033,7 @@ A story is about a trip and it's POIs combined with the supplied answers and ins
                         },
                         "id": 1,
                         "radius": 100,
+                        "order_number": 1,
                         "body": "bla bla",
                         "created_on": "2014-02-01T16:56:46+0000",
                         "questions": [{
