@@ -597,6 +597,104 @@ Retrieving a full invisible trip requires the researcher role.
                 </Document>
             </kml>
 
+## Kml file of trip and answers [/trips/{id}/geo.answers.kml]
+
+A trip with points, pois, questions and answers as a kml file.
+
+### GET
+
+Retrieving requires the researcher role.
+
++ Parameters
+    + id (number, `1`) ... Trip identifier.
+
++ Response 200 (application/vnd.google-earth.kml+xml)
+
+            <?xml version="1.0" ?>
+            <kml xmlns="http://www.opengis.net/kml/2.2">
+                <Document>
+                    <Style id="trip-1">
+                        <LineStyle>
+                            <color>7f00ffff</color>
+                            <width>4</width>
+                        </LineStyle>
+                        <PolyStyle>
+                            <color>4f00afff</color>
+                        </PolyStyle>
+                    </Style>
+                    <Style id="poisof-1">
+                        <IconStyle>
+                            <Icon>
+                                <href>http://localhost:8333/bundles/vhuapi/images/puzzle-ffff00.png</href>
+                            </Icon>
+                        </IconStyle>
+                    </Style>
+                    <Style id="ansstyle">
+				      <IconStyle id="ansistyle">
+				        <Icon>
+				          <href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+				          <scale>1.0</scale>
+				        </Icon>
+				      </IconStyle>
+				    </Style>
+                    <Folder id="1">
+                        <name>Trip 355</name>
+                        <Placemark>
+                            <LineString>
+                                <altitudeMode>absolute</altitudeMode>
+                                <extrude>1</extrude>
+                                <coordinates>
+                            4.88073,52.39517,20
+                            4.88460,52.37130,10
+                            4.96435,52.35045,20
+                            </coordinates>
+                            </LineString>
+                            <styleUrl>#trip-1</styleUrl>
+                        </Placemark>
+                        <Folder>
+                            <name>POIs</name>
+                            <open>1</open>
+                            <Placemark id="1">
+                                <name>POI 1</name>
+                                <Point>
+                                    <coordinates>
+                      4.93895, 52.34293
+                      </coordinates>
+                                </Point>
+                                <styleUrl>#poisof-1</styleUrl>
+                            </Placemark>
+                            <Folder>
+					          <name>POI 1 answers</name>
+					          <Folder>
+					            <name>Q:1: Question text.</name>
+					            <open>1</open>
+					            <Placemark id="1">
+					              <name>Answer 1</name>
+					              <styleUrl>#ansstyle</styleUrl>
+					              <description>
+					                <p>POI: <a href="http://www.vogelhetuit.nl/admin/pois/1/show">1</a></p>
+					                <p>Question: <a href="http://www.vogelhetuit.nl/admin/questions/1/show">Maak een foto van de omgeving van het meetpunt.</a></p>
+					                <p>Answer: <div>value</div></p>
+					                <p>By: <a href="http://www.vogelhetuit.nl/admin/vhu/admin/user/4/show">user</a> on  September 4, 2013 12:30</p>
+					                <p>Moderated by: <a href="http://www.vogelhetuit.nl/admin/vhu/admin/user/3/show">moderator</a> on September 4, 2013 12:30</p>
+					                <p>Location (lat,lon):52.342909, 4.938907</p>
+					                <p>Tilt/Heading: 0.00000/0.00000</p>
+					                <p>ID: <a href="http://www.vogelhetuit.nl/admin/answers/1/show">1</a></p>
+					              </description>
+					              <Point>
+					                <coordinates>4.938907, 52.342909</coordinates>
+					              </Point>
+					              <TimeStamp>
+					                <when>2013-09-04T12:30:00+00:00</when>
+					              </TimeStamp>
+					            </Placemark>
+				              </Folder>
+				            </Folder>
+                        </Folder>
+                    </Folder>
+                </Document>
+            </kml>
+
 ## Trip as GeoJSon [/trips/{id}/geo.json]
 
 A trip with track line and ois as a geojson file.
