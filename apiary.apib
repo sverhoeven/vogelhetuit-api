@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: https://api.vogelhetuit.nl/v1
+HOST: http://www.vogelhetuit.nl/api
 
 # Vogel het uit
 The *Vogel het uit* service for sharing gps tracks (trips), assigning points of interest, attaching questions to poi, recieving answers and building trip story.
@@ -744,7 +744,7 @@ Creating a trip requires the researcher role.
 Retrieving a list visible trips requires the anonymous role.
 Retrieving a list visible and invisible trips requires the researcher role.
 
-+ Response 200 (application/json)
++ Response 200
 
     [Trips][]
 
@@ -755,7 +755,7 @@ Retrieving a list visible and invisible trips requires the researcher role.
 
 ### GET
 
-+ Response 200 (application/json)
++ Response 200
 
     [Trips][]
 
@@ -766,7 +766,7 @@ Retrieving a list visible and invisible trips requires the researcher role.
 
 ### GET
 
-+ Response 200 (application/json)
++ Response 200
 
     [Trips][]
 
@@ -2373,8 +2373,8 @@ The returned username/password can be used to login when cookie is no longer val
 ## Relation of user and role [/users/{user}/roles/{role}]
 
 + Parameters
-    + user (string) ... User identifier.
-    + role (string) ... Role identifier.
+    + user (string, `4`) ... User identifier.
+    + role (string, `ROLE_MODERATOR`) ... Role identifier.
 
 ### Set role of user [PUT]
 
@@ -2425,7 +2425,7 @@ Set a role of user requires the admin role.
 A user can add, update or delete his/her own photo.
 
 + Parameters
-    + user (string) ... User identifier.
+    + user (string, `4`) ... User identifier.
 
 ### Add photo to user [POST]
 
@@ -2438,7 +2438,7 @@ A user can add, update or delete his/her own photo.
 
         ... binary stream of photo ...
 
-+ Response 201 (application/json)
++ Response 201
 
     [User][]
 
@@ -2462,3 +2462,22 @@ A user can retrieve his/her own user statistics.
                 "moderated_answers": 1,
                 "unmoderated_answers": 0
              }
+
+# Group Zipfiles
+
+To allow mobile applications to start faster a zipfile can be used.
+The zip file contains all requests made by the app.
+
+## Android app [/android.zip]
+
+### Retrieve zip file [GET]
+
++ Response 200 (application/zip)
+
+## IOS app [/ios.zip]
+
+The files inside de zip file have '.json' appended to prevent duplicates.
+
+### Retrieve zip file [GET]
+
++ Response 200 (application/zip)
