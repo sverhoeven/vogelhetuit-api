@@ -29,4 +29,6 @@ To test api documentation against server backend.
 
 4. Run tests with:
 
-	dredd apiary.apib http://localhost:8000/app_dev.php/api -u admin:adminpw -m GET
+	dredd apiary.apib http://localhost:8000/app_dev.php/api -u admin:adminpw -m GET -r html -o report.html
+
+5. Verify results in `report.html`.
