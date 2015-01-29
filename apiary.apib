@@ -597,9 +597,9 @@ Retrieving a full invisible trip requires the researcher role.
                 </Document>
             </kml>
 
-## Kml file of trip and answers [/trips/{id}/geo.answers.kml]
+## Kml file of trip and all answers [/trips/{id}/geo.answers.kml]
 
-A trip with points, pois, questions and answers as a kml file.
+A trip with points, pois, questions and all answers as a kml file.
 
 ### GET
 
@@ -664,32 +664,134 @@ Retrieving requires the researcher role.
                                 <styleUrl>#poisof-1</styleUrl>
                             </Placemark>
                             <Folder>
-					          <name>POI 1 answers</name>
-					          <Folder>
-					            <name>Q:1: Question text.</name>
-					            <open>1</open>
-					            <Placemark id="1">
-					              <name>Answer 1</name>
-					              <styleUrl>#ansstyle</styleUrl>
-					              <description>
-					                <p>POI: <a href="http://www.vogelhetuit.nl/admin/pois/1/show">1</a></p>
-					                <p>Question: <a href="http://www.vogelhetuit.nl/admin/questions/1/show">Maak een foto van de omgeving van het meetpunt.</a></p>
-					                <p>Answer: <div>value</div></p>
-					                <p>By: <a href="http://www.vogelhetuit.nl/admin/vhu/admin/user/4/show">user</a> on  September 4, 2013 12:30</p>
-					                <p>Moderated by: <a href="http://www.vogelhetuit.nl/admin/vhu/admin/user/3/show">moderator</a> on September 4, 2013 12:30</p>
-					                <p>Location (lat,lon):52.342909, 4.938907</p>
-					                <p>Tilt/Heading: 0.00000/0.00000</p>
-					                <p>ID: <a href="http://www.vogelhetuit.nl/admin/answers/1/show">1</a></p>
-					              </description>
-					              <Point>
-					                <coordinates>4.938907, 52.342909</coordinates>
-					              </Point>
-					              <TimeStamp>
-					                <when>2013-09-04T12:30:00+00:00</when>
-					              </TimeStamp>
-					            </Placemark>
-				              </Folder>
-				            </Folder>
+                              <name>POI 1 answers</name>
+                              <Folder>
+                                <name>Q:1: Question text.</name>
+                                <open>1</open>
+                                <Placemark id="1">
+                                  <name>Answer 1</name>
+                                  <styleUrl>#ansstyle</styleUrl>
+                                  <description>
+                                    <p>POI: <a href="http://www.vogelhetuit.nl/admin/pois/1/show">1</a></p>
+                                    <p>Question: <a href="http://www.vogelhetuit.nl/admin/questions/1/show">Maak een foto van de omgeving van het meetpunt.</a></p>
+                                    <p>Answer: <div>value</div></p>
+                                    <p>By: <a href="http://www.vogelhetuit.nl/admin/vhu/admin/user/4/show">user</a> on  September 4, 2013 12:30</p>
+                                    <p>Moderated by: <a href="http://www.vogelhetuit.nl/admin/vhu/admin/user/3/show">moderator</a> on September 4, 2013 12:30</p>
+                                    <p>Location (lat,lon):52.342909, 4.938907</p>
+                                    <p>Tilt/Heading: 0.00000/0.00000</p>
+                                    <p>Accuracy/Fixed on: /</p>
+                                    <p>Answered in: </p>
+                                    <p>ID: <a href="http://www.vogelhetuit.nl/admin/answers/1/show">1</a></p>
+                                  </description>
+                                  <Point>
+                                    <coordinates>4.938907, 52.342909</coordinates>
+                                  </Point>
+                                  <TimeStamp>
+                                    <when>2013-09-04T12:30:00+00:00</when>
+                                  </TimeStamp>
+                                </Placemark>
+                              </Folder>
+                            </Folder>
+                        </Folder>
+                    </Folder>
+                </Document>
+            </kml>
+
+## Kml file of trip and moderated answers [/trips/{id}/geo.moderated.answers.kml]
+
+A trip with points, pois, questions and moderated answers as a kml file.
+
+### GET
+
+Retrieving requires the researcher role.
+
++ Parameters
+    + id (number, `1`) ... Trip identifier.
+
++ Response 200 (application/vnd.google-earth.kml+xml)
+
+            <?xml version="1.0" ?>
+            <kml xmlns="http://www.opengis.net/kml/2.2">
+                <Document>
+                    <Style id="trip-1">
+                        <LineStyle>
+                            <color>7f00ffff</color>
+                            <width>4</width>
+                        </LineStyle>
+                        <PolyStyle>
+                            <color>4f00afff</color>
+                        </PolyStyle>
+                    </Style>
+                    <Style id="poisof-1">
+                        <IconStyle>
+                            <Icon>
+                                <href>http://localhost:8333/bundles/vhuapi/images/puzzle-ffff00.png</href>
+                            </Icon>
+                        </IconStyle>
+                    </Style>
+                    <Style id="ansstyle">
+                      <IconStyle id="ansistyle">
+                        <Icon>
+                          <href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+                          <scale>1.0</scale>
+                        </Icon>
+                      </IconStyle>
+                    </Style>
+                    <Folder id="1">
+                        <name>Trip 355</name>
+                        <Placemark>
+                            <LineString>
+                                <altitudeMode>absolute</altitudeMode>
+                                <extrude>1</extrude>
+                                <coordinates>
+                            4.88073,52.39517,20
+                            4.88460,52.37130,10
+                            4.96435,52.35045,20
+                            </coordinates>
+                            </LineString>
+                            <styleUrl>#trip-1</styleUrl>
+                        </Placemark>
+                        <Folder>
+                            <name>POIs</name>
+                            <open>1</open>
+                            <Placemark id="1">
+                                <name>POI 1</name>
+                                <Point>
+                                    <coordinates>
+                      4.93895, 52.34293
+                      </coordinates>
+                                </Point>
+                                <styleUrl>#poisof-1</styleUrl>
+                            </Placemark>
+                            <Folder>
+                              <name>POI 1 answers</name>
+                              <Folder>
+                                <name>Q:1: Question text.</name>
+                                <open>1</open>
+                                <Placemark id="1">
+                                  <name>Answer 1</name>
+                                  <styleUrl>#ansstyle</styleUrl>
+                                  <description>
+                                    <p>POI: <a href="http://www.vogelhetuit.nl/admin/pois/1/show">1</a></p>
+                                    <p>Question: <a href="http://www.vogelhetuit.nl/admin/questions/1/show">Maak een foto van de omgeving van het meetpunt.</a></p>
+                                    <p>Answer: <div>value</div></p>
+                                    <p>By: <a href="http://www.vogelhetuit.nl/admin/vhu/admin/user/4/show">user</a> on  September 4, 2013 12:30</p>
+                                    <p>Moderated by: <a href="http://www.vogelhetuit.nl/admin/vhu/admin/user/3/show">moderator</a> on September 4, 2013 12:30</p>
+                                    <p>Location (lat,lon):52.342909, 4.938907</p>
+                                    <p>Tilt/Heading: 0.00000/0.00000</p>
+                                    <p>Accuracy/Fixed on: /</p>
+                                    <p>Answered in: </p>
+                                    <p>ID: <a href="http://www.vogelhetuit.nl/admin/answers/1/show">1</a></p>
+                                  </description>
+                                  <Point>
+                                    <coordinates>4.938907, 52.342909</coordinates>
+                                  </Point>
+                                  <TimeStamp>
+                                    <when>2013-09-04T12:30:00+00:00</when>
+                                  </TimeStamp>
+                                </Placemark>
+                              </Folder>
+                            </Folder>
                         </Folder>
                     </Folder>
                 </Document>
@@ -1730,6 +1832,9 @@ Attributes:
 - answered_on:, need to know when answer was given.
 - lon, lat: need to know where answer was given.
 - head, tilt: orientation of device, heading or direction and tilting, used when question type is image or video otherwise ignored.
+- location_accuracy: location accuracy of lat and lon in meters. Is optional.
+- location_fix_on: Timestamp when location was fixed/determined. Is optional.
+- lifetime: Number of seconds between showing of question and answering it. Aka How long it took to answer question. Is optional.
 - value, the answer itself. For a media type answer the answer will be empty, the media can be downloaded in the admin website.
 
 The 'answered_by' field is only set when user was logged in.
@@ -1742,6 +1847,9 @@ Answer for a radio question or radio image question:
             "value": "Value of option1",
             "lon": 54.642,
             "lat": 12.543,
+            "location_accuracy": 500,
+            "location_fix_on": "2013-09-04T12:20:00Z",
+            "lifetime": 12,
             "answered_on": "2013-09-04T12:30:00Z"
         }
 ````
@@ -1753,6 +1861,9 @@ Answer for a open question:
             "value": "some answer",
             "lon": 54.642,
             "lat": 12.543,
+            "location_accuracy": 500,
+            "location_fix_on": "2013-09-04T12:20:00Z",
+            "lifetime": 12,
             "answered_on": "2013-09-04T12:30:00Z"
         }
 ````
@@ -1764,6 +1875,9 @@ Answer for a count question:
             "value": "5",
             "lon": 54.642,
             "lat": 12.543,
+            "location_accuracy": 500,
+            "location_fix_on": "2013-09-04T12:20:00Z",
+            "lifetime": 12,
             "answered_on": "2013-09-04T12:30:00Z"
         }
 ````
@@ -1777,6 +1891,9 @@ Answer for a photo question or video question (the media is added as `media` for
             "lat": 12.543,
             "head": 225.00,
             "tilt": 45.0,
+            "location_accuracy": 500,
+            "location_fix_on": "2013-09-04T12:20:00Z",
+            "lifetime": 12,
             "answered_on": "2013-09-04T12:30:00Z"
         }
 ````
@@ -1809,6 +1926,9 @@ Answer for a photo question or video question (the media is added as `media` for
                 "created_by": 2,
                 "created_on": "2013-04-14T10:00:00+00:00"
             },
+            "location_accuracy": 500,
+            "location_fix_on": "2013-09-04T12:20:00Z",
+            "lifetime": 12,
             "answered_by": 4,
             "answered_on": "2013-09-04T12:30:00+00:00",
             "moderated_on": "2013-09-14T14:30:00+00:00",
@@ -1867,6 +1987,9 @@ Undoing an approved answer requires the moderator role.
                 "lon": 4.938907,
                 "lat": 52.342909,
                 "value": "value",
+                "location_accuracy": 500,
+                "location_fix_on": "2013-09-04T12:20:00Z",
+                "lifetime": 12,
                 "answered_by": 4,
                 "answered_on": "2013-09-04T12:30:00+00:00",
                 "moderated_on": "2013-09-14T12:30:00+00:00",
@@ -1928,6 +2051,9 @@ The answer value for a radio or radioimg question is the value of the option tha
             "lat": 52.342909,
             "head": 225.00,
             "tilt": 45.0,
+            "location_accuracy": 500,
+            "location_fix_on": "2013-09-04T12:20:00Z",
+            "lifetime": 12,
             "answered_on": "2013-09-04T12:30:00+00:00"
         }
         --AaB03x
